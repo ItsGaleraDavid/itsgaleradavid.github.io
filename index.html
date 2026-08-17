@@ -1,936 +1,926 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ItsGaleraDavid</title>
-
-    <meta
-        name="description"
-        content="A small corner of the Internet for things I build, explore and think about."
-    >
-
-    <meta name="author" content="ItsGaleraDavid">
-
-    <style>
-
-        /* =========================================================
-           BASE
-        ========================================================= */
-
-        :root {
-            --bg: #0d0f11;
-            --surface: #111417;
-            --text: #d8e4e8;
-            --muted: #89969c;
-            --faint: #566167;
-            --line: #252b2f;
-            --accent: #8bc9dd;
-
-            --content-width: 880px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-
-            background: var(--bg);
-            color: var(--text);
-
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Helvetica,
-                Arial,
-                sans-serif;
-
-            font-size: 16px;
-            line-height: 1.7;
-
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: var(--accent);
-        }
-
-        ::selection {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-
-        /* =========================================================
-           LAYOUT
-        ========================================================= */
-
-        .site {
-            width: min(
-                calc(100% - 48px),
-                var(--content-width)
-            );
-
-            margin: 0 auto;
-        }
-
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
-        header {
-            padding-top: 56px;
-            padding-bottom: 72px;
-
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .brand {
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        nav {
-            display: flex;
-            gap: 22px;
-
-            font-size: 14px;
-        }
-
-        nav a {
-            color: var(--muted);
-        }
-
-        nav a:hover {
-            color: var(--text);
-        }
-
-
-        /* =========================================================
-           INTRO
-        ========================================================= */
-
-        .intro {
-            max-width: 700px;
-
-            padding-bottom: 90px;
-        }
-
-        .intro-label {
-            margin-bottom: 22px;
-
-            color: var(--faint);
-
-            font-size: 12px;
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .intro h1 {
-            margin: 0 0 24px;
-
-            font-size: clamp(34px, 6vw, 54px);
-            line-height: 1.08;
-            font-weight: 500;
-
-            letter-spacing: -0.045em;
-        }
-
-        .intro p {
-            max-width: 620px;
-
-            margin: 0;
-
-            color: var(--muted);
-
-            font-size: 18px;
-            line-height: 1.75;
-        }
-
-
-        /* =========================================================
-           SECTIONS
-        ========================================================= */
-
-        section {
-            padding: 62px 0;
-
-            border-top: 1px solid var(--line);
-        }
-
-        .section-heading {
-            display: grid;
-
-            grid-template-columns: 150px 1fr;
-
-            gap: 40px;
-
-            margin-bottom: 42px;
-        }
-
-        .section-number {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 12px;
-            letter-spacing: 0.08em;
-        }
-
-        .section-title {
-            margin: 0;
-
-            font-size: 25px;
-            font-weight: 500;
-
-            letter-spacing: -0.025em;
-        }
-
-        .section-description {
-            margin-top: 8px;
-
-            color: var(--muted);
-
-            font-size: 15px;
-        }
-
-
-        /* =========================================================
-           CURRENTLY
-        ========================================================= */
-
-        .currently {
-            display: grid;
-
-            grid-template-columns: 150px 1fr;
-
-            gap: 40px;
-        }
-
-        .currently-label {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .currently-content {
-            max-width: 600px;
-        }
-
-        .currently-content p {
-            margin-top: 0;
-
-            color: var(--muted);
-        }
-
-        .topics {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 8px 18px;
-
-            margin-top: 26px;
-        }
-
-        .topic {
-            color: var(--text);
-
-            font-size: 14px;
-        }
-
-        .topic::before {
-            content: "·";
-
-            margin-right: 8px;
-
-            color: var(--faint);
-        }
-
-
-        /* =========================================================
-           THINGS
-        ========================================================= */
-
-        .thing-list {
-            border-top: 1px solid var(--line);
-        }
-
-        .thing {
-            display: grid;
-
-            grid-template-columns: 180px 1fr auto;
-
-            gap: 24px;
-
-            padding: 22px 0;
-
-            border-bottom: 1px solid var(--line);
-
-            align-items: baseline;
-        }
-
-        .thing-name {
-            font-size: 16px;
-        }
-
-        .thing-description {
-            color: var(--muted);
-
-            font-size: 14px;
-        }
-
-        .thing-arrow {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 13px;
-        }
-
-        .thing:hover .thing-arrow {
-            color: var(--accent);
-        }
-
-
-        /* =========================================================
-           EXPERIMENTS
-        ========================================================= */
-
-        .experiment {
-            display: grid;
-
-            grid-template-columns: 120px 1fr;
-
-            gap: 30px;
-
-            padding: 22px 0;
-
-            border-bottom: 1px solid var(--line);
-        }
-
-        .experiment-date {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 12px;
-        }
-
-        .experiment-title {
-            margin-bottom: 5px;
-
-            font-size: 15px;
-        }
-
-        .experiment-description {
-            color: var(--muted);
-
-            font-size: 14px;
-        }
-
-
-        /* =========================================================
-           NOTES / LOG
-        ========================================================= */
-
-        .log {
-            border-top: 1px solid var(--line);
-        }
-
-        .log-entry {
-            display: grid;
-
-            grid-template-columns: 120px 1fr;
-
-            gap: 30px;
-
-            padding: 20px 0;
-
-            border-bottom: 1px solid var(--line);
-        }
-
-        .log-date {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 12px;
-        }
-
-        .log-text {
-            color: var(--muted);
-
-            font-size: 14px;
-        }
-
-
-        /* =========================================================
-           ABOUT
-        ========================================================= */
-
-        .about {
-            display: grid;
-
-            grid-template-columns: 150px 1fr;
-
-            gap: 40px;
-        }
-
-        .about p {
-            max-width: 620px;
-
-            margin-top: 0;
-
-            color: var(--muted);
-        }
-
-        .interests {
-            margin-top: 28px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 8px 30px;
-
-            max-width: 520px;
-        }
-
-        .interest {
-            font-size: 14px;
-        }
-
-        .interest::before {
-            content: "—";
-
-            margin-right: 10px;
-
-            color: var(--faint);
-        }
-
-
-        /* =========================================================
-           ELSEWHERE
-        ========================================================= */
-
-        .links {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 12px 28px;
-        }
-
-        .external-link {
-            color: var(--muted);
-
-            font-size: 14px;
-        }
-
-        .external-link::after {
-            content: " ↗";
-
-            color: var(--faint);
-        }
-
-        .external-link:hover {
-            color: var(--text);
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            padding: 64px 0 70px;
-
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-main {
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 40px;
-
-            margin-bottom: 24px;
-        }
-
-        .footer-name {
-            font-size: 14px;
-        }
-
-        .footer-year {
-            color: var(--faint);
-
-            font-family:
-                "SFMono-Regular",
-                Consolas,
-                "Liberation Mono",
-                monospace;
-
-            font-size: 12px;
-        }
-
-        .license {
-            max-width: 650px;
-
-            color: var(--faint);
-
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        .license a {
-            text-decoration: underline;
-            text-decoration-color: var(--line);
-            text-underline-offset: 3px;
-        }
-
-        .license a:hover {
-            color: var(--text);
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 700px) {
-
-            .site {
-                width: min(
-                    calc(100% - 32px),
-                    var(--content-width)
-                );
-            }
-
-            header {
-                display: block;
-
-                padding-top: 32px;
-                padding-bottom: 55px;
-            }
-
-            nav {
-                margin-top: 20px;
-
-                flex-wrap: wrap;
-
-                gap: 8px 18px;
-            }
-
-            .intro {
-                padding-bottom: 62px;
-            }
-
-            .intro h1 {
-                font-size: 38px;
-            }
-
-            .intro p {
-                font-size: 16px;
-            }
-
-            .section-heading,
-            .currently,
-            .about {
-                grid-template-columns: 1fr;
-
-                gap: 14px;
-            }
-
-            section {
-                padding: 48px 0;
-            }
-
-            .thing {
-                grid-template-columns: 1fr auto;
-
-                gap: 8px 20px;
-            }
-
-            .thing-description {
-                grid-column: 1 / 2;
-            }
-
-            .thing-arrow {
-                grid-column: 2;
-                grid-row: 1 / 3;
-            }
-
-            .experiment,
-            .log {
-                grid-template-columns: 1fr;
-
-                gap: 7px;
-            }
-
-            .interests {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-main {
-                display: block;
-            }
-
-            .footer-year {
-                margin-top: 6px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ItsGaleraDavid</title>
+<meta name="description" content="A small corner of the Internet for things I build, explore and learn.">
+
+<style>
+:root{
+    --bg:#0d0f11;
+    --text:#d8e4e8;
+    --muted:#89969c;
+    --faint:#566167;
+    --line:#252b2f;
+    --accent:#8bc9dd;
+    --width:880px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+}
+
+::selection{
+    background:var(--text);
+    color:var(--bg);
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+a:hover{color:var(--accent)}
+
+.site{
+    width:min(calc(100% - 48px),var(--width));
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    padding:48px 0 70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:30px;
+}
+
+.brand{
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:-.02em;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+    font-size:14px;
+}
+
+nav a{color:var(--muted)}
+
+/* INTRO */
+
+.intro{
+    max-width:700px;
+    padding-bottom:80px;
+}
+
+.label,
+.section-number,
+.date{
+    color:var(--faint);
+    font-family:monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.label{margin-bottom:20px}
+
+h1{
+    margin:0 0 25px;
+    font-size:clamp(38px,6vw,56px);
+    line-height:1.08;
+    font-weight:500;
+    letter-spacing:-.05em;
+}
+
+.intro p{
+    max-width:650px;
+    margin:0;
+    color:var(--muted);
+    font-size:18px;
+}
+
+/* SECTIONS */
+
+section{
+    padding:60px 0;
+    border-top:1px solid var(--line);
+}
+
+.heading{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:40px;
+    margin-bottom:38px;
+}
+
+h2{
+    margin:0;
+    font-size:26px;
+    line-height:1.2;
+    font-weight:500;
+    letter-spacing:-.03em;
+}
+
+.description{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* CURRENTLY */
+
+.currently{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:40px;
+}
+
+.currently p{
+    max-width:650px;
+    margin:0;
+    color:var(--muted);
+}
+
+.topics{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 20px;
+    margin-top:24px;
+}
+
+.topic{
+    font-size:14px;
+}
+
+.topic:before{
+    content:"·";
+    color:var(--faint);
+    margin-right:8px;
+}
+
+/* THINGS */
+
+.list{
+    border-top:1px solid var(--line);
+}
+
+.item{
+    display:grid;
+    grid-template-columns:190px 1fr 25px;
+    gap:24px;
+    align-items:baseline;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.item-name{font-size:16px}
+
+.item-text{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.arrow{
+    color:var(--faint);
+    font-family:monospace;
+}
+
+.item:hover .arrow{color:var(--accent)}
+
+/* EXPERIMENTS / NOTES */
+
+.entry{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:30px;
+    padding:21px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.entry:first-child{
+    border-top:1px solid var(--line);
+}
+
+.entry-title{font-size:15px}
+
+.entry-text{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.date{
+    font-size:10px;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:40px;
+}
+
+.about-content{
+    max-width:650px;
+}
+
+.about p{
+    margin:0 0 22px;
+    color:var(--muted);
+}
+
+.interests{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px 30px;
+    margin-top:30px;
+}
+
+.interest{
+    font-size:14px;
+}
+
+.interest:before{
+    content:"—";
+    color:var(--faint);
+    margin-right:10px;
+}
+
+/* ELSEWHERE */
+
+.links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px 28px;
+}
+
+.external{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.external:after{
+    content:" ↗";
+    color:var(--faint);
+}
+
+/* FOOTER */
+
+footer{
+    padding:55px 0 65px;
+    border-top:1px solid var(--line);
+}
+
+.footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:20px;
+}
+
+.footer-brand{
+    font-size:15px;
+    font-weight:600;
+}
+
+.year{
+    color:var(--faint);
+    font-family:monospace;
+    font-size:11px;
+}
+
+.footer-description{
+    margin-bottom:22px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.license{
+    max-width:680px;
+    color:var(--faint);
+    font-size:12px;
+    line-height:1.8;
+}
+
+.license a{
+    color:var(--muted);
+    text-decoration:underline;
+    text-underline-offset:3px;
+}
+
+.notice{margin-top:12px}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .site{
+        width:calc(100% - 32px);
+    }
+
+    header{
+        display:block;
+        padding:32px 0 55px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        margin-top:18px;
+        gap:8px 18px;
+    }
+
+    .intro{
+        padding-bottom:60px;
+    }
+
+    h1{font-size:40px}
+
+    .intro p{font-size:16px}
+
+    section{
+        padding:48px 0;
+    }
+
+    .heading,
+    .currently,
+    .about{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+    .item{
+        grid-template-columns:1fr 20px;
+        gap:7px 15px;
+    }
+
+    .item-text{
+        grid-column:1;
+    }
+
+    .arrow{
+        grid-column:2;
+        grid-row:1/3;
+    }
+
+    .entry{
+        grid-template-columns:1fr;
+        gap:6px;
+    }
+
+    .interests{
+        grid-template-columns:1fr;
+    }
+
+    .footer-top{
+        display:block;
+    }
+
+    .year{
+        margin-top:6px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
 <div class="site">
 
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
+<header>
+    <a href="#top" class="brand">ItsGaleraDavid</a>
 
-    <header>
+    <nav>
+        <a href="#things">things</a>
+        <a href="#experiments">experiments</a>
+        <a href="#notes">notes</a>
+        <a href="#about">about</a>
+    </nav>
+</header>
 
-        <a href="#" class="brand">
-            ItsGaleraDavid
+<main>
+
+<!-- INTRO -->
+
+<div class="intro">
+    <div class="label">personal space</div>
+
+    <h1>
+        Things I build,<br>
+        explore and learn.
+    </h1>
+
+    <p>
+        A small corner of the Internet where I keep
+        the things I'm working on, the things I'm
+        curious about and the things I don't want
+        to forget.
+    </p>
+</div>
+
+
+<!-- CURRENTLY -->
+
+<section>
+
+    <div class="currently">
+
+        <div class="label">currently</div>
+
+        <div>
+            <p>
+                Following whatever happens to be
+                interesting enough to spend time
+                understanding.
+            </p>
+
+            <div class="topics">
+                <span class="topic">Python</span>
+                <span class="topic">Linux</span>
+                <span class="topic">Cybersecurity</span>
+                <span class="topic">3D</span>
+                <span class="topic">Virtual Worlds</span>
+                <span class="topic">Interactive Media</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- THINGS -->
+
+<section id="things">
+
+    <div class="heading">
+
+        <div class="section-number">01 / things</div>
+
+        <div>
+            <h2>Things</h2>
+            <div class="description">
+                The main things I spend time making and exploring.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="list">
+
+        <a href="#programming" class="item">
+            <div class="item-name">Programming</div>
+            <div class="item-text">
+                Python, software, small tools, scripts and experiments.
+            </div>
+            <div class="arrow">→</div>
         </a>
 
-        <nav aria-label="Main navigation">
+        <a href="#cybersecurity" class="item">
+            <div class="item-name">Cybersecurity</div>
+            <div class="item-text">
+                Linux, networks, systems and ethical hacking.
+            </div>
+            <div class="arrow">→</div>
+        </a>
 
-            <a href="#things">
-                things
-            </a>
+        <a href="#three-d" class="item">
+            <div class="item-name">3D</div>
+            <div class="item-text">
+                Animation, modelling, environments and interactive work.
+            </div>
+            <div class="arrow">→</div>
+        </a>
 
-            <a href="#experiments">
-                experiments
-            </a>
+        <a href="#virtual-worlds" class="item">
+            <div class="item-name">Virtual Worlds</div>
+            <div class="item-text">
+                Second Life, scripting, creation and virtual environments.
+            </div>
+            <div class="arrow">→</div>
+        </a>
 
-            <a href="#notes">
-                notes
-            </a>
+    </div>
 
-            <a href="#about">
-                about
-            </a>
-
-        </nav>
-
-    </header>
+</section>
 
 
-    <main>
+<!-- PROGRAMMING -->
 
-        <!-- =====================================================
-             INTRO
-        ====================================================== -->
+<section id="programming">
 
-        <div class="intro">
+    <div class="heading">
+        <div class="section-number">programming</div>
 
-            <div class="intro-label">
-                a small corner of the Internet
+        <div>
+            <h2>Programming</h2>
+            <div class="description">
+                Code, tools and things built to understand how they work.
+            </div>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="entry">
+            <div class="date">Python</div>
+
+            <div>
+                <div class="entry-title">Small applications</div>
+                <div class="entry-text">
+                    Desktop tools, experiments and small programs.
+                </div>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="date">Projects</div>
+
+            <div>
+                <div class="entry-title">Personal projects</div>
+                <div class="entry-text">
+                    Things that started as ideas and became something usable.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CYBERSECURITY -->
+
+<section id="cybersecurity">
+
+    <div class="heading">
+        <div class="section-number">cybersecurity</div>
+
+        <div>
+            <h2>Cybersecurity</h2>
+            <div class="description">
+                Learning how systems, networks and security work.
+            </div>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="entry">
+            <div class="date">Linux</div>
+
+            <div>
+                <div class="entry-title">Systems</div>
+                <div class="entry-text">
+                    Linux, virtual machines and system experimentation.
+                </div>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="date">Security</div>
+
+            <div>
+                <div class="entry-title">Ethical hacking</div>
+                <div class="entry-text">
+                    Networking, security concepts and controlled environments.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- 3D -->
+
+<section id="three-d">
+
+    <div class="heading">
+        <div class="section-number">3d</div>
+
+        <div>
+            <h2>3D</h2>
+            <div class="description">
+                Animation, modelling and interactive environments.
+            </div>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="entry">
+            <div class="date">Animation</div>
+
+            <div>
+                <div class="entry-title">3D experiments</div>
+                <div class="entry-text">
+                    Modelling, animation and experimentation with
+                    digital environments.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VIRTUAL WORLDS -->
+
+<section id="virtual-worlds">
+
+    <div class="heading">
+        <div class="section-number">virtual worlds</div>
+
+        <div>
+            <h2>Virtual Worlds</h2>
+            <div class="description">
+                Building and experimenting inside virtual spaces.
+            </div>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="entry">
+            <div class="date">Second Life</div>
+
+            <div>
+                <div class="entry-title">Objects & scripting</div>
+                <div class="entry-text">
+                    LSL scripts, particles, objects and small
+                    interactive experiments.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIMENTS -->
+
+<section id="experiments">
+
+    <div class="heading">
+
+        <div class="section-number">02 / experiments</div>
+
+        <div>
+            <h2>Experiments</h2>
+
+            <div class="description">
+                Small things I'm currently playing with.
+                They don't have to become projects.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="list">
+
+        <div class="entry">
+            <div class="date">2026-08</div>
+
+            <div>
+                <div class="entry-title">
+                    Second Life particles
+                </div>
+
+                <div class="entry-text">
+                    Exploring colour, movement and scripted
+                    particle systems.
+                </div>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="date">2026-08</div>
+
+            <div>
+                <div class="entry-title">
+                    Python experiments
+                </div>
+
+                <div class="entry-text">
+                    Small programs created while learning
+                    and testing ideas.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTES -->
+
+<section id="notes">
+
+    <div class="heading">
+
+        <div class="section-number">03 / notes</div>
+
+        <div>
+            <h2>Notes</h2>
+
+            <div class="description">
+                Things worth keeping.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="list">
+
+        <a href="#" class="entry">
+
+            <div class="date">2026-08-17</div>
+
+            <div>
+                <div class="entry-title">
+                    Why I redesigned this website
+                </div>
+
+                <div class="entry-text">
+                    A note about turning this site into a
+                    personal corner rather than a portfolio.
+                </div>
             </div>
 
-            <h1>
-                Things I build,<br>
-                explore and think about.
-            </h1>
+        </a>
+
+        <a href="#" class="entry">
+
+            <div class="date">2026-08</div>
+
+            <div>
+                <div class="entry-title">
+                    Learning Linux
+                </div>
+
+                <div class="entry-text">
+                    Notes from exploring Linux and systems.
+                </div>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="heading">
+
+        <div class="section-number">04 / about</div>
+
+        <div>
+            <h2>About</h2>
+
+            <div class="description">
+                About me and this place.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="about">
+
+        <div></div>
+
+        <div class="about-content">
 
             <p>
-                This is my personal space for programming,
-                cybersecurity, 3D, virtual worlds, experiments
-                and whatever happens to catch my attention.
+                I'm interested in understanding how things
+                work and turning that curiosity into things
+                I can actually build.
             </p>
+
+            <p>
+                Programming, cybersecurity, Linux, 3D,
+                animation and virtual worlds are some of
+                the places where I currently spend my time.
+            </p>
+
+            <p>
+                This website is not meant to be a portfolio
+                or a catalogue of everything I can do.
+                It's simply a place to keep things.
+            </p>
+
+            <div class="interests">
+                <div class="interest">Programming</div>
+                <div class="interest">Cybersecurity</div>
+                <div class="interest">Linux</div>
+                <div class="interest">3D & Animation</div>
+                <div class="interest">Virtual Worlds</div>
+                <div class="interest">Interactive Media</div>
+            </div>
 
         </div>
 
+    </div>
 
-        <!-- =====================================================
-             CURRENTLY
-        ====================================================== -->
+</section>
 
-        <section>
 
-            <div class="currently">
+<!-- ELSEWHERE -->
 
-                <div class="currently-label">
-                    currently
-                </div>
+<section>
 
-                <div class="currently-content">
+    <div class="heading">
 
-                    <p>
-                        Learning, experimenting and following
-                        whatever seems interesting enough to
-                        spend time understanding.
-                    </p>
+        <div class="section-number">elsewhere</div>
 
-                    <div class="topics">
+        <div>
+            <h2>Elsewhere</h2>
+        </div>
 
-                        <span class="topic">Python</span>
-                        <span class="topic">Linux</span>
-                        <span class="topic">Cybersecurity</span>
-                        <span class="topic">3D</span>
-                        <span class="topic">Virtual Worlds</span>
-                        <span class="topic">Interactive Media</span>
+    </div>
 
-                    </div>
+    <div class="links">
 
-                </div>
+        <a
+            class="external"
+            href="https://github.com/itsgaleradavid"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            GitHub
+        </a>
 
-            </div>
+    </div>
 
-        </section>
+</section>
 
+</main>
 
-        <!-- =====================================================
-             THINGS
-        ====================================================== -->
 
-        <section id="things">
+<!-- FOOTER -->
 
-            <div class="section-heading">
+<footer>
 
-                <div class="section-number">
-                    01 / things
-                </div>
+    <div class="footer-top">
 
-                <div>
+        <a href="#top" class="footer-brand">
+            ItsGaleraDavid
+        </a>
 
-                    <h2 class="section-title">
-                        Things
-                    </h2>
+        <div class="year">
+            © 2026
+        </div>
 
-                    <div class="section-description">
-                        Things I actually spend time making.
-                    </div>
+    </div>
 
-                </div>
+    <div class="footer-description">
+        A small corner of the Internet.
+    </div>
 
-            </div>
+    <div class="license">
 
+        Unless otherwise stated, the original content of
+        this website is licensed under
 
-            <div class="thing-list">
+        <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="license noopener noreferrer"
+        >
+            Creative Commons Attribution 4.0 International
+        </a>
 
+        (CC BY 4.0).
 
-                <a href="#" class="thing">
+        You are free to copy, redistribute and adapt the
+        material, provided that appropriate credit is given
+        to <strong>ItsGaleraDavid</strong>, a link to the
+        license is provided, and changes are indicated.
 
-                    <div class="thing-name">
-                        Programming
-                    </div>
+        <div class="notice">
+            Some content may belong to third parties and is
+            not covered by this license unless explicitly stated.
+        </div>
 
-                    <div class="thing-description">
-                        Python, small tools, applications,
-                        scripts and programming experiments.
-                    </div>
+    </div>
 
-                    <div class="thing-arrow">
-                        →
-                    </div>
+</footer>
 
-                </a>
+</div>
 
-
-                <a href="#" class="thing">
-
-                    <div class="thing-name">
-                        Cybersecurity
-                    </div>
-
-                    <div class="thing-description">
-                        Networks, Linux, systems and
-                        ethical hacking.
-                    </div>
-
-                    <div class="thing-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <a href="#" class="thing">
-
-                    <div class="thing-name">
-                        3D
-                    </div>
-
-                    <div class="thing-description">
-                        Animation, modelling, environments
-                        and interactive experiments.
-                    </div>
-
-                    <div class="thing-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <a href="#" class="thing">
-
-                    <div class="thing-name">
-                        Virtual Worlds
-                    </div>
-
-                    <div class="thing-description">
-                        Second Life, scripting, creation
-                        and virtual environments.
-                    </div>
-
-                    <div class="thing-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             EXPERIMENTS
-        ====================================================== -->
-
-        <section id="experiments">
-
-            <div class="section-heading">
-
-                <div class="section-number">
-                    02 / experiments
-                </div>
-
-                <div>
-
-                    <h2 class="section-title">
-                        Experiments
-                    </h2>
-
-                    <div class="section-description">
-                        Things that don't necessarily need
-                        to become anything.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div>
-
-
-                <div class="experiment">
-
-                    <div class="experiment-date">
-                        2026-08
-                    </div>
-
-                    <div>
-
-                        <div class="experiment-title">
-                            Second Life experiments
-                        </div>
-
-                        <div class="experiment-description">
-                            Scripts, particles, objects and
-                            strange little ideas.
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="experiment">
-
-                    <div class="experiment-date">
-                        2026-08
-                    </div>
-
-                    <div>
-
-                        <div class="experiment-title">
-                            Python experiments
-                        </div>
-
-                        <div class="experiment-description">
-                            Small programs written mostly
-                            because I wanted to understand
-                            something.
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="experiment">
-
-                    <div class="experiment-date">
-                        2026
-                    </div>
-
-                    <div>
-
-                        <div class="experiment-title">
-                            Unfinished things
-                        </div
+</body>
+        </html>

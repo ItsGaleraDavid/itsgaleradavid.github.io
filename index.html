@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ItsGaleraDavid</title>
+
+    <style>
+
+        /* =========================
+           BASE
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(75, 65, 130, 0.25),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(40, 110, 150, 0.18),
+                    transparent 35%
+                ),
+                #090b12;
+
+            color: #d8e4e8;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           FONDO
+        ========================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 80%
+                );
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            min-height: 82vh;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+        }
+
+        .hero {
+            max-width: 800px;
+        }
+
+
+        /* pequeño indicador */
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 14px;
+
+            margin-bottom: 25px;
+
+            border: 1px solid rgba(170, 190, 220, 0.15);
+
+            border-radius: 999px;
+
+            background: rgba(20, 25, 40, 0.55);
+
+            backdrop-filter: blur(12px);
+
+            color: #9daebe;
+
+            font-size: 13px;
+
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #86d6d1;
+
+            box-shadow:
+                0 0 12px rgba(134,214,209,0.8);
+        }
+
+
+        /* =========================
+           TITULO
+        ========================= */
+
+        h1 {
+            margin: 0;
+
+            font-size: clamp(48px, 9vw, 96px);
+
+            font-weight: 500;
+
+            letter-spacing: -3px;
+
+            line-height: 0.95;
+
+            color: #e4edf1;
+
+            text-shadow:
+                0 0 30px rgba(120, 140, 190, 0.15);
+        }
+
+
+        .subtitle {
+            margin-top: 30px;
+
+            font-size: clamp(18px, 2vw, 24px);
+
+            line-height: 1.6;
+
+            color: #94a5b0;
+
+            max-width: 650px;
+        }
+
+
+        /* =========================
+           NAVEGACIÓN
+        ========================= */
+
+        nav {
+            position: sticky;
+
+            top: 15px;
+
+            z-index: 10;
+
+            width: min(1100px, 90%);
+
+            margin: auto;
+
+            padding: 10px;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            background: rgba(12, 16, 27, 0.65);
+
+            border: 1px solid rgba(160, 180, 210, 0.12);
+
+            border-radius: 18px;
+
+            backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.25);
+        }
+
+
+        nav a {
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            color: #9eacb7;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        nav a:hover {
+            color: #e5f0f2;
+
+            background: rgba(120, 150, 190, 0.12);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        main {
+            padding-bottom: 100px;
+        }
+
+
+        section {
+            padding: 110px 0;
+        }
+
+
+        .section-title {
+            margin-bottom: 45px;
+        }
+
+
+        .section-label {
+            color: #7fb9bd;
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        h2 {
+            margin: 10px 0 0;
+
+            font-size: 38px;
+
+            font-weight: 450;
+
+            color: #dce7ea;
+        }
+
+
+        .intro {
+            max-width: 700px;
+
+            color: #91a0aa;
+
+            font-size: 17px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           TARJETAS
+        ========================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 18px;
+        }
+
+
+        .card {
+            position: relative;
+
+            padding: 28px;
+
+            min-height: 170px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(35, 42, 65, 0.55),
+                    rgba(15, 20, 32, 0.55)
+                );
+
+            border: 1px solid rgba(160, 180, 210, 0.12);
+
+            border-radius: 20px;
+
+            backdrop-filter: blur(14px);
+
+            transition:
+                transform 0.25s ease,
+                border 0.25s ease,
+                background 0.25s ease;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(135, 190, 195, 0.28);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(45, 55, 82, 0.65),
+                    rgba(18, 25, 40, 0.65)
+                );
+        }
+
+
+        .card-number {
+            color: #6d999d;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .card h3 {
+            margin: 20px 0 10px;
+
+            font-size: 21px;
+
+            font-weight: 450;
+
+            color: #d7e3e7;
+        }
+
+
+        .card p {
+            margin: 0;
+
+            color: #85949e;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FRASE
+        ========================= */
+
+        .quote {
+            margin: 80px 0;
+
+            padding: 50px;
+
+            border-left: 2px solid #6da8ad;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(90, 130, 150, 0.08),
+                    transparent
+                );
+
+            color: #a9b9c0;
+
+            font-size: 23px;
+
+            line-height: 1.7;
+
+            font-style: italic;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 50px 0;
+
+            border-top:
+                1px solid rgba(160,180,210,0.1);
+
+            color: #66747d;
+
+            font-size: 13px;
+        }
+
+
+        .footer-content {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        /* =========================
+           MÓVIL
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                min-height: 75vh;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            nav {
+                top: 8px;
+            }
+
+            nav a {
+                padding: 9px 12px;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .quote {
+                padding: 30px;
+
+                font-size: 19px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABECERA
+    ========================= -->
+
+    <header>
+
+        <div class="container">
+
+            <div class="hero">
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    building things
+                </div>
+
+                <h1>
+                    ItsGaleraDavid
+                </h1>
+
+                <p class="subtitle">
+                    A place to build and think.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         NAVEGACIÓN
+    ========================= -->
+
+    <nav>
+
+        <a href="#projects">
+            Proyectos
+        </a>
+
+        <a href="#notes">
+            Notas
+        </a>
+
+        <a href="#cybersecurity">
+            Ciberseguridad
+        </a>
+
+        <a href="#3d">
+            3D
+        </a>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- =========================
+             SOBRE ESTE ESPACIO
+        ========================= -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <div class="section-label">
+                        00 / espacio
+                    </div>
+
+                    <h2>
+                        Un rincón de Internet.
+                    </h2>
+
+                </div>
+
+                <p class="intro">
+                    Este espacio es mío.
+                    Un lugar donde guardar proyectos,
+                    ideas, experimentos y cosas que voy
+                    aprendiendo por el camino.
+                </p>
+
+                <div class="quote">
+                    "I like understanding how things work,
+                    building things, and questioning things
+                    that seem obvious."
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROYECTOS
+        ========================= -->
+
+        <section id="projects">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <div class="section-label">
+                        01 / proyectos
+                    </div>
+
+                    <h2>
+                        Cosas que estoy construyendo.
+                    </h2>
+
+                </div>
+
+
+                <div class="cards">
+
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            PROJECT 01
+                        </div>
+
+                        <h3>
+                            Python
+                        </h3>
+
+                        <p>
+                            Proyectos y pequeños experimentos
+                            de programación.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            PROJECT 02
+                        </div>
+
+                        <h3>
+                            Mundos virtuales
+                        </h3>
+
+                        <p>
+                            Experimentos, creación y scripting
+                            dentro de mundos virtuales.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-number">
+                            PROJECT 03
+                        </div>
+
+                        <h3>
+                            3D
+                        </h3>
+
+                        <p>
+                            Animación, modelado y creación
+                            de entornos interactivos.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CIBERSEGURIDAD
+        ========================= -->
+
+        <section id="cybersecurity">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <div class="section-label">
+                        02 / aprendizaje
+                    </div>
+
+                    <h2>
+                        Ciberseguridad.
+                    </h2>
+
+                </div>
+
+                <p class="intro">
+                    Un espacio para documentar lo que voy
+                    aprendiendo sobre sistemas, redes,
+                    seguridad y hacking ético.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             3D
+        ========================= -->
+
+        <section id="3d">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <div class="section-label">
+                        03 / creación
+                    </div>
+
+                    <h2>
+                        3D y mundos virtuales.
+                    </h2>
+
+                </div>
+
+                <p class="intro">
+                    Animación, entornos interactivos,
+                    experimentos visuales y mundos virtuales.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NOTAS
+        ========================= -->
+
+        <section id="notes">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <div class="section-label">
+                        04 / notas
+                    </div>
+
+                    <h2>
+                        Pensamientos y descubrimientos.
+                    </h2>
+
+                </div>
+
+                <p class="intro">
+                    Aquí irán apareciendo pequeñas notas
+                    sobre cosas que descubra, aprenda o
+                    simplemente quiera conservar.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         PIE
+    ========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <span>
+                    ItsGaleraDavid
+                </span>
+
+                <span>
+                    2026
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

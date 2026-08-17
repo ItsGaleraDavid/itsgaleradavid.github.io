@@ -1,207 +1,1009 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
 
-    <title>ItsGaleraDavid</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ItsGaleraDavid — Digital Space</title>
+
+    <meta
+        name="description"
+        content="A personal digital space for projects, cybersecurity, 3D, virtual worlds and things worth exploring."
+    >
 
     <style>
 
-        /* =========================
-           BASE
-        ========================= */
+        /* =====================================================
+           COLOUR SYSTEM
+        ===================================================== */
+
+        :root {
+
+            --background: #070c12;
+
+            --background-soft: #0a1118;
+
+            --panel: #0d161f;
+
+            --panel-hover: #111d27;
+
+            --panel-active: #14232d;
+
+            --border: #20313c;
+
+            --border-bright: #2b4653;
+
+            --text: #e3edf1;
+
+            --text-soft: #a7b8c1;
+
+            --text-muted: #70828d;
+
+            /* Main cyan */
+            --cyan: #65d7e8;
+
+            /* Resonite-like blue */
+            --blue: #6da9ff;
+
+            /* Green */
+            --green: #75d6a0;
+
+            /* Purple */
+            --purple: #a997e8;
+
+            /* Orange */
+            --orange: #e5b878;
+
+            --max-width: 1120px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
 
         * {
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
+
             margin: 0;
-            min-height: 100vh;
 
             background:
                 radial-gradient(
-                    circle at 20% 20%,
-                    rgba(75, 65, 130, 0.25),
-                    transparent 35%
+                    circle at 15% 0%,
+                    rgba(70, 160, 190, 0.08),
+                    transparent 30%
                 ),
-                radial-gradient(
-                    circle at 80% 70%,
-                    rgba(40, 110, 150, 0.18),
-                    transparent 35%
-                ),
-                #090b12;
 
-            color: #d8e4e8;
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(100, 130, 220, 0.06),
+                    transparent 28%
+                ),
+
+                var(--background);
+
+            color: var(--text);
 
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
+                Roboto,
+                Helvetica,
                 Arial,
                 sans-serif;
 
-            overflow-x: hidden;
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            min-height: 100vh;
         }
 
 
-        /* =========================
-           FONDO
-        ========================= */
-
-        body::before {
-            content: "";
-
-            position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-
-            background-image:
-                linear-gradient(
-                    rgba(255,255,255,0.015) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,0.015) 1px,
-                    transparent 1px
-                );
-
-            background-size: 50px 50px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black,
-                    transparent 80%
-                );
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
 
-        /* =========================
-           CONTENEDOR
-        ========================= */
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
 
         .container {
-            width: min(1100px, 90%);
-            margin: auto;
+
+            width: min(
+                var(--max-width),
+                calc(100% - 40px)
+            );
+
+            margin: 0 auto;
         }
 
 
-        /* =========================
+        /* =====================================================
            HEADER
-        ========================= */
+        ===================================================== */
 
         header {
-            min-height: 82vh;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #0b131b,
+                    #091017
+                );
+        }
+
+
+        .header-inner {
+
+            min-height: 125px;
 
             display: flex;
+
             align-items: center;
 
-            position: relative;
+            justify-content: space-between;
+
+            gap: 30px;
         }
 
-        .hero {
-            max-width: 800px;
-        }
 
+        .identity {
 
-        /* pequeño indicador */
+            display: flex;
 
-        .status {
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
 
-            padding: 8px 14px;
+            gap: 18px;
+        }
 
-            margin-bottom: 25px;
 
-            border: 1px solid rgba(170, 190, 220, 0.15);
+        /* =====================================================
+           LOGO
+        ===================================================== */
 
-            border-radius: 999px;
+        .logo {
 
-            background: rgba(20, 25, 40, 0.55);
+            width: 68px;
 
-            backdrop-filter: blur(12px);
+            height: 68px;
 
-            color: #9daebe;
+            flex-shrink: 0;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 1px solid #34434b;
+
+            background: #080b0f;
+
+            box-shadow:
+                0 0 0 4px rgba(101, 215, 232, 0.035),
+                0 0 25px rgba(101, 215, 232, 0.08);
+        }
+
+
+        .identity-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+
+        .identity-name {
+
+            font-size: 25px;
+
+            font-weight: 600;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .identity-description {
+
+            color: var(--text-muted);
 
             font-size: 13px;
-
-            letter-spacing: 0.5px;
         }
 
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .header-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 7px 11px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            background: rgba(13, 22, 31, 0.7);
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+            white-space: nowrap;
+        }
+
+
         .status-dot {
+
             width: 7px;
+
             height: 7px;
 
             border-radius: 50%;
 
-            background: #86d6d1;
+            background: var(--green);
 
             box-shadow:
-                0 0 12px rgba(134,214,209,0.8);
+                0 0 8px rgba(117, 214, 160, 0.5);
         }
 
 
-        /* =========================
-           TITULO
-        ========================= */
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
-        h1 {
-            margin: 0;
+        .nav-wrapper {
 
-            font-size: clamp(48px, 9vw, 96px);
+            border-bottom: 1px solid var(--border);
+
+            background: #091119;
+        }
+
+
+        nav {
+
+            min-height: 51px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3px;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+        }
+
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .nav-link {
+
+            position: relative;
+
+            padding: 14px 15px;
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+            transition:
+                color 0.15s ease,
+                background 0.15s ease;
+        }
+
+
+        .nav-link:hover {
+
+            color: var(--text);
+
+            background: var(--panel);
+        }
+
+
+        .nav-link.active {
+
+            color: var(--cyan);
+        }
+
+
+        .nav-link.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 14px;
+
+            right: 14px;
+
+            bottom: -1px;
+
+            height: 2px;
+
+            background: var(--cyan);
+
+            box-shadow:
+                0 0 8px rgba(101, 215, 232, 0.35);
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+
+            padding: 55px 0 90px;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .intro {
+
+            margin-bottom: 45px;
+
+            max-width: 720px;
+        }
+
+
+        .intro-label {
+
+            margin-bottom: 10px;
+
+            color: var(--cyan);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+        }
+
+
+        .intro h1 {
+
+            margin: 0 0 13px;
+
+            font-size: clamp(
+                34px,
+                5vw,
+                50px
+            );
 
             font-weight: 500;
 
-            letter-spacing: -3px;
+            letter-spacing: -1.8px;
 
-            line-height: 0.95;
-
-            color: #e4edf1;
-
-            text-shadow:
-                0 0 30px rgba(120, 140, 190, 0.15);
+            line-height: 1.12;
         }
 
 
-        .subtitle {
-            margin-top: 30px;
+        .intro p {
 
-            font-size: clamp(18px, 2vw, 24px);
+            margin: 0;
 
-            line-height: 1.6;
+            color: var(--text-soft);
 
-            color: #94a5b0;
+            font-size: 15px;
 
             max-width: 650px;
         }
 
 
-        /* =========================
-           NAVEGACIÓN
-        ========================= */
+        /* =====================================================
+           SECTION HEADERS
+        ===================================================== */
 
-        nav {
-            position: sticky;
+        .section-header {
 
-            top: 15px;
+            display: flex;
 
-            z-index: 10;
+            align-items: baseline;
 
-            width: min(1100px, 90%);
+            justify-content: space-between;
 
-            margin: auto;
+            gap: 20px;
 
-            padding: 10px;
+            margin-bottom: 14px;
+
+            padding-bottom: 11px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .section-title {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .section-description {
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           EXPLORE GRID
+        ===================================================== */
+
+        .category-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 10px;
+
+            margin-bottom: 55px;
+        }
+
+
+        .category {
+
+            min-height: 170px;
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 21px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18, 32, 42, 0.95),
+                    rgba(10, 18, 25, 0.95)
+                );
+
+            overflow: hidden;
+
+            transition:
+                background 0.15s ease,
+                border-color 0.15s ease,
+                transform 0.15s ease;
+        }
+
+
+        .category::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 3px;
+
+            height: 100%;
+
+            opacity: 0.75;
+
+            background: var(--cyan);
+        }
+
+
+        .category:nth-child(2)::before {
+            background: var(--purple);
+        }
+
+
+        .category:nth-child(3)::before {
+            background: var(--green);
+        }
+
+
+        .category:nth-child(4)::before {
+            background: var(--orange);
+        }
+
+
+        .category:hover {
+
+            background: var(--panel-hover);
+
+            border-color: var(--border-bright);
+
+            transform: translateY(-1px);
+        }
+
+
+        .category-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+        }
+
+
+        .category-number {
+
+            color: var(--text-muted);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+        }
+
+
+        .category-arrow {
+
+            color: var(--text-muted);
+
+            font-size: 15px;
+
+            transition:
+                color 0.15s ease,
+                transform 0.15s ease;
+        }
+
+
+        .category:hover .category-arrow {
+
+            color: var(--cyan);
+
+            transform: translateX(3px);
+        }
+
+
+        .category h2 {
+
+            margin: 18px 0 7px;
+
+            font-size: 19px;
+
+            font-weight: 500;
+        }
+
+
+        .category p {
+
+            margin: 0;
+
+            max-width: 430px;
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           CURRENTLY
+        ===================================================== */
+
+        .currently {
+
+            display: grid;
+
+            grid-template-columns:
+                160px
+                minmax(0, 1fr);
+
+            gap: 25px;
+
+            padding: 21px;
+
+            margin-bottom: 55px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            background: var(--panel);
+        }
+
+
+        .currently-label {
+
+            color: var(--cyan);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1.3px;
+
+            text-transform: uppercase;
+        }
+
+
+        .currently-content {
+
+            color: var(--text-soft);
+
+            font-size: 13px;
+        }
+
+
+        .currently-content p {
+
+            margin: 0 0 12px;
+        }
+
+
+        .tags {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 6px;
+        }
+
+
+        .tag {
+
+            padding: 4px 8px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 4px;
+
+            background: #0a1219;
+
+            color: var(--text-muted);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           LISTS
+        ===================================================== */
+
+        .project-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            margin-bottom: 55px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            overflow: hidden;
+        }
+
+
+        .project {
+
+            display: grid;
+
+            grid-template-columns:
+                100px
+                minmax(0, 1fr)
+                auto;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            background: var(--panel);
+
+            border-bottom: 1px solid var(--border);
+
+            transition:
+                background 0.15s ease;
+        }
+
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+
+        .project:hover {
+            background: var(--panel-hover);
+        }
+
+
+        .project-type {
+
+            color: var(--cyan);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 0.7px;
+
+            text-transform: uppercase;
+        }
+
+
+        .project-name {
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+
+        .project-description {
+
+            margin-top: 2px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        .project-status {
+
+            color: var(--text-muted);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           NOTES
+        ===================================================== */
+
+        .notes-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            margin-bottom: 55px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            overflow: hidden;
+        }
+
+
+        .note {
+
+            display: grid;
+
+            grid-template-columns:
+                100px
+                minmax(0, 1fr);
+
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            background: var(--panel);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .note:last-child {
+            border-bottom: none;
+        }
+
+
+        .note-date {
+
+            color: var(--text-muted);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+        }
+
+
+        .note-title {
+
+            color: var(--text);
+
+            font-size: 13px;
+        }
+
+
+        .note-text {
+
+            margin-top: 3px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                280px;
+
+            gap: 30px;
+
+            margin-bottom: 55px;
+        }
+
+
+        .about-text p {
+
+            margin: 0 0 15px;
+
+            color: var(--text-soft);
+
+            font-size: 13px;
+
+            line-height: 1.85;
+        }
+
+
+        .about-side {
+
+            padding: 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #101c25,
+                    #0d161f
+                );
+        }
+
+
+        .about-side-title {
+
+            margin-bottom: 12px;
+
+            color: var(--purple);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1.2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .about-side p {
+
+            margin: 0;
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =====================================================
+           LINKS
+        ===================================================== */
+
+        .links {
 
             display: flex;
 
@@ -209,302 +1011,278 @@
 
             gap: 8px;
 
-            background: rgba(12, 16, 27, 0.65);
-
-            border: 1px solid rgba(160, 180, 210, 0.12);
-
-            border-radius: 18px;
-
-            backdrop-filter: blur(18px);
-
-            box-shadow:
-                0 10px 40px rgba(0,0,0,0.25);
+            margin-bottom: 55px;
         }
 
 
-        nav a {
-            padding: 12px 18px;
+        .external-link {
 
-            border-radius: 12px;
+            display: inline-flex;
 
-            color: #9eacb7;
+            align-items: center;
 
-            text-decoration: none;
+            gap: 9px;
 
-            font-size: 14px;
+            padding: 9px 12px;
 
-            transition:
-                background 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
-        }
+            border: 1px solid var(--border);
 
+            border-radius: 5px;
 
-        nav a:hover {
-            color: #e5f0f2;
+            background: var(--panel);
 
-            background: rgba(120, 150, 190, 0.12);
-
-            transform: translateY(-1px);
-        }
-
-
-        /* =========================
-           SECCIONES
-        ========================= */
-
-        main {
-            padding-bottom: 100px;
-        }
-
-
-        section {
-            padding: 110px 0;
-        }
-
-
-        .section-title {
-            margin-bottom: 45px;
-        }
-
-
-        .section-label {
-            color: #7fb9bd;
-
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 2px;
-        }
-
-
-        h2 {
-            margin: 10px 0 0;
-
-            font-size: 38px;
-
-            font-weight: 450;
-
-            color: #dce7ea;
-        }
-
-
-        .intro {
-            max-width: 700px;
-
-            color: #91a0aa;
-
-            font-size: 17px;
-
-            line-height: 1.9;
-        }
-
-
-        /* =========================
-           TARJETAS
-        ========================= */
-
-        .cards {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(230px, 1fr));
-
-            gap: 18px;
-        }
-
-
-        .card {
-            position: relative;
-
-            padding: 28px;
-
-            min-height: 170px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(35, 42, 65, 0.55),
-                    rgba(15, 20, 32, 0.55)
-                );
-
-            border: 1px solid rgba(160, 180, 210, 0.12);
-
-            border-radius: 20px;
-
-            backdrop-filter: blur(14px);
-
-            transition:
-                transform 0.25s ease,
-                border 0.25s ease,
-                background 0.25s ease;
-        }
-
-
-        .card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(135, 190, 195, 0.28);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(45, 55, 82, 0.65),
-                    rgba(18, 25, 40, 0.65)
-                );
-        }
-
-
-        .card-number {
-            color: #6d999d;
+            color: var(--text-soft);
 
             font-size: 12px;
 
-            letter-spacing: 1px;
+            transition:
+                background 0.15s ease,
+                border-color 0.15s ease,
+                color 0.15s ease;
         }
 
 
-        .card h3 {
-            margin: 20px 0 10px;
+        .external-link:hover {
 
-            font-size: 21px;
+            color: var(--cyan);
 
-            font-weight: 450;
+            border-color: var(--border-bright);
 
-            color: #d7e3e7;
+            background: var(--panel-hover);
         }
 
 
-        .card p {
-            margin: 0;
+        .external-arrow {
 
-            color: #85949e;
-
-            line-height: 1.6;
-
-            font-size: 14px;
+            color: var(--text-muted);
         }
 
 
-        /* =========================
-           FRASE
-        ========================= */
-
-        .quote {
-            margin: 80px 0;
-
-            padding: 50px;
-
-            border-left: 2px solid #6da8ad;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(90, 130, 150, 0.08),
-                    transparent
-                );
-
-            color: #a9b9c0;
-
-            font-size: 23px;
-
-            line-height: 1.7;
-
-            font-style: italic;
-        }
-
-
-        /* =========================
+        /* =====================================================
            FOOTER
-        ========================= */
+        ===================================================== */
 
         footer {
-            padding: 50px 0;
 
-            border-top:
-                1px solid rgba(160,180,210,0.1);
+            border-top: 1px solid var(--border);
 
-            color: #66747d;
-
-            font-size: 13px;
+            background: #080e14;
         }
 
 
-        .footer-content {
+        .footer-inner {
+
+            min-height: 70px;
+
             display: flex;
+
+            align-items: center;
 
             justify-content: space-between;
 
             gap: 20px;
 
-            flex-wrap: wrap;
+            color: var(--text-muted);
+
+            font-size: 10px;
         }
 
 
-        /* =========================
-           MÓVIL
-        ========================= */
+        .footer-name {
+            color: var(--text-soft);
+        }
 
-        @media (max-width: 600px) {
 
-            header {
-                min-height: 75vh;
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 760px) {
+
+            .container {
+                width: calc(100% - 28px);
             }
 
-            h1 {
-                letter-spacing: -2px;
+
+            .header-inner {
+
+                min-height: 110px;
+
+                align-items: center;
+
+                justify-content: flex-start;
             }
 
-            nav {
-                top: 8px;
+
+            .header-status {
+                display: none;
             }
 
-            nav a {
-                padding: 9px 12px;
+
+            .logo {
+
+                width: 56px;
+
+                height: 56px;
             }
 
-            section {
-                padding: 75px 0;
+
+            .identity-name {
+                font-size: 21px;
             }
 
-            .quote {
-                padding: 30px;
 
-                font-size: 19px;
+            main {
+                padding-top: 40px;
+            }
+
+
+            .category-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .currently {
+
+                grid-template-columns: 1fr;
+
+                gap: 9px;
+            }
+
+
+            .project {
+
+                grid-template-columns:
+                    80px
+                    minmax(0, 1fr);
+            }
+
+
+            .project-status {
+                display: none;
+            }
+
+
+            .about {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .section-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 3px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .intro h1 {
+                font-size: 33px;
+            }
+
+
+            .project {
+
+                grid-template-columns: 1fr;
+
+                gap: 4px;
+            }
+
+
+            .note {
+
+                grid-template-columns: 1fr;
+
+                gap: 4px;
+            }
+
+
+            .footer-inner {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                justify-content: center;
+            }
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
             }
         }
 
     </style>
+
 </head>
 
 
 <body>
 
 
-    <!-- =========================
-         CABECERA
-    ========================= -->
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
     <header>
 
         <div class="container">
 
-            <div class="hero">
+            <div class="header-inner">
 
-                <div class="status">
-                    <span class="status-dot"></span>
-                    building things
+
+                <div class="identity">
+
+
+                    <img
+                        src="logo.png"
+                        alt="ItsGaleraDavid logo"
+                        class="logo"
+                    >
+
+
+                    <div class="identity-text">
+
+                        <div class="identity-name">
+                            ItsGaleraDavid
+                        </div>
+
+                        <div class="identity-description">
+                            A place to build and think.
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-                <h1>
-                    ItsGaleraDavid
-                </h1>
 
-                <p class="subtitle">
-                    A place to build and think.
-                </p>
+                <div class="header-status">
+
+                    <span class="status-dot"></span>
+
+                    Currently building
+
+                </div>
+
 
             </div>
 
@@ -513,268 +1291,904 @@
     </header>
 
 
-    <!-- =========================
-         NAVEGACIÓN
-    ========================= -->
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
 
-    <nav>
+    <div class="nav-wrapper">
 
-        <a href="#projects">
-            Proyectos
-        </a>
+        <div class="container">
 
-        <a href="#notes">
-            Notas
-        </a>
+            <nav>
 
-        <a href="#cybersecurity">
-            Ciberseguridad
-        </a>
+                <a
+                    class="nav-link active"
+                    href="#home"
+                >
+                    Home
+                </a>
 
-        <a href="#3d">
-            3D
-        </a>
+                <a
+                    class="nav-link"
+                    href="#projects"
+                >
+                    Projects
+                </a>
 
-    </nav>
+                <a
+                    class="nav-link"
+                    href="#notes"
+                >
+                    Notes
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="#cybersecurity"
+                >
+                    Cybersecurity
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="#3d"
+                >
+                    3D & Virtual Worlds
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="#about"
+                >
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </div>
 
 
-    <main>
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main id="home">
+
+        <div class="container">
 
 
-        <!-- =========================
-             SOBRE ESTE ESPACIO
-        ========================= -->
+            <!-- INTRO -->
 
-        <section>
+            <section class="intro">
 
-            <div class="container">
-
-                <div class="section-title">
-
-                    <div class="section-label">
-                        00 / espacio
-                    </div>
-
-                    <h2>
-                        Un rincón de Internet.
-                    </h2>
-
+                <div class="intro-label">
+                    Digital space / 001
                 </div>
 
-                <p class="intro">
-                    Este espacio es mío.
-                    Un lugar donde guardar proyectos,
-                    ideas, experimentos y cosas que voy
-                    aprendiendo por el camino.
+
+                <h1>
+                    Build. Explore. Understand.
+                </h1>
+
+
+                <p>
+                    A personal space for projects,
+                    experiments, notes, and things
+                    I'm learning along the way.
                 </p>
 
-                <div class="quote">
-                    "I like understanding how things work,
-                    building things, and questioning things
-                    that seem obvious."
-                </div>
+            </section>
+
+
+            <!-- EXPLORE -->
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Explore
+                </h2>
+
+                <span class="section-description">
+                    Main areas
+                </span>
 
             </div>
 
-        </section>
+
+            <div class="category-grid">
 
 
-        <!-- =========================
-             PROYECTOS
-        ========================= -->
+                <a
+                    class="category"
+                    href="#projects"
+                >
 
-        <section id="projects">
+                    <div class="category-top">
 
-            <div class="container">
+                        <span class="category-number">
+                            01
+                        </span>
 
-                <div class="section-title">
+                        <span class="category-arrow">
+                            →
+                        </span>
 
-                    <div class="section-label">
-                        01 / proyectos
                     </div>
 
-                    <h2>
-                        Cosas que estoy construyendo.
-                    </h2>
 
+                    <div>
+
+                        <h2>
+                            Projects
+                        </h2>
+
+                        <p>
+                            Things I'm building,
+                            programming experiments,
+                            and personal projects.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    class="category"
+                    href="#notes"
+                >
+
+                    <div class="category-top">
+
+                        <span class="category-number">
+                            02
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Notes
+                        </h2>
+
+                        <p>
+                            Small observations,
+                            discoveries, ideas,
+                            and things worth keeping.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    class="category"
+                    href="#cybersecurity"
+                >
+
+                    <div class="category-top">
+
+                        <span class="category-number">
+                            03
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Cybersecurity
+                        </h2>
+
+                        <p>
+                            Networks, systems,
+                            security and ethical
+                            hacking.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    class="category"
+                    href="#3d"
+                >
+
+                    <div class="category-top">
+
+                        <span class="category-number">
+                            04
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            3D & Virtual Worlds
+                        </h2>
+
+                        <p>
+                            Animation, interactive
+                            environments and virtual
+                            worlds.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+
+            <!-- CURRENTLY -->
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Currently
+                </h2>
+
+                <span class="section-description">
+                    What I'm exploring
+                </span>
+
+            </div>
+
+
+            <div class="currently">
+
+                <div class="currently-label">
+                    Now
                 </div>
 
 
-                <div class="cards">
+                <div class="currently-content">
+
+                    <p>
+                        Learning, experimenting,
+                        and building things across
+                        different areas.
+                    </p>
 
 
-                    <div class="card">
+                    <div class="tags">
 
-                        <div class="card-number">
-                            PROJECT 01
-                        </div>
-
-                        <h3>
+                        <span class="tag">
                             Python
-                        </h3>
+                        </span>
 
-                        <p>
-                            Proyectos y pequeños experimentos
-                            de programación.
-                        </p>
+                        <span class="tag">
+                            Linux
+                        </span>
 
-                    </div>
+                        <span class="tag">
+                            Cybersecurity
+                        </span>
 
-
-                    <div class="card">
-
-                        <div class="card-number">
-                            PROJECT 02
-                        </div>
-
-                        <h3>
-                            Mundos virtuales
-                        </h3>
-
-                        <p>
-                            Experimentos, creación y scripting
-                            dentro de mundos virtuales.
-                        </p>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <div class="card-number">
-                            PROJECT 03
-                        </div>
-
-                        <h3>
+                        <span class="tag">
                             3D
-                        </h3>
+                        </span>
+
+                        <span class="tag">
+                            Virtual Worlds
+                        </span>
+
+                        <span class="tag">
+                            Interactive Media
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <section id="projects">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Projects
+                    </h2>
+
+                    <span class="section-description">
+                        Things I'm building
+                    </span>
+
+                </div>
+
+
+                <div class="project-list">
+
+
+                    <a
+                        class="project"
+                        href="#"
+                    >
+
+                        <div class="project-type">
+                            Python
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Python Projects
+                            </div>
+
+                            <div class="project-description">
+                                Programming experiments,
+                                tools and applications.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            In progress
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        class="project"
+                        href="#"
+                    >
+
+                        <div class="project-type">
+                            Virtual
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Virtual World Experiments
+                            </div>
+
+                            <div class="project-description">
+                                Scripting, creation and
+                                experiments in virtual worlds.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Exploring
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        class="project"
+                        href="#"
+                    >
+
+                        <div class="project-type">
+                            3D
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                3D & Interactive Environments
+                            </div>
+
+                            <div class="project-description">
+                                Animation, modelling,
+                                environments and interaction.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Learning
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        class="project"
+                        href="#"
+                    >
+
+                        <div class="project-type">
+                            Web
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                This Website
+                            </div>
+
+                            <div class="project-description">
+                                A personal digital space
+                                built from scratch.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Active
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTES -->
+
+            <section id="notes">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Notes
+                    </h2>
+
+                    <span class="section-description">
+                        Things worth keeping
+                    </span>
+
+                </div>
+
+
+                <div class="notes-list">
+
+
+                    <div class="note">
+
+                        <div class="note-date">
+                            2026
+                        </div>
+
+
+                        <div>
+
+                            <div class="note-title">
+                                First notes coming soon.
+                            </div>
+
+                            <div class="note-text">
+                                Ideas, discoveries and
+                                observations.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="note">
+
+                        <div class="note-date">
+                            —
+                        </div>
+
+
+                        <div>
+
+                            <div class="note-title">
+                                More to come.
+                            </div>
+
+                            <div class="note-text">
+                                This section will grow
+                                over time.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- CYBERSECURITY -->
+
+            <section id="cybersecurity">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Cybersecurity
+                    </h2>
+
+                    <span class="section-description">
+                        Learning & exploration
+                    </span>
+
+                </div>
+
+
+                <div class="project-list">
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Networks
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Networks & Infrastructure
+                            </div>
+
+                            <div class="project-description">
+                                Understanding how systems
+                                communicate and connect.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Learning
+                        </div>
+
+                    </div>
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Security
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Ethical Hacking
+                            </div>
+
+                            <div class="project-description">
+                                Security testing and
+                                offensive security concepts.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Learning
+                        </div>
+
+                    </div>
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Linux
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Linux & Security Tools
+                            </div>
+
+                            <div class="project-description">
+                                Systems, command line and
+                                security environments.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Exploring
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- 3D -->
+
+            <section id="3d">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        3D & Virtual Worlds
+                    </h2>
+
+                    <span class="section-description">
+                        Creating & experimenting
+                    </span>
+
+                </div>
+
+
+                <div class="project-list">
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Animation
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                3D Animation
+                            </div>
+
+                            <div class="project-description">
+                                Animation and movement
+                                for interactive projects.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Learning
+                        </div>
+
+                    </div>
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Environments
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Interactive Environments
+                            </div>
+
+                            <div class="project-description">
+                                Building spaces and
+                                interactive experiences.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Exploring
+                        </div>
+
+                    </div>
+
+
+                    <div class="project">
+
+                        <div class="project-type">
+                            Virtual
+                        </div>
+
+
+                        <div>
+
+                            <div class="project-name">
+                                Virtual Worlds
+                            </div>
+
+                            <div class="project-description">
+                                Experiments and creations
+                                inside virtual environments.
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-status">
+                            Active
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- ABOUT -->
+
+            <section id="about">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        About
+                    </h2>
+
+                    <span class="section-description">
+                        About this space
+                    </span>
+
+                </div>
+
+
+                <div class="about">
+
+
+                    <div class="about-text">
 
                         <p>
-                            Animación, modelado y creación
-                            de entornos interactivos.
+                            This is my personal corner
+                            of the Internet.
+                        </p>
+
+
+                        <p>
+                            A place where I keep things
+                            I build, learn, discover,
+                            and find interesting.
+                        </p>
+
+
+                        <p>
+                            I'm interested in understanding
+                            how things work and turning
+                            that curiosity into projects
+                            and experiments.
                         </p>
 
                     </div>
 
 
-                </div>
+                    <aside class="about-side">
 
-            </div>
+                        <div class="about-side-title">
+                            Interests
+                        </div>
 
-        </section>
 
+                        <p>
+                            Programming<br>
+                            Cybersecurity<br>
+                            Linux<br>
+                            3D & Animation<br>
+                            Virtual Worlds<br>
+                            Interactive Media<br>
+                            Technology
+                        </p>
 
-        <!-- =========================
-             CIBERSEGURIDAD
-        ========================= -->
+                    </aside>
 
-        <section id="cybersecurity">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <div class="section-label">
-                        02 / aprendizaje
-                    </div>
-
-                    <h2>
-                        Ciberseguridad.
-                    </h2>
 
                 </div>
 
-                <p class="intro">
-                    Un espacio para documentar lo que voy
-                    aprendiendo sobre sistemas, redes,
-                    seguridad y hacking ético.
-                </p>
+            </section>
+
+
+            <!-- LINKS -->
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Elsewhere
+                </h2>
+
+                <span class="section-description">
+                    Other spaces
+                </span>
 
             </div>
 
-        </section>
+
+            <div class="links">
 
 
-        <!-- =========================
-             3D
-        ========================= -->
+                <a
+                    class="external-link"
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
 
-        <section id="3d">
+                    GitHub
 
-            <div class="container">
+                    <span class="external-arrow">
+                        ↗
+                    </span>
 
-                <div class="section-title">
+                </a>
 
-                    <div class="section-label">
-                        03 / creación
-                    </div>
 
-                    <h2>
-                        3D y mundos virtuales.
-                    </h2>
+                <a
+                    class="external-link"
+                    href="https://mastodon.social/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
 
-                </div>
+                    Mastodon
 
-                <p class="intro">
-                    Animación, entornos interactivos,
-                    experimentos visuales y mundos virtuales.
-                </p>
+                    <span class="external-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
 
             </div>
 
-        </section>
 
-
-        <!-- =========================
-             NOTAS
-        ========================= -->
-
-        <section id="notes">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <div class="section-label">
-                        04 / notas
-                    </div>
-
-                    <h2>
-                        Pensamientos y descubrimientos.
-                    </h2>
-
-                </div>
-
-                <p class="intro">
-                    Aquí irán apareciendo pequeñas notas
-                    sobre cosas que descubra, aprenda o
-                    simplemente quiera conservar.
-                </p>
-
-            </div>
-
-        </section>
-
+        </div>
 
     </main>
 
 
-    <!-- =========================
-         PIE
-    ========================= -->
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
     <footer>
 
         <div class="container">
 
-            <div class="footer-content">
+            <div class="footer-inner">
 
-                <span>
+                <span class="footer-name">
                     ItsGaleraDavid
                 </span>
 
                 <span>
-                    2026
+                    A personal digital space · 2026
                 </span>
 
             </div>
@@ -785,4 +2199,5 @@
 
 
 </body>
+
 </html>

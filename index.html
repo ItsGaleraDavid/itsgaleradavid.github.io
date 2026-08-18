@@ -57,14 +57,38 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--faint); font-size: 13px; }
-    .footer-brand { color: var(--text); font-weight: 600; display: block; margin-bottom: 10px; }
-    .license { font-size: 12px; margin-top: 10px; max-width: 600px; }
-    .license a { color: var(--muted); text-decoration: underline; }
+    /* Footer y Glider Hacker Icon */
+    footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--faint); font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-left { display: flex; flex-direction: column; gap: 6px; }
+    
+    .glider {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 5px);
+        grid-template-rows: repeat(3, 5px);
+        gap: 2px;
+        opacity: 0.5;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    .glider:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    .glider span {
+        background-color: var(--faint);
+        border-radius: 1px;
+    }
+    /* Posiciones de las células activas del planeador */
+    .glider span.on {
+        background-color: var(--muted);
+    }
+    .glider:hover span.on {
+        background-color: var(--accent);
+    }
 
     @media(max-width: 600px) {
         header { flex-direction: column; align-items: flex-start; gap: 15px; }
         .item { flex-direction: column; gap: 5px; }
+        footer { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
 </style>
 </head>
@@ -111,8 +135,16 @@
     </main>
 
     <footer>
-        <a href="#top" class="footer-brand">Copyright © 2026 ItsGaleraDavid</a>
-        <div class="footer-description">A small corner of the Internet.</div>
+        <div class="footer-left">
+            <span style="color: var(--text); font-weight: 600;">ItsGaleraDavid</span>
+            <div>Copyright © 2026 ItsGaleraDavid</div>
+        </div>
+        <!-- El Planeador Hacker (Conway's Game of Life Glider) -->
+        <div class="glider" title="Hacker Culture Glider (Conway's Game of Life)">
+            <span></span><span class="on"></span><span></span>
+            <span></span><span></span><span class="on"></span>
+            <span class="on"></span><span class="on"></span><span class="on"></span>
+        </div>
     </footer>
 </div>
 </body>

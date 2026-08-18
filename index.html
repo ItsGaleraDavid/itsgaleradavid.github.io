@@ -30,8 +30,17 @@
     nav a:hover { color: var(--text); }
 
     /* Cabecera con Logo */
-    header { margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-    .brand-logo { width: 48px; height: 48px; border-radius: 50%; image-rendering: pixelated; border: 1px solid var(--line); }
+    header { margin-bottom: 50px; display: flex; align-items: center; gap: 22px; }
+    .brand-logo { 
+        width: 64px; 
+        height: 64px; 
+        border-radius: 50%; 
+        border: 1px solid var(--line);
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;
+        flex-shrink: 0;
+    }
     .brand-title { font-size: 22px; font-weight: 600; color: #fff; text-decoration: none; display: block; margin-bottom: 4px; }
     .brand-title:hover { color: var(--accent); }
     
@@ -90,7 +99,7 @@
         <section id="notes">
             <h2>Notes</h2>
             <div class="item"><div class="date">2026-08</div><div class="content"><a href="#">Exploring particle systems and scripts in Second Life</a></div></div>
-            <div class="item"><div class="date">2026-08</div><div class="content"><div class="content"><a href="#">Initial setup and exploration in Kali Linux</a></div></div></div>
+            <div class="item"><div class="date">2026-08</div><div class="content"><a href="#">Initial setup and exploration in Kali Linux</a></div></div>
         </section>
 
         <section id="about">

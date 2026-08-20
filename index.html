@@ -3,180 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ItsGaleraDavid — Personal Space</title>
+<title>ItsGaleraDavid</title>
 <link rel="icon" href="profile.ico" type="image/x-icon">
 
 <style>
 :root{
---bg:#0d0f11;--panel:#111418;--text:#e7eaed;--muted:#858c94;
---dim:#555c64;--line:#252a30;--accent:#d8e4e8;
+  --bg:#0d0f11;
+  --text:#e6e9eb;
+  --muted:#858b91;
+  --dim:#50565c;
+  --line:#25292d;
+  --card:#111418;
+  --accent:#d8e4e8;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-background:var(--bg);color:var(--text);
-font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  background:var(--bg);
+  color:var(--text);
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 a{color:inherit;text-decoration:none}
-.container{width:min(1050px,calc(100% - 40px));margin:auto}
+.container{width:min(880px,calc(100% - 36px));margin:auto}
+
 header{
-position:sticky;top:0;z-index:10;
-background:#0d0f11e8;backdrop-filter:blur(12px);
-border-bottom:1px solid var(--line)
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#0d0f11ee;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
 }
 nav{
-height:64px;display:flex;align-items:center;
-justify-content:space-between
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .logo{font-weight:600}
-.logo span{color:var(--muted);font-weight:400}
-.links{display:flex;gap:22px}
-.links a{font-size:13px;color:var(--muted)}
-.links a:hover{color:var(--text)}
+.logo span{color:var(--dim);font-weight:400}
+.menu{display:flex;gap:20px}
+.menu a{font-size:12px;color:var(--muted)}
+.menu a:hover{color:var(--text)}
 
 .hero{
-min-height:calc(100vh - 64px);
-display:flex;align-items:center;
-border-bottom:1px solid var(--line)
+  min-height:calc(100vh - 60px);
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid var(--line);
 }
 .hero small{
-color:var(--muted);letter-spacing:.15em;text-transform:uppercase
+  color:var(--dim);
+  font:11px monospace;
 }
 h1{
-max-width:850px;margin-top:20px;
-font-size:clamp(45px,7vw,82px);
-line-height:.98;letter-spacing:-.055em
+  max-width:800px;
+  margin-top:18px;
+  font-size:clamp(44px,8vw,78px);
+  line-height:.98;
+  letter-spacing:-.06em;
 }
 h1 span{color:var(--muted)}
 .hero p{
-max-width:650px;margin-top:30px;
-color:var(--muted);font-size:17px
+  max-width:620px;
+  margin-top:28px;
+  color:var(--muted);
+  font-size:16px;
 }
-.buttons{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.buttons{
+  display:flex;
+  gap:8px;
+  margin-top:28px;
+}
 .button{
-padding:9px 15px;border:1px solid var(--line);
-border-radius:6px;background:var(--panel);font-size:13px
+  padding:8px 14px;
+  border:1px solid var(--line);
+  border-radius:5px;
+  background:var(--card);
+  font-size:12px;
 }
 .button:hover{border-color:#444}
-.primary{background:var(--accent);color:var(--bg)}
-
-section{padding:90px 0;border-bottom:1px solid var(--line)}
-.head{
-display:grid;grid-template-columns:180px 1fr;
-gap:40px;margin-bottom:35px
+.primary{
+  background:var(--accent);
+  color:var(--bg);
 }
-.num{
-font:12px monospace;color:var(--dim)
+
+section{
+  padding:75px 0;
+  border-bottom:1px solid var(--line);
+}
+.label{
+  margin-bottom:25px;
+  color:var(--dim);
+  font:11px monospace;
 }
 h2{
-font-size:30px;line-height:1.1;letter-spacing:-.035em
+  margin-bottom:12px;
+  font-size:27px;
+  letter-spacing:-.035em;
 }
-.desc{color:var(--muted);margin-top:10px;max-width:650px}
+.text{
+  max-width:650px;
+  color:var(--muted);
+}
+.text p+p{margin-top:15px}
 
-.grid{
-display:grid;grid-template-columns:repeat(2,1fr);
-gap:1px;background:var(--line);
-border:1px solid var(--line)
+.profile{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  margin-top:30px;
+  background:var(--line);
+  border:1px solid var(--line);
 }
-.card{
-background:var(--panel);padding:24px
+.profile div{
+  padding:21px;
+  background:var(--card);
 }
-.card strong{display:block;margin-bottom:7px}
-.card p{color:var(--muted);font-size:13px}
-.state{
-float:right;color:#9fbfa9;
-font:11px monospace;text-transform:uppercase
+.profile small{
+  display:block;
+  margin-bottom:8px;
+  color:var(--dim);
+  font:10px monospace;
+  text-transform:uppercase;
 }
-
-.list{border-top:1px solid var(--line)}
-.item{
-display:grid;grid-template-columns:65px 1fr 100px;
-gap:20px;padding:22px 0;
-border-bottom:1px solid var(--line)
-}
-.item .id{color:var(--dim);font:12px monospace}
-.item p{color:var(--muted);font-size:13px}
-.status{
-text-align:right;color:#c8b98b;
-font:11px monospace;text-transform:uppercase
+.profile strong{font-size:15px}
+.profile p{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:13px;
 }
 
 .projects{
-display:grid;grid-template-columns:repeat(2,1fr);gap:14px
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:30px;
 }
 .project{
-padding:27px;background:var(--panel);
-border:1px solid var(--line);border-radius:7px
+  padding:23px;
+  background:var(--card);
+  border:1px solid var(--line);
 }
-.project:hover{border-color:#444}
-.project small{color:var(--dim);font:11px monospace}
-.project h3{margin-top:10px}
-.project p{color:var(--muted);font-size:13px;margin-top:7px}
-.tags{margin-top:18px;display:flex;gap:6px;flex-wrap:wrap}
-.tag{
-border:1px solid var(--line);padding:3px 7px;
-border-radius:4px;color:var(--muted);font:10px monospace
+.project:hover{border-color:#41464b}
+.project small{
+  color:var(--dim);
+  font:10px monospace;
+}
+.project h3{margin:10px 0 6px}
+.project p{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.lab{
-background:#0b0d0f
+.obsession{
+  background:#0b0d0f;
 }
-.labbox{
-padding:35px;background:var(--panel);
-border:1px solid var(--line)
+.terminal{
+  margin-top:30px;
+  padding:25px;
+  background:#090b0d;
+  border:1px solid var(--line);
+  font:12px/1.9 monospace;
+  color:#aab2b7;
 }
-.labbox small{color:#9fbfa9;font:11px monospace}
-.labbox h3{
-font-size:clamp(28px,5vw,48px);
-letter-spacing:-.045em;margin-top:15px
-}
-.labbox p{max-width:650px;color:var(--muted);margin-top:12px}
-.roadmap{margin-top:25px}
-.roadmap div{
-padding:9px 0;border-top:1px solid var(--line);
-font:12px monospace;color:var(--muted)
-}
-.roadmap div:before{content:"○";margin-right:10px}
-.roadmap .done:before{content:"●";color:#9fbfa9}
+.terminal .green{color:#9fbfa9}
+.terminal .gray{color:#555c64}
+.terminal .white{color:#e6e9eb}
 
 .notes{
-display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+  margin-top:28px;
+  border-top:1px solid var(--line);
 }
 .note{
-padding:24px;background:var(--panel);
-border:1px solid var(--line)
+  display:grid;
+  grid-template-columns:85px 1fr;
+  gap:20px;
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
 }
-.note small{color:var(--dim);font:10px monospace}
-.note h3{margin-top:10px;font-size:16px}
-.note p{color:var(--muted);font-size:13px;margin-top:7px}
-
-.about{
-display:grid;grid-template-columns:1fr 1fr;gap:60px
+.note time{
+  color:var(--dim);
+  font:10px monospace;
 }
-.about p{color:var(--muted);margin-bottom:16px}
-.facts{border-top:1px solid var(--line)}
-.fact{
-display:flex;justify-content:space-between;
-padding:12px 0;border-bottom:1px solid var(--line);
-font-size:13px
-}
-.fact span:first-child{color:var(--dim)}
-
-footer{padding:40px 0;color:var(--dim);font-size:12px}
-footer div{
-display:flex;justify-content:space-between
+.note p{
+  color:var(--muted);
+  font-size:13px;
 }
 
-@media(max-width:700px){
-.container{width:calc(100% - 28px)}
-.links{display:none}
-.hero{min-height:80vh}
-.head{grid-template-columns:1fr;gap:10px}
-.grid,.projects,.notes,.about{grid-template-columns:1fr}
-.item{grid-template-columns:45px 1fr}
-.status{text-align:left;grid-column:2}
-.labbox{padding:25px}
-footer div{display:block}
+footer{
+  padding:35px 0;
+  color:var(--dim);
+  font-size:11px;
+}
+footer .container{
+  display:flex;
+  justify-content:space-between;
+}
+
+@media(max-width:650px){
+  .container{width:calc(100% - 28px)}
+  .menu{display:none}
+  .profile,.projects{grid-template-columns:1fr}
+  .hero{min-height:80vh}
+  .note{grid-template-columns:1fr;gap:4px}
 }
 </style>
 </head>
@@ -189,328 +219,250 @@ footer div{display:block}
 <a class="logo" href="#top">
 ItsGaleraDavid <span>/ personal space</span>
 </a>
-<div class="links">
-<a href="#currently">Currently</a>
-<a href="#experiments">Experiments</a>
-<a href="#projects">Projects</a>
-<a href="#notes">Notes</a>
-<a href="#about">About</a>
+
+<div class="menu">
+<a href="#about">about</a>
+<a href="#work">work</a>
+<a href="#lab">lab</a>
+<a href="#notes">notes</a>
 </div>
 </nav>
 </div>
 </header>
 
+
 <main>
 
 <section class="hero">
 <div class="container">
-<small>Personal space / 2026</small>
+
+<small>somewhere between art and computers</small>
 
 <h1>
-I want to understand
-<span>how things work.</span>
+I like making things
+<span>and figuring out why they work.</span>
 </h1>
 
 <p>
-I'm David Galera, a student of 3D Animation, Games and
-Interactive Environments. I'm learning programming,
-cybersecurity and computer systems while building things
-and documenting what I discover.
+I'm David. I have a technical background in 3D and interactive
+environments, and I'm currently going deeper into programming,
+IT and cybersecurity.
 </p>
 
 <div class="buttons">
-<a class="button primary" href="#experiments">Explore experiments</a>
+<a class="button primary" href="#work">See what I make</a>
 <a class="button" href="https://github.com/ItsGaleraDavid" target="_blank">GitHub</a>
 </div>
-</div>
-</section>
-
-<section id="currently">
-<div class="container">
-
-<div class="head">
-<div class="num">01 / CURRENTLY</div>
-<div>
-<h2>What I'm working on</h2>
-<p class="desc">
-A snapshot of what I'm currently learning and exploring.
-</p>
-</div>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<span class="state">active</span>
-<strong>Python</strong>
-<p>Fundamentals 1 & 2 completed through Cisco Networking Academy.</p>
-</div>
-
-<div class="card">
-<span class="state">learning</span>
-<strong>Linux</strong>
-<p>Learning to work closer to the operating system.</p>
-</div>
-
-<div class="card">
-<span class="state">learning</span>
-<strong>Cybersecurity</strong>
-<p>Networking, ethical hacking and system security.</p>
-</div>
-
-<div class="card">
-<span class="state">active</span>
-<strong>3D & Interactive Media</strong>
-<p>3D animation, games and virtual environments.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="experiments">
-<div class="container">
-
-<div class="head">
-<div class="num">02 / EXPERIMENTS</div>
-<div>
-<h2>Things I'm trying to understand</h2>
-<p class="desc">
-Small experiments are useful even when they never become products.
-</p>
-</div>
-</div>
-
-<div class="list">
-
-<div class="item">
-<div class="id">001</div>
-<div>
-<strong>Python experiments</strong>
-<p>Turning fundamentals into actual programs.</p>
-</div>
-<div class="status">active</div>
-</div>
-
-<div class="item">
-<div class="id">002</div>
-<div>
-<strong>Linux environment</strong>
-<p>Understanding what happens underneath graphical interfaces.</p>
-</div>
-<div class="status">learning</div>
-</div>
-
-<div class="item">
-<div class="id">003</div>
-<div>
-<strong>Computer systems</strong>
-<p>Next target: C, memory, processes and architecture.</p>
-</div>
-<div class="status">planned</div>
-</div>
-
-<div class="item">
-<div class="id">004</div>
-<div>
-<strong>Understanding the machine</strong>
-<p>Eventually: assembly, boot processes and operating systems.</p>
-</div>
-<div class="status">planned</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="projects">
-<div class="container">
-
-<div class="head">
-<div class="num">03 / PROJECTS</div>
-<div>
-<h2>Things I've built</h2>
-<p class="desc">
-Projects where experiments become something usable or interesting.
-</p>
-</div>
-</div>
-
-<div class="projects">
-
-<a class="project" href="https://github.com/ItsGaleraDavid" target="_blank">
-<small>GITHUB / PYTHON</small>
-<h3>Python projects</h3>
-<p>
-Programs and experiments created while learning Python.
-</p>
-<div class="tags">
-<span class="tag">Python</span>
-<span class="tag">Git</span>
-</div>
-</a>
-
-<a class="project" href="https://github.com/ItsGaleraDavid" target="_blank">
-<small>INTERACTIVE</small>
-<h3>3D & virtual worlds</h3>
-<p>
-Experiments involving 3D environments and interactive spaces.
-</p>
-<div class="tags">
-<span class="tag">3D</span>
-<span class="tag">Interactive</span>
-</div>
-</a>
-
-</div>
-</div>
-</section>
-
-<section class="lab">
-<div class="container">
-
-<div class="head">
-<div class="num">04 / LAB</div>
-<div>
-<h2>The long experiment</h2>
-<p class="desc">
-A long-term attempt to understand computers from progressively
-lower levels.
-</p>
-</div>
-</div>
-
-<div class="labbox">
-<small>LONG-TERM DIRECTION</small>
-<h3>Understand the machine.</h3>
-
-<p>
-Instead of only learning how to use increasingly powerful
-abstractions, I want to understand what happens underneath them.
-</p>
-
-<div class="roadmap">
-<div class="done">Python fundamentals</div>
-<div class="done">Python programming</div>
-<div>Linux</div>
-<div>C</div>
-<div>Computer architecture</div>
-<div>Memory & processes</div>
-<div>Assembly</div>
-<div>Boot process</div>
-<div>Operating system development</div>
-</div>
-</div>
 
 </div>
 </section>
 
-<section id="notes">
-<div class="container">
-
-<div class="head">
-<div class="num">05 / NOTES</div>
-<div>
-<h2>Things I've discovered</h2>
-<p class="desc">
-Short notes about things I'm learning.
-</p>
-</div>
-</div>
-
-<div class="notes">
-
-<article class="note">
-<small>AUG 2026</small>
-<h3>Python Fundamentals</h3>
-<p>Completed Python Fundamentals 1 and 2 through Cisco Networking Academy.</p>
-</article>
-
-<article class="note">
-<small>2026</small>
-<h3>Learning by building</h3>
-<p>Small experiments can reveal gaps that tutorials hide.</p>
-</article>
-
-<article class="note">
-<small>2026</small>
-<h3>What I don't understand yet</h3>
-<p>Knowing what you don't know is useful when deciding what to learn next.</p>
-</article>
-
-</div>
-</div>
-</section>
 
 <section id="about">
 <div class="container">
 
-<div class="head">
-<div class="num">06 / ABOUT</div>
+<div class="label">01 / ABOUT</div>
+
+<div class="text">
+
+<h2>A bit about me</h2>
+
+<p>
+My background is in 3D Animation, Games and Interactive
+Environments. I finished the higher vocational training and
+then started moving further into IT.
+</p>
+
+<p>
+Specialisterne gave me professional IT training, and I've also
+been working through Cisco Networking Academy. Python is the
+part I'm focusing on right now.
+</p>
+
+<p>
+Outside the usual desktop stuff, I create in virtual worlds.
+I've spent time building and experimenting in Second Life and
+Resonite.
+</p>
+
+</div>
+
+<div class="profile">
+
 <div>
-<h2>About me</h2>
-<p class="desc">
-The person behind this space.
-</p>
+<small>3D</small>
+<strong>CFGS completed</strong>
+<p>Animation · Games · Interactive environments</p>
 </div>
-</div>
-
-<div class="about">
 
 <div>
-<p>
-I'm David Galera, a student of 3D Animation, Games and
-Interactive Environments.
+<small>IT</small>
+<strong>Specialisterne</strong>
+<p>Technical training and professional preparation</p>
+</div>
+
+<div>
+<small>Python</small>
+<strong>Cisco Networking Academy</strong>
+<p>Fundamentals I + II completed</p>
+</div>
+
+<div>
+<small>Virtual worlds</small>
+<strong>Second Life · Resonite</strong>
+<p>Creation and experimentation</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section id="work">
+<div class="container">
+
+<div class="label">02 / WORK</div>
+
+<h2>Things I've made</h2>
+
+<p class="text">
+Not a list of technologies. Just things I've actually spent
+time making.
 </p>
 
-<p>
-I'm increasingly interested in programming, cybersecurity
-and understanding how computers work underneath the software
-we normally use.
-</p>
+<div class="projects">
+
+<a class="project"
+href="https://github.com/ItsGaleraDavid"
+target="_blank">
+
+<small>PYTHON / GITHUB</small>
+
+<h3>Python projects</h3>
 
 <p>
-This website is my personal space: a record of what I learn,
-build, break and discover.
+Small programs and experiments while learning Python.
+The interesting ones end up on GitHub.
+</p>
+
+</a>
+
+
+<div class="project">
+
+<small>VIRTUAL WORLDS</small>
+
+<h3>Second Life & Resonite</h3>
+
+<p>
+Objects, spaces and little experiments made inside virtual
+environments.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section id="lab" class="obsession">
+<div class="container">
+
+<div class="label">03 / LAB</div>
+
+<h2>Things I want to understand</h2>
+
+<p class="text">
+This is probably where my interests get a little unreasonable.
+</p>
+
+<div class="terminal">
+
+<div class="gray">$ cat current_obsession.txt</div>
+
+<br>
+
+<div class="white">
+I don't just want to learn how to use computers.
+</div>
+
+<div class="green">
+I want to know what's happening underneath.
+</div>
+
+<br>
+
+<div>python</div>
+<div>↓</div>
+<div>linux</div>
+<div>↓</div>
+<div>networking</div>
+<div>↓</div>
+<div>c</div>
+<div>↓</div>
+<div>memory</div>
+<div>↓</div>
+<div>assembly</div>
+<div>↓</div>
+<div class="green">???</div>
+
+<br>
+
+<div class="gray">
+$ probably going too far
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section id="notes">
+<div class="container">
+
+<div class="label">04 / NOTES</div>
+
+<h2>Recently</h2>
+
+<div class="notes">
+
+<div class="note">
+<time>2026.08</time>
+<p>
+Finished Cisco Networking Academy Python Fundamentals I & II.
 </p>
 </div>
 
-<div class="facts">
-
-<div class="fact">
-<span>Programming</span>
-<span>Python</span>
+<div class="note">
+<time>2026</time>
+<p>
+Started taking programming and cybersecurity more seriously.
+</p>
 </div>
 
-<div class="fact">
-<span>Interests</span>
-<span>Systems / Security / 3D</span>
-</div>
-
-<div class="fact">
-<span>Python Fundamentals</span>
-<span>1 + 2 completed</span>
-</div>
-
-<div class="fact">
-<span>Projects</span>
-<span>GitHub</span>
+<div class="note">
+<time>2026</time>
+<p>
+Still making strange little things in virtual worlds.
+</p>
 </div>
 
 </div>
 
-</div>
 </div>
 </section>
 
 </main>
 
+
 <footer>
 <div class="container">
-<div>
 <span>© 2026 ItsGaleraDavid</span>
-<a href="#top">Back to top</a>
-</div>
+<a href="#top">↑</a>
 </div>
 </footer>
 

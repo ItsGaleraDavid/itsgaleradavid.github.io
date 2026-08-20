@@ -8,205 +8,425 @@
 
 <style>
 :root{
-  --bg:#0d0f11;
-  --text:#e6e9eb;
-  --muted:#858b91;
-  --dim:#50565c;
-  --line:#25292d;
-  --card:#111418;
-  --accent:#d8e4e8;
+--bg:#0d0f11;
+--panel:#111418;
+--panel2:#0a0c0e;
+--text:#e5e8ea;
+--muted:#858b91;
+--dim:#555b61;
+--line:#252a2f;
+--accent:#d8e4e8;
+--green:#9fbfa9;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
-  background:var(--bg);
-  color:var(--text);
-  font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
+font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
-a{color:inherit;text-decoration:none}
-.container{width:min(880px,calc(100% - 36px));margin:auto}
+
+a{
+color:inherit;
+text-decoration:none
+}
+
+.container{
+width:min(1000px,calc(100% - 32px));
+margin:auto
+}
+
+/* HEADER */
 
 header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:#0d0f11ee;
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
+position:sticky;
+top:0;
+z-index:50;
+background:#0d0f11ed;
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--line)
 }
+
 nav{
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:space-between
 }
-.logo{font-weight:600}
-.logo span{color:var(--dim);font-weight:400}
-.menu{display:flex;gap:20px}
-.menu a{font-size:12px;color:var(--muted)}
-.menu a:hover{color:var(--text)}
+
+.identity{
+display:flex;
+align-items:center;
+gap:9px;
+font-weight:600;
+letter-spacing:-.02em
+}
+
+.identity img{
+width:27px;
+height:27px;
+object-fit:contain
+}
+
+.identity span{
+color:var(--dim);
+font-weight:400
+}
+
+.menu{
+display:flex;
+gap:20px
+}
+
+.menu a{
+color:var(--muted);
+font:11px monospace
+}
+
+.menu a:hover{
+color:var(--text)
+}
+
+/* HERO */
 
 .hero{
-  min-height:calc(100vh - 60px);
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid var(--line);
+padding:110px 0 100px;
+border-bottom:1px solid var(--line)
 }
-.hero small{
-  color:var(--dim);
-  font:11px monospace;
+
+.command{
+color:var(--green);
+font:11px monospace;
+margin-bottom:22px
 }
+
+.command:before{
+content:"> ";
+color:var(--dim)
+}
+
 h1{
-  max-width:800px;
-  margin-top:18px;
-  font-size:clamp(44px,8vw,78px);
-  line-height:.98;
-  letter-spacing:-.06em;
+max-width:850px;
+font-size:clamp(42px,7vw,76px);
+line-height:.98;
+letter-spacing:-.06em
 }
-h1 span{color:var(--muted)}
-.hero p{
-  max-width:620px;
-  margin-top:28px;
-  color:var(--muted);
-  font-size:16px;
+
+h1 span{
+color:var(--muted)
 }
-.buttons{
-  display:flex;
-  gap:8px;
-  margin-top:28px;
+
+.intro{
+max-width:620px;
+margin-top:28px;
+color:var(--muted);
+font-size:16px
 }
+
+.actions{
+display:flex;
+gap:8px;
+margin-top:28px
+}
+
 .button{
-  padding:8px 14px;
-  border:1px solid var(--line);
-  border-radius:5px;
-  background:var(--card);
-  font-size:12px;
+padding:8px 13px;
+border:1px solid var(--line);
+background:var(--panel);
+border-radius:4px;
+font:11px monospace
 }
-.button:hover{border-color:#444}
+
+.button:hover{
+border-color:#444b52
+}
+
 .primary{
-  background:var(--accent);
-  color:var(--bg);
+background:var(--accent);
+color:var(--bg);
+border-color:var(--accent)
 }
+
+/* SECTIONS */
 
 section{
-  padding:75px 0;
-  border-bottom:1px solid var(--line);
+padding:70px 0;
+border-bottom:1px solid var(--line)
 }
+
+.section-top{
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin-bottom:28px
+}
+
 .label{
-  margin-bottom:25px;
-  color:var(--dim);
-  font:11px monospace;
+color:var(--dim);
+font:10px monospace;
+letter-spacing:.12em;
+text-transform:uppercase
 }
+
+.counter{
+color:var(--dim);
+font:10px monospace
+}
+
 h2{
-  margin-bottom:12px;
-  font-size:27px;
-  letter-spacing:-.035em;
-}
-.text{
-  max-width:650px;
-  color:var(--muted);
-}
-.text p+p{margin-top:15px}
-
-.profile{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:1px;
-  margin-top:30px;
-  background:var(--line);
-  border:1px solid var(--line);
-}
-.profile div{
-  padding:21px;
-  background:var(--card);
-}
-.profile small{
-  display:block;
-  margin-bottom:8px;
-  color:var(--dim);
-  font:10px monospace;
-  text-transform:uppercase;
-}
-.profile strong{font-size:15px}
-.profile p{
-  margin-top:4px;
-  color:var(--muted);
-  font-size:13px;
+font-size:25px;
+letter-spacing:-.035em
 }
 
-.projects{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:30px;
-}
-.project{
-  padding:23px;
-  background:var(--card);
-  border:1px solid var(--line);
-}
-.project:hover{border-color:#41464b}
-.project small{
-  color:var(--dim);
-  font:10px monospace;
-}
-.project h3{margin:10px 0 6px}
-.project p{
-  color:var(--muted);
-  font-size:13px;
+.description{
+max-width:650px;
+margin-top:8px;
+color:var(--muted)
 }
 
-.obsession{
-  background:#0b0d0f;
-}
-.terminal{
-  margin-top:30px;
-  padding:25px;
-  background:#090b0d;
-  border:1px solid var(--line);
-  font:12px/1.9 monospace;
-  color:#aab2b7;
-}
-.terminal .green{color:#9fbfa9}
-.terminal .gray{color:#555c64}
-.terminal .white{color:#e6e9eb}
+/* ABOUT */
 
-.notes{
-  margin-top:28px;
-  border-top:1px solid var(--line);
+.about{
+display:grid;
+grid-template-columns:1.4fr .8fr;
+gap:35px
 }
-.note{
-  display:grid;
-  grid-template-columns:85px 1fr;
-  gap:20px;
-  padding:17px 0;
-  border-bottom:1px solid var(--line);
+
+.about-text p{
+color:var(--muted);
+margin-bottom:15px
 }
-.note time{
-  color:var(--dim);
-  font:10px monospace;
+
+.data{
+border:1px solid var(--line);
+background:var(--panel)
 }
-.note p{
-  color:var(--muted);
-  font-size:13px;
+
+.data div{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding:12px 14px;
+border-bottom:1px solid var(--line);
+font:11px monospace
 }
+
+.data div:last-child{
+border-bottom:0
+}
+
+.data span:first-child{
+color:var(--dim)
+}
+
+/* WORK */
+
+.work-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px
+}
+
+.card{
+padding:22px;
+background:var(--panel);
+border:1px solid var(--line);
+min-height:160px
+}
+
+.card:hover{
+border-color:#41474d
+}
+
+.card-head{
+display:flex;
+justify-content:space-between;
+gap:15px
+}
+
+.card small{
+color:var(--dim);
+font:10px monospace
+}
+
+.card .arrow{
+color:var(--dim)
+}
+
+.card h3{
+margin-top:25px;
+font-size:17px
+}
+
+.card p{
+margin-top:7px;
+color:var(--muted);
+font-size:13px
+}
+
+.tags{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+margin-top:18px
+}
+
+.tag{
+padding:3px 7px;
+border:1px solid var(--line);
+color:var(--dim);
+font:10px monospace
+}
+
+/* LAB */
+
+.lab{
+background:var(--panel2)
+}
+
+.console{
+border:1px solid var(--line);
+background:#080a0c;
+font:12px/1.9 monospace
+}
+
+.console-head{
+padding:9px 13px;
+border-bottom:1px solid var(--line);
+color:var(--dim)
+}
+
+.console-body{
+padding:25px
+}
+
+.gray{color:var(--dim)}
+.green{color:var(--green)}
+.white{color:var(--text)}
+
+.path{
+margin-top:20px;
+display:flex;
+align-items:center;
+flex-wrap:wrap;
+gap:7px
+}
+
+.path span{
+padding:5px 8px;
+border:1px solid var(--line);
+color:var(--muted)
+}
+
+.path b{
+color:var(--dim);
+font-weight:400
+}
+
+/* CURRENT */
+
+.current{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+border:1px solid var(--line)
+}
+
+.current article{
+padding:20px;
+background:var(--panel);
+border-right:1px solid var(--line)
+}
+
+.current article:last-child{
+border-right:0
+}
+
+.current small{
+color:var(--dim);
+font:10px monospace;
+text-transform:uppercase
+}
+
+.current strong{
+display:block;
+margin-top:10px
+}
+
+.current p{
+margin-top:5px;
+color:var(--muted);
+font-size:12px
+}
+
+/* FOOTER */
 
 footer{
-  padding:35px 0;
-  color:var(--dim);
-  font-size:11px;
-}
-footer .container{
-  display:flex;
-  justify-content:space-between;
+padding:35px 0;
+color:var(--dim);
+font:10px monospace
 }
 
-@media(max-width:650px){
-  .container{width:calc(100% - 28px)}
-  .menu{display:none}
-  .profile,.projects{grid-template-columns:1fr}
-  .hero{min-height:80vh}
-  .note{grid-template-columns:1fr;gap:4px}
+footer .container{
+display:flex;
+justify-content:space-between
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+width:calc(100% - 26px)
+}
+
+.menu{
+display:none
+}
+
+.hero{
+padding:80px 0
+}
+
+.about{
+grid-template-columns:1fr
+}
+
+.work-grid{
+grid-template-columns:1fr
+}
+
+.current{
+grid-template-columns:1fr 1fr
+}
+
+.current article{
+border-right:1px solid var(--line);
+border-bottom:1px solid var(--line)
+}
+
+.section-top{
+align-items:start
+}
+
+}
+
+@media(max-width:450px){
+
+.current{
+grid-template-columns:1fr
+}
+
+.current article{
+border-right:0
+}
+
+h1{
+font-size:44px
+}
+
 }
 </style>
 </head>
@@ -216,16 +436,19 @@ footer .container{
 <header>
 <div class="container">
 <nav>
-<a class="logo" href="#top">
-ItsGaleraDavid <span>/ personal space</span>
+
+<a class="identity" href="#top">
+<img src="profile.png" alt="ItsGaleraDavid">
+ItsGaleraDavid
+<span>/ personal space</span>
 </a>
 
 <div class="menu">
 <a href="#about">about</a>
 <a href="#work">work</a>
 <a href="#lab">lab</a>
-<a href="#notes">notes</a>
 </div>
+
 </nav>
 </div>
 </header>
@@ -233,132 +456,179 @@ ItsGaleraDavid <span>/ personal space</span>
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
 <div class="container">
 
-<small>somewhere between art and computers</small>
+<div class="command">
+booting personal space...
+</div>
 
 <h1>
-I like making things
-<span>and figuring out why they work.</span>
+I make things.
+<span>Then I take them apart to see how they work.</span>
 </h1>
 
-<p>
-I'm David. I have a technical background in 3D and interactive
-environments, and I'm currently going deeper into programming,
-IT and cybersecurity.
+<p class="intro">
+My background is in 3D, interactive environments and technical
+creation. These days I'm going deeper into programming, IT,
+cybersecurity and the systems underneath it all.
 </p>
 
-<div class="buttons">
-<a class="button primary" href="#work">See what I make</a>
-<a class="button" href="https://github.com/ItsGaleraDavid" target="_blank">GitHub</a>
+<div class="actions">
+
+<a class="button primary" href="#work">
+explore
+</a>
+
+<a
+class="button"
+href="https://github.com/ItsGaleraDavid"
+target="_blank"
+rel="noopener">
+github ↗
+</a>
+
 </div>
 
 </div>
 </section>
 
+
+<!-- ABOUT -->
 
 <section id="about">
 <div class="container">
 
-<div class="label">01 / ABOUT</div>
+<div class="section-top">
+<div>
+<div class="label">01 / about</div>
+<h2>What I do</h2>
+</div>
 
-<div class="text">
+<div class="counter">STATUS: ACTIVE</div>
+</div>
 
-<h2>A bit about me</h2>
+<div class="about">
+
+<div class="about-text">
 
 <p>
-My background is in 3D Animation, Games and Interactive
-Environments. I finished the higher vocational training and
-then started moving further into IT.
+I have a technical background in 3D Animation, Games and
+Interactive Environments, with the higher vocational training
+already completed.
 </p>
 
 <p>
-Specialisterne gave me professional IT training, and I've also
-been working through Cisco Networking Academy. Python is the
-part I'm focusing on right now.
+I've since been moving further into IT through Specialisterne
+and Cisco Networking Academy. Python Fundamentals I and II
+are now completed, and I'm continuing from there.
 </p>
 
 <p>
-Outside the usual desktop stuff, I create in virtual worlds.
-I've spent time building and experimenting in Second Life and
-Resonite.
+I also create inside virtual worlds. Second Life and Resonite
+are places where I experiment with objects, spaces,
+interaction and whatever idea happens to come to mind.
 </p>
 
 </div>
 
-<div class="profile">
+<div class="data">
 
 <div>
-<small>3D</small>
+<span>3D</span>
 <strong>CFGS completed</strong>
-<p>Animation · Games · Interactive environments</p>
 </div>
 
 <div>
-<small>IT</small>
+<span>IT</span>
 <strong>Specialisterne</strong>
-<p>Technical training and professional preparation</p>
 </div>
 
 <div>
-<small>Python</small>
-<strong>Cisco Networking Academy</strong>
-<p>Fundamentals I + II completed</p>
+<span>Python</span>
+<strong>Cisco I + II</strong>
 </div>
 
 <div>
-<small>Virtual worlds</small>
-<strong>Second Life · Resonite</strong>
-<p>Creation and experimentation</p>
+<span>Virtual</span>
+<strong>Second Life / Resonite</strong>
 </div>
 
 </div>
 
+</div>
 </div>
 </section>
 
+
+<!-- WORK -->
 
 <section id="work">
 <div class="container">
 
-<div class="label">02 / WORK</div>
+<div class="section-top">
+<div>
+<div class="label">02 / work</div>
+<h2>Things I've actually made</h2>
+</div>
 
-<h2>Things I've made</h2>
+<div class="counter">NO MARKETING</div>
+</div>
 
-<p class="text">
-Not a list of technologies. Just things I've actually spent
-time making.
+<p class="description">
+A few real things are worth more than a page full of skills
+I can't demonstrate.
 </p>
 
-<div class="projects">
+<div class="work-grid" style="margin-top:28px">
 
-<a class="project"
+<a
+class="card"
 href="https://github.com/ItsGaleraDavid"
-target="_blank">
+target="_blank"
+rel="noopener">
 
+<div class="card-head">
 <small>PYTHON / GITHUB</small>
+<span class="arrow">↗</span>
+</div>
 
 <h3>Python projects</h3>
 
 <p>
-Small programs and experiments while learning Python.
-The interesting ones end up on GitHub.
+Small programs, experiments and things built while learning
+to actually use Python.
 </p>
+
+<div class="tags">
+<span class="tag">Python</span>
+<span class="tag">Git</span>
+</div>
 
 </a>
 
 
-<div class="project">
+<div class="card">
 
+<div class="card-head">
 <small>VIRTUAL WORLDS</small>
+<span class="arrow">↗</span>
+</div>
 
-<h3>Second Life & Resonite</h3>
+<h3>Second Life / Resonite</h3>
 
 <p>
-Objects, spaces and little experiments made inside virtual
-environments.
+Objects, environments and experiments created inside
+virtual worlds.
 </p>
+
+<div class="tags">
+<span class="tag">3D</span>
+<span class="tag">Creation</span>
+<span class="tag">Interaction</span>
+</div>
 
 </div>
 
@@ -368,88 +638,130 @@ environments.
 </section>
 
 
-<section id="lab" class="obsession">
+<!-- LAB -->
+
+<section id="lab" class="lab">
 <div class="container">
 
-<div class="label">03 / LAB</div>
+<div class="section-top">
+<div>
+<div class="label">03 / lab</div>
+<h2>The part that gets weird</h2>
+</div>
 
-<h2>Things I want to understand</h2>
+<div class="counter">EXPERIMENTAL</div>
+</div>
 
-<p class="text">
-This is probably where my interests get a little unreasonable.
+<p class="description">
+I don't particularly want to stop at knowing how to use
+something. I want to understand what is underneath it.
 </p>
 
-<div class="terminal">
 
-<div class="gray">$ cat current_obsession.txt</div>
+<div class="console" style="margin-top:28px">
+
+<div class="console-head">
+itsgaleradavid@lab:~$ cat /current_direction
+</div>
+
+<div class="console-body">
+
+<div class="gray">
+# current direction
+</div>
 
 <br>
 
 <div class="white">
-I don't just want to learn how to use computers.
+python
 </div>
+
+<div class="gray">↓</div>
+
+<div>
+linux
+</div>
+
+<div class="gray">↓</div>
+
+<div>
+networking
+</div>
+
+<div class="gray">↓</div>
+
+<div>
+c
+</div>
+
+<div class="gray">↓</div>
+
+<div>
+memory
+</div>
+
+<div class="gray">↓</div>
+
+<div>
+assembly
+</div>
+
+<div class="gray">↓</div>
 
 <div class="green">
-I want to know what's happening underneath.
+something I probably don't need to build
 </div>
-
-<br>
-
-<div>python</div>
-<div>↓</div>
-<div>linux</div>
-<div>↓</div>
-<div>networking</div>
-<div>↓</div>
-<div>c</div>
-<div>↓</div>
-<div>memory</div>
-<div>↓</div>
-<div>assembly</div>
-<div>↓</div>
-<div class="green">???</div>
 
 <br>
 
 <div class="gray">
-$ probably going too far
+# that's usually where things become interesting
 </div>
 
+</div>
 </div>
 
 </div>
 </section>
 
 
-<section id="notes">
+<!-- CURRENT -->
+
+<section>
 <div class="container">
 
-<div class="label">04 / NOTES</div>
-
-<h2>Recently</h2>
-
-<div class="notes">
-
-<div class="note">
-<time>2026.08</time>
-<p>
-Finished Cisco Networking Academy Python Fundamentals I & II.
-</p>
+<div class="section-top">
+<div>
+<div class="label">04 / current state</div>
+<h2>Right now</h2>
+</div>
 </div>
 
-<div class="note">
-<time>2026</time>
-<p>
-Started taking programming and cybersecurity more seriously.
-</p>
-</div>
+<div class="current">
 
-<div class="note">
-<time>2026</time>
-<p>
-Still making strange little things in virtual worlds.
-</p>
-</div>
+<article>
+<small>python</small>
+<strong>Completed</strong>
+<p>Cisco Fundamentals I + II</p>
+</article>
+
+<article>
+<small>IT</small>
+<strong>Active</strong>
+<p>Specialisterne training</p>
+</article>
+
+<article>
+<small>cybersecurity</small>
+<strong>Exploring</strong>
+<p>Networks and systems</p>
+</article>
+
+<article>
+<small>3D / worlds</small>
+<strong>Creating</strong>
+<p>Second Life / Resonite</p>
+</article>
 
 </div>
 
@@ -461,10 +773,10 @@ Still making strange little things in virtual worlds.
 
 <footer>
 <div class="container">
-<span>© 2026 ItsGaleraDavid</span>
-<a href="#top">↑</a>
+<span>ItsGaleraDavid / 2026</span>
+<a href="#top">↑ top</a>
 </div>
 </footer>
 
 </body>
-    </html>
+  </html>

@@ -1,59 +1,331 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>itsgaleradavid.log</title>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: "Courier New", Courier, monospace;
-            margin: 50px auto;
-            max-width: 700px;
-            line-height: 1.5;
-        }
-        hr {
-            border: 0;
-            border-top: 1px solid #000;
-            margin: 20px 0;
-        }
-        a {
-            color: #0000EE;
-            text-decoration: underline;
-        }
-        img {
-            float: left;
-            margin-right: 20px;
-            border: 1px solid #000;
-            width: 80px;
-        }
-        .clear { clear: both; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>itsgaleradavid.log</title>
+
+<style>
+:root {
+    --bg: #0b0d0f;
+    --fg: #d5d9dc;
+    --muted: #777e84;
+    --line: #272c30;
+    --link: #a9c9e8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 920px;
+    margin: 60px auto;
+    padding: 0 25px;
+}
+
+header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+header p {
+    margin: 5px 0 0;
+    color: var(--muted);
+}
+
+nav {
+    margin-bottom: 55px;
+}
+
+nav a {
+    margin-right: 18px;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+h2 {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--muted);
+    text-transform: lowercase;
+    margin-bottom: 20px;
+}
+
+.entry {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+}
+
+.entry:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.meta {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.entry h3 {
+    margin: 7px 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.entry p {
+    max-width: 720px;
+    margin: 8px 0;
+}
+
+pre {
+    overflow-x: auto;
+    padding: 15px;
+    border: 1px solid var(--line);
+    color: #cbd1d5;
+}
+
+footer {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 35px auto;
+    }
+
+    nav a {
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <img src="profile.png" alt="David">
-    <h1>David Galera</h1>
-    <p>Python &bull; Redes &bull; Sistemas</p>
-    
-    <div class="clear"></div>
-    <hr>
+<main>
 
-    <h3>// ESTADO ACTUAL</h3>
-    <p>Completados los fundamentos de Python y módulos de Cisco. Aprendiendo cómo los paquetes de red cruzan el metal y por qué el software moderno es demasiado pesado para lo que hace.</p>
+<header>
+    <h1>itsgaleradavid.log</h1>
+    <p>notes, experiments, code and other things</p>
+</header>
 
-    <h3>// BITÁCORA DE CÓDIGO</h3>
-    <ul>
-        <li><a href="#">/scripts/socket_test.py</a> — Automatización básica de sockets en Python.</li>
-        <li><a href="#">/cisco/ospf_fail.txt</a> — Notas de campo sobre cómo debuggear una tabla de enrutamiento rota a las 2:00 AM.</li>
-    </ul>
+<nav>
+    <a href="#notes">notes</a>
+    <a href="#experiments">experiments</a>
+    <a href="#code">code</a>
+    <a href="#worlds">worlds</a>
+    <a href="#hardware">hardware</a>
+</nav>
 
-    <h3>// MANIFIESTO</h3>
-    <p>No busco hacer bonita la interfaz. Busco entender el flujo de datos. Si un programa necesita un framework de 500 megabytes para mostrar un párrafo, está mal diseñado.</p>
 
-    <hr>
-    <p><small>Hospedado en GitHub Pages. Escrito en HTML puro, sin frameworks ni basura corporativa.</small></p>
+<section id="notes">
+
+<h2>notes</h2>
+
+<article class="entry">
+    <div class="meta">2026-08-21 / web</div>
+    <h3>Rebuilding this site</h3>
+
+    <p>
+        The old version looked like a portfolio.
+        I don't want a portfolio.
+    </p>
+
+    <p>
+        This is just a place to put things.
+    </p>
+</article>
+
+
+<article class="entry">
+    <div class="meta">2026-08-19 / second life</div>
+    <h3>A chicken that follows me</h3>
+
+    <p>
+        I wanted a chicken to walk around near me.
+        The first script didn't follow when I moved away.
+    </p>
+
+    <p>
+        Fixed it. Mostly.
+    </p>
+</article>
+
+
+<article class="entry">
+    <div class="meta">2026-08-17 / python</div>
+    <h3>Python</h3>
+
+    <p>
+        Finished Python Essentials 1 and 2.
+    </p>
+
+    <p>
+        Now the interesting part starts.
+    </p>
+</article>
+
+</section>
+
+
+<section id="experiments">
+
+<h2>experiments</h2>
+
+<article class="entry">
+    <div class="meta">python / networking</div>
+    <h3>
+        <a href="#">socket-test.py</a>
+    </h3>
+
+    <p>
+        Small experiments with sockets and network communication.
+    </p>
+</article>
+
+
+<article class="entry">
+    <div class="meta">linux</div>
+    <h3>
+        <a href="#">kali-notes</a>
+    </h3>
+
+    <p>
+        Commands, tests and things I don't want to forget.
+    </p>
+</article>
+
+
+<article class="entry">
+    <div class="meta">unfinished</div>
+    <h3>
+        <a href="#">things-that-didn't-work</a>
+    </h3>
+
+    <p>
+        Some experiments are more useful when they fail.
+    </p>
+</article>
+
+</section>
+
+
+<section id="code">
+
+<h2>code</h2>
+
+<article class="entry">
+
+    <div class="meta">python</div>
+
+    <h3>
+        <a href="#">small programs</a>
+    </h3>
+
+    <p>
+        Small programs written because I wanted to know something.
+    </p>
+
+</article>
+
+</section>
+
+
+<section id="worlds">
+
+<h2>worlds</h2>
+
+<article class="entry">
+
+    <div class="meta">second life</div>
+
+    <h3>
+        <a href="#">objects</a>
+    </h3>
+
+    <p>
+        Scripts, objects and experiments.
+    </p>
+
+</article>
+
+
+<article class="entry">
+
+    <div class="meta">resonite</div>
+
+    <h3>
+        <a href="#">experiments</a>
+    </h3>
+
+    <p>
+        Things I am building and trying to understand.
+    </p>
+
+</article>
+
+</section>
+
+
+<section id="hardware">
+
+<h2>hardware</h2>
+
+<article class="entry">
+
+    <div class="meta">arduino</div>
+
+    <h3>
+        <a href="#">bench</a>
+    </h3>
+
+    <p>
+        Small hardware experiments.
+        Wires everywhere.
+    </p>
+
+</article>
+
+</section>
+
+
+<footer>
+    itsgaleradavid.log · github pages · html/css
+</footer>
+
+</main>
 
 </body>
-            </html>
-            
+</html>

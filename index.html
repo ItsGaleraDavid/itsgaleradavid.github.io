@@ -3,224 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ItsGaleraDavid</title>
 <link rel="icon" href="profile.ico" type="image/x-icon">
 
 <style>
-:root {
-    --bg:#0b0d0f; --fg:#d5d9dc; --muted:#777e84;
-    --line:#272c30; --link:#a9c9e8;
-}
+:root{--bg:#0b0d0f;--fg:#d5d9dc;--muted:#777e84;--link:#a9c9e8}
+*{box-sizing:border-box}
 
-* { box-sizing:border-box; }
-
-body {
+body{
     margin:0;
     background:var(--bg);
     color:var(--fg);
     font:15px/1.6 "Courier New",monospace;
 }
 
-main {
+main{
     width:min(920px,calc(100% - 40px));
     margin:60px auto;
 }
 
-header {
+header{
     display:flex;
     align-items:center;
     gap:16px;
-    border-bottom:1px solid var(--line);
     padding-bottom:25px;
 }
 
-header img {
+header img{
     width:58px;
     height:58px;
     object-fit:contain;
 }
 
-h1 { margin:0; font-size:22px; font-weight:normal; }
-header p { margin:5px 0 0; color:var(--muted); }
+h1{
+    margin:0;
+    font-size:22px;
+    font-weight:normal;
+}
 
-nav {
+header p{
+    margin:5px 0 0;
+    color:var(--muted);
+}
+
+nav{
     margin:20px 0 55px;
 }
 
-nav a { margin-right:18px; }
+nav a{
+    margin-right:18px;
+}
 
-a {
+a{
     color:var(--link);
     text-decoration:none;
 }
 
-a:hover { text-decoration:underline; }
+a:hover{
+    text-decoration:underline;
+}
 
-section { margin-bottom:60px; }
+section{
+    margin-bottom:70px;
+}
 
-h2 {
-    margin-bottom:20px;
+h2{
+    margin:0 0 28px;
     color:var(--muted);
     font-size:14px;
     font-weight:normal;
 }
 
-.entry {
-    padding:20px 0;
-    border-top:1px solid var(--line);
+.entry{
+    padding:0 0 30px;
 }
 
-.entry:last-child { border-bottom:1px solid var(--line); }
-
-.meta {
+.meta{
     color:var(--muted);
     font-size:13px;
 }
 
-.entry h3 {
-    margin:7px 0;
+.entry h3{
+    margin:5px 0 7px;
     font-size:16px;
     font-weight:normal;
 }
 
-.entry p {
+.entry p{
     max-width:720px;
-    margin:8px 0;
+    margin:6px 0;
 }
 
-footer {
-    border-top:1px solid var(--line);
-    padding-top:20px;
+footer{
+    padding-top:10px;
     color:var(--muted);
     font-size:12px;
 }
 
-@media (max-width:600px) {
-    main {
+@media(max-width:600px){
+    main{
         width:calc(100% - 30px);
         margin:35px auto;
     }
 
-    header img {
+    header img{
         width:48px;
         height:48px;
     }
 
-    nav {
+    nav{
         margin-bottom:40px;
     }
 
-    nav a {
+    nav a{
         display:inline-block;
         margin:0 14px 8px 0;
     }
 }
 
-@media (max-width:600px) and (orientation:landscape) {
-    main {
-        margin:25px auto;
-    }
-
-    nav {
-        margin-bottom:30px;
-    }
-
-    section {
-        margin-bottom:40px;
-    }
+@media(max-width:600px) and (orientation:landscape){
+    main{margin:25px auto}
+    nav{margin-bottom:30px}
+    section{margin-bottom:50px}
 }
 </style>
 </head>
 
 <body>
-
 <main>
 
-<header>
-    <img src="profile.png" alt="ItsGaleraDavid">
-    <div>
-        <h1>ItsGaleraDavid</h1>
-        <p>Notes, experiments, code and other things</p>
-    </div>
-</header>
+    <header>
+        <img src="profile.png" alt="ItsGaleraDavid">
+        <div>
+            <h1>ItsGaleraDavid</h1>
+            <p>Notes, experiments, code and other things</p>
+        </div>
+    </header>
 
-<nav>
-    <a href="#notes">Notes</a>
-    <a href="#experiments">Experiments</a>
-    <a href="#code">Code</a>
-    <a href="#worlds">Metaverse</a>
-    <a href="#hardware">Hardware</a>
-</nav>
+    <nav>
+        <a href="#notes">Notes</a>
+        <a href="#experiments">Experiments</a>
+        <a href="#code">Code</a>
+        <a href="#worlds">Metaverse</a>
+        <a href="#hardware">Hardware</a>
+    </nav>
 
-<section id="notes">
-<h2>Notes</h2>
+    <section id="notes">
+        <h2>Notes</h2>
 
-<article class="entry">
-    <div class="meta">2026-08 / web</div>
-    <h3>Rebuilding this site</h3>
-    <p>The old version looked like a portfolio. I don't want a portfolio.</p>
-    <p>This is just a place to put things.</p>
-</article>
-</section>
+        <article class="entry">
+            <div class="meta">2026-08 / web</div>
+            <h3>Rebuilding this site</h3>
+            <p>The old version looked like a portfolio. I don't want a portfolio.</p>
+            <p>This is just a place to put things.</p>
+        </article>
+    </section>
 
-<section id="experiments">
-<h2>Experiments</h2>
+    <section id="experiments">
+        <h2>Experiments</h2>
 
-<article class="entry">
-    <div class="meta">Linux</div>
-    <h3><a href="#">kali Linux</a></h3>
-    <p>Commands, tests and things I don't want to forget.</p>
-</article>
+        <article class="entry">
+            <div class="meta">Linux</div>
+            <h3><a href="#">kali Linux</a></h3>
+            <p>Commands, tests and things I don't want to forget.</p>
+        </article>
 
-<article class="entry">
-    <div class="meta">Unfinished</div>
-    <h3><a href="#">Things that didn't work</a></h3>
-    <p>Some experiments are more useful when they fail.</p>
-</article>
-</section>
+        <article class="entry">
+            <div class="meta">Unfinished</div>
+            <h3><a href="#">Things that didn't work</a></h3>
+            <p>Some experiments are more useful when they fail.</p>
+        </article>
+    </section>
 
-<section id="code">
-<h2>Code</h2>
+    <section id="code">
+        <h2>Code</h2>
 
-<article class="entry">
-    <div class="meta">Python</div>
-    <h3><a href="#">Scripts and small programs</a></h3>
-    <p>Small programs or scripts written because I wanted to know something.</p>
-</article>
-</section>
+        <article class="entry">
+            <div class="meta">Python</div>
+            <h3><a href="#">Scripts and small programs</a></h3>
+            <p>Small programs or scripts written because I wanted to know something.</p>
+        </article>
+    </section>
 
-<section id="worlds">
-<h2>Metaverse</h2>
+    <section id="worlds">
+        <h2>Metaverse</h2>
 
-<article class="entry">
-    <div class="meta">Second life</div>
-    <h3><a href="#">Objects</a></h3>
-    <p>Scripts, objects and experiments.</p>
-</article>
+        <article class="entry">
+            <div class="meta">Second life</div>
+            <h3><a href="#">Objects</a></h3>
+            <p>Scripts, objects and experiments.</p>
+        </article>
 
-<article class="entry">
-    <div class="meta">Resonite</div>
-    <h3><a href="#">Experiments</a></h3>
-    <p>Things I am building and trying to understand.</p>
-</article>
-</section>
+        <article class="entry">
+            <div class="meta">Resonite</div>
+            <h3><a href="#">Experiments</a></h3>
+            <p>Things I am building and trying to understand.</p>
+        </article>
+    </section>
 
-<section id="hardware">
-<h2>Hardware</h2>
+    <section id="hardware">
+        <h2>Hardware</h2>
 
-<article class="entry">
-    <div class="meta">arduino</div>
-    <h3><a href="#">Lightbulb moment</a></h3>
-    <p>Small hardware experiments. Wires everywhere.</p>
-</article>
-</section>
+        <article class="entry">
+            <div class="meta">Arduino</div>
+            <h3><a href="#">Lightbulb moment</a></h3>
+            <p>Small hardware experiments. Wires everywhere.</p>
+        </article>
+    </section>
 
-<footer>
-    Copyright © 2026 ItsGaleraDavid
-</footer>
+    <footer>
+        Copyright © 2026 ItsGaleraDavid
+    </footer>
 
 </main>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ItsGaleraDavid</title>
+<title>itsgaleradavid</title>
 <link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
@@ -34,12 +34,36 @@
         gap: 15px;
     }
 
-    @keyframes blink {
-        0%, 90%, 100% {
-            transform: scaleY(1);
+    /* Integrated Blink and Glitch Keyframes */
+    @keyframes glitch-blink {
+        0%, 78%, 100% { 
+            transform: scaleY(1) translate(0);
+            opacity: 1;
+            filter: none;
+            clip-path: inset(0 0 0 0);
         }
-        95% {
-            transform: scaleY(0.05);
+        79% { /* Brief pre-blink glitch distortions */
+            transform: scaleY(1) translate(3px, -2px);
+            opacity: 0.9;
+            filter: hue-rotate(90deg) saturate(2);
+            clip-path: inset(10% 0 70% 0);
+        }
+        80% { 
+            transform: scaleY(1) translate(-3px, 2px);
+            opacity: 0.7;
+            filter: hue-rotate(-90deg) saturate(2);
+            clip-path: inset(70% 0 10% 0);
+        }
+        81% {
+            transform: scaleY(1) translate(1px, 1px);
+            filter: none;
+            clip-path: inset(0 0 0 0);
+        }
+        90% { /* The actual blink (shut eyes) */
+            transform: scaleY(0.05) translate(0);
+            opacity: 1;
+            filter: none;
+            clip-path: inset(0 0 0 0);
         }
     }
 
@@ -49,9 +73,36 @@
         min-width: 40px;
         object-fit: cover;
         border-radius: 50%;
-        animation: blink 4s infinite;
+        /* Apply the combined animation */
+        animation: glitch-blink 6s infinite;
         transform-origin: center;
+        position: relative; /* Required for pseudo-elements */
+        background: inherit; /* Ensures pseudo-elements match image source */
     }
+
+    /* Pseudo-elements for enhanced glitch effect layers */
+    .blink-logo::before,
+    .blink-logo::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        background-size: cover;
+        border-radius: 50%;
+        opacity: 0.5;
+        visibility: hidden; /* Hidden by default, only active during main glitch moments */
+    }
+
+    /* We can tie pseudo-element visibility to the animation steps */
+    .blink-logo:hover::before,
+    .blink-logo:hover::after {
+        visibility: visible;
+    }
+    /* Alternatively, use CSS variables or complex keyframes to toggle visibility,
+       but for this minimal light-theme request, distorting the main image is sufficient. */
 
     .site-title {
         font-weight: 600;
@@ -79,21 +130,5 @@
 
 <div class="content">
     <div class="header-container">
-        <img src="profile.png" alt="logo" class="blink-logo">
-        <span class="site-title">Personal space.</span>
-    </div>
-
-    <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
-
-    <div class="entry">
-        <div class="date">2026-08-27</div>
-        <p>A personal digital space where I share projects, learnings, experiments, and ideas about programming, cybersecurity, 3D, and virtual worlds. A place to build, explore, and document discoveries.</p>
-    </div>
-</div>
-
-<footer>
-    © 2026 ItsGaleraDavid. All rights reserved.
-</footer>
-
-</body>
-</html>
+        <img src="profile.png" alt="logo" class="blink-
+            

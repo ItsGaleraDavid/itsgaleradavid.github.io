@@ -63,8 +63,23 @@
         flex: 1;
     }
 
-    .entry { margin-top: 30px; }
-    .date { color: #777; font-size: 0.85em; margin-bottom: 5px; }
+    .presentation {
+        margin-top: 30px;
+        color: #444;
+    }
+
+    .directory-list {
+        margin-top: 35px;
+        font-family: monospace;
+    }
+
+    .dir-item {
+        margin-bottom: 12px;
+    }
+
+    .dir-item a {
+        font-weight: bold;
+    }
 
     footer {
         margin-top: 50px;
@@ -80,22 +95,21 @@
 <div class="content">
     <div class="header-container">
         <img src="profile.png" alt="logo" class="blink-logo">
-        <span class="site-title">My personal space.</span>
+        <span class="site-title">itsgaleradavid.github.io</span>
     </div>
 
     <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
 
-<div class="entry">
-    <div class="date">2026-08</div>
-    <p>Starting this with plain HTML. No frameworks, no heavy themes, no WordPress dashboard asking for updates every two days, and no annoying cookie banners tracking things nobody cares about.</p>
-    <p>It's funny how people complicate something so simple. They want a massive CMS just to write four thoughts or save a script. But if you want a real space (a site that actually feels like <em>yours</em> and not some rented template) you have to build the walls yourself.</p>
-    <p>A personal website should be like an old notebook. Timeless. HTML from the nineties still opens in any browser today. Try opening some modern web app full of dependencies twenty years from now; it’ll probably collapse into a hell of broken libraries. Not this. This stays.</p>
-    <p>It's expandable. If tomorrow I want to add a page about a script that just crashed in my face, a dumb 3D model, or a 3 AM thought, I just make a file and that's it. No intermediate plugins.</p>
-    <p>Total control. That's what this is about.</p>
+    <div class="presentation">
+        <p>A personal digital space where I share projects, learnings, experiments, and ideas about programming, cybersecurity, 3D, and virtual worlds. A place to build, explore, and document discoveries.</p>
+    </div>
+
+    <div class="directory-list">
+        <div class="dir-item"><a href="code/">code/</a> — Scripts, Python, pure logic.</div>
+        <div class="dir-item"><a href="labs/">labs/</a> — Virtual worlds, 3D, visual experiments.</div>
+        <div class="dir-item"><a href="logs/">logs/</a> — Field notes, random thoughts.</div>
+    </div>
 </div>
-    
-    
-     </div>
 
 <footer>
     © 2026 ItsGaleraDavid. All rights reserved.

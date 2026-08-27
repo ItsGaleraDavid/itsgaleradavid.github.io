@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>itsgaleradavid</title>
+<title>ItsGaleraDavid</title>
 <link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
@@ -14,9 +14,11 @@
         margin: 0 auto;
         padding: 40px 20px;
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 85vh;
     }
 
-    /* Ajuste automático para pantallas pequeñas / móviles */
     @media (max-width: 600px) {
         body {
             padding: 20px 15px;
@@ -44,7 +46,7 @@
     .blink-logo {
         width: 40px;
         height: 40px;
-        min-width: 40px; /* Evita que el logo se deforme en pantallas muy estrechas */
+        min-width: 40px;
         object-fit: cover;
         border-radius: 50%;
         animation: blink 4s infinite;
@@ -54,26 +56,44 @@
     .site-title {
         font-weight: 600;
         letter-spacing: -0.5px;
-        word-break: break-all; /* Evita desbordamientos si el enlace o nombre es largo */
+        word-break: break-all;
+    }
+
+    .content {
+        flex: 1;
     }
 
     .entry { margin-top: 30px; }
     .date { color: #777; font-size: 0.85em; margin-bottom: 5px; }
+
+    footer {
+        margin-top: 50px;
+        font-size: 0.85em;
+        color: #777;
+        border-top: 1px solid #e0e0dc;
+        padding-top: 20px;
+    }
 </style>
 </head>
 <body>
 
-<div class="header-container">
-    <img src="profile.png" alt="logo" class="blink-logo">
-    <span class="site-title">itsgaleradavid.github.io</span>
+<div class="content">
+    <div class="header-container">
+        <img src="profile.png" alt="logo" class="blink-logo">
+        <span class="site-title">itsgaleradavid.github.io</span>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
+
+    <div class="entry">
+        <div class="date">2026-08</div>
+        <p>Base skeleton.</p>
+    </div>
 </div>
 
-<hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
-
-<div class="entry">
-    <div class="date">2026-08</div>
-    <p>Esqueleto base.</p>
-</div>
+<footer>
+    © 2026 ItsGaleraDavid. All rights reserved.
+</footer>
 
 </body>
 </html>

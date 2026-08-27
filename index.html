@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>itsgaleradavid</title>
-<link rel="icon" href="perfil.ico" type="image/x-icon">
+<link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
-        background: #000;
-        color: #00ff00;
-        font-family: monospace;
+        background: #f7f7f5;
+        color: #222220;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         max-width: 650px;
-        margin: 40px auto;
+        margin: 60px auto;
         padding: 0 20px;
-        line-height: 1.5;
+        line-height: 1.6;
     }
-    a { color: #fff; }
-    a:hover { background: #00ff00; color: #000; text-decoration: none; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
     
     .header-container {
         display: flex;
@@ -28,34 +28,39 @@
             transform: scaleY(1);
         }
         95% {
-            transform: scaleY(0.05); /* Simula el parpadeo cerrándose */
+            transform: scaleY(0.05);
         }
     }
 
     .blink-logo {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         object-fit: cover;
-        border: 1px solid #00ff00;
+        border-radius: 50%;
         animation: blink 4s infinite;
         transform-origin: center;
     }
 
-    .entry { margin-bottom: 25px; }
-    .date { color: #666; font-size: 0.9em; }
+    .site-title {
+        font-weight: 600;
+        letter-spacing: -0.5px;
+    }
+
+    .entry { margin-top: 30px; }
+    .date { color: #777; font-size: 0.85em; margin-bottom: 5px; }
 </style>
 </head>
 <body>
 
 <div class="header-container">
-    <img src="perfil.png" alt="logo" class="blink-logo">
-    <span>itsgaleradavid.github.io</span>
+    <img src="profile.png" alt="logo" class="blink-logo">
+    <span class="site-title">itsgaleradavid.github.io</span>
 </div>
 
-<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+<hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
 
 <div class="entry">
-    <div class="date">2026-08</div>
+    <div class="date">2026-08-27</div>
     <p>Esqueleto base. Aquí irán las cosas.</p>
 </div>
 

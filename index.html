@@ -99,8 +99,8 @@
     canvas {
         display: block;
         width: 100%;
-        height: 140px;
-        background: #0000aa;
+        height: 120px;
+        background: #111;
         border-radius: 2px;
         image-rendering: pixelated;
         image-rendering: crisp-edges;
@@ -136,8 +136,8 @@
     </div>
 
     <div class="sandbox-container">
-        <div class="sandbox-label">Oh, wow.</div>
-        <canvas id="retroCanvas" width="160" height="70"></canvas>
+        <div class="sandbox-label">Oh, wow./div>
+        <canvas id="retroCanvas" width="160" height="60"></canvas>
     </div>
 </div>
 
@@ -145,108 +145,65 @@
     const canvas = document.getElementById('retroCanvas');
     const ctx = canvas.getContext('2d');
 
-    let frame = 0;
-    // Combinación de la filosofía hacker clásica y la chispa lógica inicial de la máquina expendedora
-    const messages = [
-        "TALK IS CHEAP.",
-        "SHOW ME THE CODE.",
-        "STATE MACHINE LOGIC.",
-        "RELEASE EARLY, RELEASE OFTEN.",
-        "DO ONE THING WELL.",
-        "VENDING MACHINE EPIPHANY.",
-        "SIMPLE HARDWARE, CLEAN CODE.",
-        "SOLVE THE PROBLEM ONCE."
+    let posX = -20;
+    
+    // Posiciones estáticas de los arbolitos/arbustos estilo pixel art
+    const trees = [
+        { x: 25, y: 35 },
+        { x: 65, y: 37 },
+        { x: 110, y: 34 },
+        { x: 135, y: 36 }
     ];
-    let currentMessage = messages[0];
-    let nextMsgTime = 80;
 
     function render() {
-        // Fondo azul oscuro clásico VGA
+        // Cielo azul oscuro retro
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Escritorio/mesa marrón
-        ctx.fillStyle = '#aa5500';
-        ctx.fillRect(0, 48, canvas.width, 22);
+        // Sol amarillo
         ctx.fillStyle = '#ffff55';
-        ctx.fillRect(0, 46, canvas.width, 2);
+        ctx.fillRect(120, 10, 12, 12);
 
-        // Posición del monigote y PC
-        let x = 30;
-        let y = 34;
-        
-        // --- El PC (monitor y teclado de bloque) ---
-        ctx.fillStyle = '#aaaaaa';
-        // Monitor CRT
-        ctx.fillRect(x + 55, y - 20, 50, 40);
-        ctx.fillStyle = '#080808';
-        // Pantalla brillando
-        ctx.fillRect(x + 58, y - 17, 44, 34);
-        // Teclado
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x + 40, y + 16, 80, 8);
-        // Detalle de teclas
-        ctx.fillStyle = '#aaaaaa';
-        ctx.fillRect(x + 42, y + 18, 76, 4);
+        // Suelo desértico amarillo/marrón
+        ctx.fillStyle = '#aa5500';
+        ctx.fillRect(0, 42, canvas.width, 18);
+        ctx.fillStyle = '#ffff55';
+        ctx.fillRect(0, 40, canvas.width, 2);
 
-        // --- El Monigote Maníaco ---
-        let headX = x + 16;
-        let headY = y;
-        
-        // Efecto de temblor frenético
-        let shakeX = (frame % 4 < 2) ? 1 : -1;
-        let shakeY = (frame % 6 < 3) ? 1 : -1;
-        headX += shakeX;
-        headY += shakeY;
-
-        // Cabeza
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(headX, headY, 16, 16);
-        // Ojos desorbitados
-        ctx.fillStyle = '#080808';
-        ctx.fillRect(headX + 3, headY + 4, 3, 3);
-        ctx.fillRect(headX + 10, headY + 4, 3, 3);
-        // Pupilas temblorosas
-        let pupilOffsetX = (frame % 2 === 0) ? 1 : 0;
-        ctx.fillStyle = '#aaaaaa';
-        ctx.fillRect(headX + 4 + pupilOffsetX, headY + 5, 1, 1);
-        ctx.fillRect(headX + 11 + pupilOffsetX, headY + 5, 1, 1);
-
-        // Boca gritando
-        ctx.fillStyle = '#ff5555';
-        let mouthOpen = (Math.floor(frame / 5) % 3);
-        if (mouthOpen === 0) ctx.fillRect(headX + 4, headY + 10, 8, 3);
-        else if (mouthOpen === 1) ctx.fillRect(headX + 3, headY + 9, 10, 4);
-        else ctx.fillRect(headX + 4, headY + 10, 8, 2);
-
-        // Cuerpo
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(headX + 4, headY + 16, 8, 16);
-
-        // Brazos tecleando
-        ctx.fillStyle = '#ffffff';
-        let armY = headY + 20;
-        let leftArmX = headX - 10 + (frame % 2 === 0 ? 4 : 0);
-        ctx.fillRect(leftArmX, armY, 8, 4);
-        let rightArmX = headX + 18 + (frame % 3 === 0 ? -2 : 2);
-        ctx.fillRect(rightArmX, armY, 8, 4);
-        ctx.fillRect(headX + 4, armY + 2, 4, 2);
-        ctx.fillRect(headX + 10, armY - 1, 4, 2);
-
-        // --- Texto en el monitor ---
-        if (frame < nextMsgTime) {
-            let msgX = x + 62;
-            let msgY = y - 10;
+        // Dibujar los arbolitos
+        trees.forEach(tree => {
+            // Tronco
+            ctx.fillStyle = '#553311';
+            ctx.fillRect(tree.x, tree.y, 2, 7);
+            // Copa del árbol (bloques de verde clásico VGA)
+            ctx.fillStyle = '#00aa00';
+            ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
             ctx.fillStyle = '#55ff55';
-            ctx.font = '8px monospace';
-            ctx.fillText(currentMessage.substring(0, Math.floor(frame / 4)), msgX, msgY);
+            ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
+        });
+
+        // Criatura caminando
+        ctx.fillStyle = '#ffffff';
+        let legOffset = Math.floor(posX / 4) % 2;
+        
+        // Cuerpo
+        ctx.fillRect(posX, 32, 12, 8);
+        // Cabeza
+        ctx.fillRect(posX + 10, 28, 4, 6);
+        // Patas
+        if (legOffset === 0) {
+            ctx.fillRect(posX + 2, 40, 2, 4);
+            ctx.fillRect(posX + 8, 40, 2, 4);
         } else {
-            let currentIndex = messages.indexOf(currentMessage);
-            currentMessage = messages[(currentIndex + 1) % messages.length];
-            nextMsgTime = frame + currentMessage.length * 4 + 80;
+            ctx.fillRect(posX + 3, 40, 2, 4);
+            ctx.fillRect(posX + 7, 40, 2, 4);
         }
 
-        frame++;
+        posX += 0.5;
+        if (posX > canvas.width + 20) {
+            posX = -20;
+        }
+
         requestAnimationFrame(render);
     }
     render();

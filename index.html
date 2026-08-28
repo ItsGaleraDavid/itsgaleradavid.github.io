@@ -99,8 +99,8 @@
     canvas {
         display: block;
         width: 100%;
-        height: 120px;
-        background: #080808;
+        height: 80px;
+        background: #111110;
         border-radius: 2px;
     }
 
@@ -134,7 +134,7 @@
     </div>
 
     <div class="sandbox-container">
-        <div class="sandbox-label">// core_spectrum.raw — multi-channel frequency visualizer</div>
+        <div class="sandbox-label">// core_buffer.raw — live procedural stream</div>
         <canvas id="liveCanvas"></canvas>
     </div>
 </div>
@@ -151,38 +151,25 @@
     resizeCanvas();
 
     let step = 0;
-    const waves = [
-        { color: '#00ffff', freq: 0.025, speed: 0.04, amp: 22 }, // Cian eléctrico
-        { color: '#ff00aa', freq: 0.015, speed: 0.05, amp: 18 }, // Magenta
-        { color: '#00ff66', freq: 0.035, speed: 0.03, amp: 12 }, // Verde neón
-        { color: '#9933ff', freq: 0.012, speed: 0.06, amp: 28 }  // Púrpura profundo
-    ];
-
-    function renderWave() {
-        ctx.fillStyle = 'rgba(8, 8, 8, 0.2)';
+    function render() {
+        ctx.fillStyle = '#111110';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.lineWidth = 1.8;
-        ctx.globalCompositeOperation = 'screen';
+        ctx.strokeStyle = '#0066cc';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
 
-        waves.forEach((w, index) => {
-            ctx.strokeStyle = w.color;
-            ctx.beginPath();
+        for (let x = 0; x < canvas.width; x += 2) {
+            let y = canvas.height / 2 + Math.sin(x * 0.02 + step) * 15 + Math.cos(x * 0.05 - step * 0.5) * 8;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
 
-            for (let x = 0; x < canvas.width; x += 2) {
-                let y = canvas.height / 2 + 
-                        Math.sin(x * w.freq + step * w.speed * 8) * w.amp * Math.cos(step * 0.3 + index);
-                if (x === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-        });
-
-        ctx.globalCompositeOperation = 'source-over';
-        step += 0.05;
-        requestAnimationFrame(renderWave);
+        step += 0.03;
+        requestAnimationFrame(render);
     }
-    renderWave();
+    render();
 </script>
 
 <footer>

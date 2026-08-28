@@ -81,14 +81,27 @@
         font-weight: bold;
     }
 
-    .oracle-box {
-        margin-top: 35px;
+    .sandbox-container {
+        margin-top: 40px;
+        border: 1px solid #e0e0dc;
+        background: #fff;
+        padding: 12px;
+        border-radius: 4px;
+    }
+
+    .sandbox-label {
         font-family: monospace;
-        font-size: 0.85em;
-        color: #555;
-        background: #efefe9;
-        padding: 10px 12px;
-        border-left: 3px solid #ccc;
+        font-size: 0.8em;
+        color: #777;
+        margin-bottom: 8px;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 80px;
+        background: #111;
+        border-radius: 2px;
     }
 
     footer {
@@ -120,21 +133,43 @@
         <div class="dir-item"><a href="logs/">logs/</a> — Thoughts. (No content)</div>
     </div>
 
-    <div class="oracle-box" id="oracle">
-        // divine_seed: loading entropy...
+    <div class="sandbox-container">
+        <div class="sandbox-label">// core_buffer.raw — live procedural stream</div>
+        <canvas id="liveCanvas"></canvas>
     </div>
 </div>
 
 <script>
-    const seeds = [
-        "God says: keep writing plain code.",
-        "Entropy check: all systems nominal.",
-        "TempleOS vibes: simplicity is the ultimate sophistication.",
-        "Random seed executed. Proceed with building.",
-        "No frameworks, no bloated layers. Just metal and logic."
-    ];
-    const randomSeed = seeds[Math.floor(Math.random() * seeds.length)];
-    document.getElementById('oracle').innerText = `// divine_seed: "${randomSeed}"`;
+    const canvas = document.getElementById('liveCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let step = 0;
+    function render() {
+        ctx.fillStyle = '#111110';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = '#0066cc';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+
+        for (let x = 0; x < canvas.width; x += 2) {
+            let y = canvas.height / 2 + Math.sin(x * 0.02 + step) * 15 + Math.cos(x * 0.05 - step * 0.5) * 8;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        step += 0.03;
+        requestAnimationFrame(render);
+    }
+    render();
 </script>
 
 <footer>

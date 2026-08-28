@@ -99,8 +99,8 @@
     canvas {
         display: block;
         width: 100%;
-        height: 120px;
-        background: #111;
+        height: 140px;
+        background: #0000aa;
         border-radius: 2px;
         image-rendering: pixelated;
         image-rendering: crisp-edges;
@@ -137,7 +137,7 @@
 
     <div class="sandbox-container">
         <div class="sandbox-label">Oh, wow.</div>
-        <canvas id="retroCanvas" width="160" height="60"></canvas>
+        <canvas id="retroCanvas" width="160" height="70"></canvas>
     </div>
 </div>
 
@@ -146,50 +146,109 @@
     const ctx = canvas.getContext('2d');
 
     let frame = 0;
+    const messages = [
+        "GOD SAYS:",
+        "ONLY 16-BIT IS REAL",
+        "GLOW IN THE DARK",
+        "CIA NIGGERS",
+        "THIS IS THE WAY",
+        "BALLS TO THE WALL",
+        "I AM THE KING",
+        "UNOPTIMIZED BLOATWARE"
+    ];
+    let currentMessage = messages[0];
+    let nextMsgTime = 80;
 
     function render() {
-        // Fondo azul oscuro clásico VGA
+        // Fondo azul oscuro
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Suelo
+        // Escritorio/mesa marrón
         ctx.fillStyle = '#aa5500';
-        ctx.fillRect(0, 44, canvas.width, 16);
+        ctx.fillRect(0, 48, canvas.width, 22);
         ctx.fillStyle = '#ffff55';
-        ctx.fillRect(0, 42, canvas.width, 2);
+        ctx.fillRect(0, 46, canvas.width, 2);
 
-        // Posición del monigote
-        let x = 70;
-        let y = 26;
+        // Posición del monigote y PC
+        let x = 30;
+        let y = 34;
+        
+        // --- El PC (monitor y teclado de bloque) ---
+        ctx.fillStyle = '#aaaaaa';
+        // Monitor CRT
+        ctx.fillRect(x + 55, y - 20, 50, 40);
+        ctx.fillStyle = '#080808';
+        // Pantalla brillando
+        ctx.fillRect(x + 58, y - 17, 44, 34);
+        // Teclado
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x + 40, y + 16, 80, 8);
+        // Detalle de teclas (píxeles oscuros)
+        ctx.fillStyle = '#aaaaaa';
+        ctx.fillRect(x + 42, y + 18, 76, 4);
 
-        // Efecto de respiración / espera (sube y baja un píxel lentamente)
-        let breathe = Math.floor(frame / 30) % 2;
-        let py = y + breathe;
+        // --- El Monigote Maníaco ---
+        let headX = x + 16;
+        let headY = y;
+        
+        // Efecto de temblor frenético (aleatorio +/- 1 píxel)
+        let shakeX = (frame % 4 < 2) ? 1 : -1;
+        let shakeY = (frame % 6 < 3) ? 1 : -1;
+        headX += shakeX;
+        headY += shakeY;
 
         // Cabeza
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x + 2, py, 4, 4);
+        ctx.fillRect(headX, headY, 16, 16);
+        // Ojos desorbitados
+        ctx.fillStyle = '#080808';
+        ctx.fillRect(headX + 3, headY + 4, 3, 3); // Izquierdo
+        ctx.fillRect(headX + 10, headY + 4, 3, 3); // Derecho
+        // Pupilas temblorosas (más oscuras)
+        let pupilOffsetX = (frame % 2 === 0) ? 1 : 0;
+        ctx.fillStyle = '#aaaaaa';
+        ctx.fillRect(headX + 4 + pupilOffsetX, headY + 5, 1, 1);
+        ctx.fillRect(headX + 11 + pupilOffsetX, headY + 5, 1, 1);
 
-        // Cuerpo
-        ctx.fillRect(x + 3, py + 4, 2, 8);
+        // Boca gritando (trazo rojo/rosa)
+        ctx.fillStyle = '#ff5555';
+        let mouthOpen = (Math.floor(frame / 5) % 3);
+        if (mouthOpen === 0) ctx.fillRect(headX + 4, headY + 10, 8, 3);
+        else if (mouthOpen === 1) ctx.fillRect(headX + 3, headY + 9, 10, 4);
+        else ctx.fillRect(headX + 4, headY + 10, 8, 2);
 
-        // Brazos (quietos cruzados o caídos)
-        ctx.fillRect(x + 1, py + 6, 6, 2);
+        // Cuerpo (camisa blanca)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(headX + 4, headY + 16, 8, 16);
 
-        // Piernas
-        ctx.fillRect(x + 2, py + 12, 1, 4);
-        ctx.fillRect(x + 5, py + 12, 1, 4);
+        // Brazos tecleando borrosamente (muñones blancos moviéndose)
+        ctx.fillStyle = '#ffffff';
+        let armY = headY + 20;
+        // Brazo izquierdo
+        let leftArmX = headX - 10 + (frame % 2 === 0 ? 4 : 0);
+        ctx.fillRect(leftArmX, armY, 8, 4);
+        // Brazo derecho
+        let rightArmX = headX + 18 + (frame % 3 === 0 ? -2 : 2);
+        ctx.fillRect(rightArmX, armY, 8, 4);
+        // Manos fantasmales tecleando (palmas blancas)
+        ctx.fillRect(headX + 4, armY + 2, 4, 2);
+        ctx.fillRect(headX + 10, armY - 1, 4, 2);
 
-        // Indicador de "esperando" parpadeante (puntos suspensivos estilo terminal)
-        let dots = Math.floor(frame / 20) % 4;
-        ctx.fillStyle = '#ffff55';
-        ctx.font = '8px monospace';
-        let text = ".";
-        if (dots === 1) text = "..";
-        if (dots === 2) text = "...";
-        if (dots === 3) text = "....";
-        
-        ctx.fillText("waiting" + text, x - 12, py - 4);
+        // --- Texto de salida en el monitor ---
+        if (frame < nextMsgTime) {
+            // Mostrar el mensaje actual
+            let msgX = x + 62;
+            let msgY = y - 10;
+            ctx.fillStyle = '#55ff55'; // Verde brillante
+            ctx.font = '8px monospace';
+            ctx.fillText(currentMessage.substring(0, Math.floor(frame / 4)), msgX, msgY);
+        } else {
+            // Cambiar de mensaje y resetear el temporizador
+            let currentIndex = messages.indexOf(currentMessage);
+            currentMessage = messages[(currentIndex + 1) % messages.length];
+            nextMsgTime = frame + currentMessage.length * 4 + 60; // Esperar un poco más tras terminar de escribir
+        }
 
         frame++;
         requestAnimationFrame(render);
@@ -202,4 +261,5 @@
 </footer>
 
 </body>
-</html>
+    </html>
+    

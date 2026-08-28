@@ -146,30 +146,22 @@
     const ctx = canvas.getContext('2d');
 
     let frame = 0;
-    // Lista de frases graciosas, técnicas y sin contenido ofensivo
+    // Combinación de la filosofía hacker clásica y la chispa lógica inicial de la máquina expendedora
     const messages = [
-        "HELLO WORLD!",
-        "Compilando...",
-        "Error 404: Motivation not found",
-        "It worked on my machine",
-        "StackOverflow es mi pastor",
-        "Refactoring...",
-        "Fixing a bug, creating two more",
-        "TODO: Add more comments",
-        "Just one more commit...",
-        "Why does this code hate me?",
-        "Works! Don't touch it.",
-        "Debugging: The art of removing bugs",
-        "¡El código no miente!",
-        "Coffee & Code & Cat memes",
-        "Glow in the dark? Just my monitor.",
-        "Adivina quién ha roto la build..."
+        "TALK IS CHEAP.",
+        "SHOW ME THE CODE.",
+        "STATE MACHINE LOGIC.",
+        "RELEASE EARLY, RELEASE OFTEN.",
+        "DO ONE THING WELL.",
+        "VENDING MACHINE EPIPHANY.",
+        "SIMPLE HARDWARE, CLEAN CODE.",
+        "SOLVE THE PROBLEM ONCE."
     ];
     let currentMessage = messages[0];
     let nextMsgTime = 80;
 
     function render() {
-        // Fondo azul oscuro
+        // Fondo azul oscuro clásico VGA
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -193,7 +185,7 @@
         // Teclado
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(x + 40, y + 16, 80, 8);
-        // Detalle de teclas (píxeles oscuros)
+        // Detalle de teclas
         ctx.fillStyle = '#aaaaaa';
         ctx.fillRect(x + 42, y + 18, 76, 4);
 
@@ -201,7 +193,7 @@
         let headX = x + 16;
         let headY = y;
         
-        // Efecto de temblor frenético (aleatorio +/- 1 píxel)
+        // Efecto de temblor frenético
         let shakeX = (frame % 4 < 2) ? 1 : -1;
         let shakeY = (frame % 6 < 3) ? 1 : -1;
         headX += shakeX;
@@ -212,52 +204,46 @@
         ctx.fillRect(headX, headY, 16, 16);
         // Ojos desorbitados
         ctx.fillStyle = '#080808';
-        ctx.fillRect(headX + 3, headY + 4, 3, 3); // Izquierdo
-        ctx.fillRect(headX + 10, headY + 4, 3, 3); // Derecho
-        // Pupilas temblorosas (más oscuras)
+        ctx.fillRect(headX + 3, headY + 4, 3, 3);
+        ctx.fillRect(headX + 10, headY + 4, 3, 3);
+        // Pupilas temblorosas
         let pupilOffsetX = (frame % 2 === 0) ? 1 : 0;
         ctx.fillStyle = '#aaaaaa';
         ctx.fillRect(headX + 4 + pupilOffsetX, headY + 5, 1, 1);
         ctx.fillRect(headX + 11 + pupilOffsetX, headY + 5, 1, 1);
 
-        // Boca gritando (trazo rojo/rosa)
+        // Boca gritando
         ctx.fillStyle = '#ff5555';
         let mouthOpen = (Math.floor(frame / 5) % 3);
         if (mouthOpen === 0) ctx.fillRect(headX + 4, headY + 10, 8, 3);
         else if (mouthOpen === 1) ctx.fillRect(headX + 3, headY + 9, 10, 4);
         else ctx.fillRect(headX + 4, headY + 10, 8, 2);
 
-        // Cuerpo (camisa blanca)
+        // Cuerpo
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(headX + 4, headY + 16, 8, 16);
 
-        // Brazos tecleando borrosamente (muñones blancos moviéndose)
+        // Brazos tecleando
         ctx.fillStyle = '#ffffff';
         let armY = headY + 20;
-        // Brazo izquierdo
         let leftArmX = headX - 10 + (frame % 2 === 0 ? 4 : 0);
         ctx.fillRect(leftArmX, armY, 8, 4);
-        // Brazo derecho
         let rightArmX = headX + 18 + (frame % 3 === 0 ? -2 : 2);
         ctx.fillRect(rightArmX, armY, 8, 4);
-        // Manos fantasmales tecleando (palmas blancas)
         ctx.fillRect(headX + 4, armY + 2, 4, 2);
         ctx.fillRect(headX + 10, armY - 1, 4, 2);
 
-        // --- Texto de salida en el monitor ---
+        // --- Texto en el monitor ---
         if (frame < nextMsgTime) {
-            // Mostrar el mensaje actual
             let msgX = x + 62;
             let msgY = y - 10;
-            ctx.fillStyle = '#55ff55'; // Verde brillante
+            ctx.fillStyle = '#55ff55';
             ctx.font = '8px monospace';
             ctx.fillText(currentMessage.substring(0, Math.floor(frame / 4)), msgX, msgY);
         } else {
-            // Cambiar de mensaje y resetear el temporizador
             let currentIndex = messages.indexOf(currentMessage);
             currentMessage = messages[(currentIndex + 1) % messages.length];
-            // Hacer que el tiempo de espera dependa de la longitud del nuevo mensaje
-            nextMsgTime = frame + currentMessage.length * 4 + 80; // Esperar un poco más tras terminar de escribir
+            nextMsgTime = frame + currentMessage.length * 4 + 80;
         }
 
         frame++;
@@ -271,5 +257,4 @@
 </footer>
 
 </body>
-        </html>
-        
+</html>

@@ -99,9 +99,10 @@
     canvas {
         display: block;
         width: 100%;
-        height: 80px;
-        background: #111;
+        height: 140px;
+        background: #0d0d0c;
         border-radius: 2px;
+        cursor: crosshair;
     }
 
     footer {
@@ -134,42 +135,93 @@
     </div>
 
     <div class="sandbox-container">
-        <div class="sandbox-label">Oh, wow.</div>
-        <canvas id="liveCanvas"></canvas>
+        <div class="sandbox-label">// vector_field.particles — interactive gravitational swarm</div>
+        <canvas id="chaosCanvas"></canvas>
     </div>
 </div>
 
 <script>
-    const canvas = document.getElementById('liveCanvas');
+    const canvas = document.getElementById('chaosCanvas');
     const ctx = canvas.getContext('2d');
 
-    function resizeCanvas() {
+    function resize() {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resize);
+    resize();
 
-    let step = 0;
-    function render() {
-        ctx.fillStyle = '#111110';
+    let mouse = { x: canvas.width / 2, y: canvas.height / 2, active: false };
+
+    canvas.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active = true;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        mouse.active = false;
+    });
+
+    const particles = [];
+    const count = 120;
+
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 1.5,
+            vy: (Math.random() - 0.5) * 1.5,
+            size: Math.random() * 1.5 + 0.5
+        });
+    }
+
+    let t = 0;
+    function loop() {
+        ctx.fillStyle = 'rgba(13, 13, 12, 0.2)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.strokeStyle = '#0066cc';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
+        t += 0.015;
 
-        for (let x = 0; x < canvas.width; x += 2) {
-            let y = canvas.height / 2 + Math.sin(x * 0.02 + step) * 15 + Math.cos(x * 0.05 - step * 0.5) * 8;
-            if (x === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
+        particles.forEach(p => {
+            // Campo de fuerzas orgánico basado en senos y cosenos
+            const angle = Math.sin(p.x * 0.01 + t) * Math.cos(p.y * 0.01 + t) * Math.PI * 2;
+            p.vx += Math.cos(angle) * 0.05;
+            p.vy += Math.sin(angle) * 0.05;
 
-        step += 0.03;
-        requestAnimationFrame(render);
+            // Interacción magnética con el ratón
+            if (mouse.active) {
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100 && dist > 5) {
+                    p.vx += (dx / dist) * 0.2;
+                    p.vy += (dy / dist) * 0.2;
+                }
+            }
+
+            // Fricción para estabilizar el movimiento
+            p.vx *= 0.94;
+            p.vy *= 0.94;
+
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Rebotar en los bordes
+            if (p.x < 0) { p.x = 0; p.vx *= -1; }
+            if (p.x > canvas.width) { p.x = canvas.width; p.vx *= -1; }
+            if (p.y < 0) { p.y = 0; p.vy *= -1; }
+            if (p.y > canvas.height) { p.y = canvas.height; p.vy *= -1; }
+
+            // Dibujar partícula
+            ctx.fillStyle = '#0088ff';
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+        });
+
+        requestAnimationFrame(loop);
     }
-    render();
+    loop();
 </script>
 
 <footer>
@@ -177,4 +229,5 @@
 </footer>
 
 </body>
+</footer>
 </html>

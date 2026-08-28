@@ -136,7 +136,7 @@
     </div>
 
     <div class="sandbox-container">
-        <div class="sandbox-label">Oh, wow.</div>
+        <div class="sandbox-label">// desert_sim.vga — 16-color procedural loop</div>
         <canvas id="retroCanvas" width="160" height="60"></canvas>
     </div>
 </div>
@@ -147,6 +147,14 @@
 
     let posX = -20;
     
+    // Posiciones estáticas de los arbolitos/arbustos estilo pixel art
+    const trees = [
+        { x: 25, y: 35 },
+        { x: 65, y: 37 },
+        { x: 110, y: 34 },
+        { x: 135, y: 36 }
+    ];
+
     function render() {
         // Cielo azul oscuro retro
         ctx.fillStyle = '#0000aa';
@@ -162,7 +170,19 @@
         ctx.fillStyle = '#ffff55';
         ctx.fillRect(0, 40, canvas.width, 2);
 
-        // Pequeño sprite cruzando (estilo criatura de 8 bits)
+        // Dibujar los arbolitos
+        trees.forEach(tree => {
+            // Tronco
+            ctx.fillStyle = '#553311';
+            ctx.fillRect(tree.x, tree.y, 2, 7);
+            // Copa del árbol (bloques de verde clásico VGA)
+            ctx.fillStyle = '#00aa00';
+            ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
+            ctx.fillStyle = '#55ff55';
+            ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
+        });
+
+        // Criatura caminando
         ctx.fillStyle = '#ffffff';
         let legOffset = Math.floor(posX / 4) % 2;
         
@@ -194,4 +214,5 @@
 </footer>
 
 </body>
-</html>
+    </html>
+    

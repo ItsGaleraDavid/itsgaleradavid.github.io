@@ -145,65 +145,53 @@
     const canvas = document.getElementById('retroCanvas');
     const ctx = canvas.getContext('2d');
 
-    let posX = -20;
-    
-    // Posiciones estáticas de los arbolitos/arbustos estilo pixel art
-    const trees = [
-        { x: 25, y: 35 },
-        { x: 65, y: 37 },
-        { x: 110, y: 34 },
-        { x: 135, y: 36 }
-    ];
+    let frame = 0;
 
     function render() {
-        // Cielo azul oscuro retro
+        // Fondo azul oscuro clásico VGA
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Sol amarillo
-        ctx.fillStyle = '#ffff55';
-        ctx.fillRect(120, 10, 12, 12);
-
-        // Suelo desértico amarillo/marrón
+        // Suelo
         ctx.fillStyle = '#aa5500';
-        ctx.fillRect(0, 42, canvas.width, 18);
+        ctx.fillRect(0, 44, canvas.width, 16);
         ctx.fillStyle = '#ffff55';
-        ctx.fillRect(0, 40, canvas.width, 2);
+        ctx.fillRect(0, 42, canvas.width, 2);
 
-        // Dibujar los arbolitos
-        trees.forEach(tree => {
-            // Tronco
-            ctx.fillStyle = '#553311';
-            ctx.fillRect(tree.x, tree.y, 2, 7);
-            // Copa del árbol (bloques de verde clásico VGA)
-            ctx.fillStyle = '#00aa00';
-            ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
-            ctx.fillStyle = '#55ff55';
-            ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
-        });
+        // Posición del monigote
+        let x = 70;
+        let y = 26;
 
-        // Criatura caminando
-        ctx.fillStyle = '#ffffff';
-        let legOffset = Math.floor(posX / 4) % 2;
-        
-        // Cuerpo
-        ctx.fillRect(posX, 32, 12, 8);
+        // Efecto de respiración / espera (sube y baja un píxel lentamente)
+        let breathe = Math.floor(frame / 30) % 2;
+        let py = y + breathe;
+
         // Cabeza
-        ctx.fillRect(posX + 10, 28, 4, 6);
-        // Patas
-        if (legOffset === 0) {
-            ctx.fillRect(posX + 2, 40, 2, 4);
-            ctx.fillRect(posX + 8, 40, 2, 4);
-        } else {
-            ctx.fillRect(posX + 3, 40, 2, 4);
-            ctx.fillRect(posX + 7, 40, 2, 4);
-        }
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x + 2, py, 4, 4);
 
-        posX += 0.5;
-        if (posX > canvas.width + 20) {
-            posX = -20;
-        }
+        // Cuerpo
+        ctx.fillRect(x + 3, py + 4, 2, 8);
 
+        // Brazos (quietos cruzados o caídos)
+        ctx.fillRect(x + 1, py + 6, 6, 2);
+
+        // Piernas
+        ctx.fillRect(x + 2, py + 12, 1, 4);
+        ctx.fillRect(x + 5, py + 12, 1, 4);
+
+        // Indicador de "esperando" parpadeante (puntos suspensivos estilo terminal)
+        let dots = Math.floor(frame / 20) % 4;
+        ctx.fillStyle = '#ffff55';
+        ctx.font = '8px monospace';
+        let text = ".";
+        if (dots === 1) text = "..";
+        if (dots === 2) text = "...";
+        if (dots === 3) text = "....";
+        
+        ctx.fillText("waiting" + text, x - 12, py - 4);
+
+        frame++;
         requestAnimationFrame(render);
     }
     render();
@@ -214,5 +202,4 @@
 </footer>
 
 </body>
-    </html>
-    
+</html>

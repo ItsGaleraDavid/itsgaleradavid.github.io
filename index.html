@@ -94,27 +94,14 @@
         font-size: 0.8em;
         color: #777;
         margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .sandbox-label span.action {
-        cursor: pointer;
-        color: #0066cc;
-    }
-
-    .sandbox-label span.action:hover {
-        text-decoration: underline;
     }
 
     canvas {
         display: block;
         width: 100%;
-        height: 200px;
+        height: 120px;
         background: #080808;
         border-radius: 2px;
-        cursor: pointer;
     }
 
     footer {
@@ -147,119 +134,55 @@
     </div>
 
     <div class="sandbox-container">
-        <div class="sandbox-label">
-            <span>// chaos_engine.sim — double pendulum (click to inject force)</span>
-            <span class="action" id="resetBtn">reset</span>
-        </div>
-        <canvas id="chaosCanvas"></canvas>
+        <div class="sandbox-label">// core_spectrum.raw — multi-channel frequency visualizer</div>
+        <canvas id="liveCanvas"></canvas>
     </div>
 </div>
 
 <script>
-    const canvas = document.getElementById('chaosCanvas');
+    const canvas = document.getElementById('liveCanvas');
     const ctx = canvas.getContext('2d');
 
-    function resize() {
+    function resizeCanvas() {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
     }
-    window.addEventListener('resize', resize);
-    resize();
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    // Variables del doble péndulo (Física caótica real por ecuaciones de Lagrange)
-    let r1 = 65, r2 = 65;
-    let m1 = 10, m2 = 10;
-    let a1 = Math.PI / 2;
-    let a2 = Math.PI / 2;
-    let a1_v = 0;
-    let a2_v = 0;
-    let g = 0.8;
+    let step = 0;
+    const waves = [
+        { color: '#00ffff', freq: 0.025, speed: 0.04, amp: 22 }, // Cian eléctrico
+        { color: '#ff00aa', freq: 0.015, speed: 0.05, amp: 18 }, // Magenta
+        { color: '#00ff66', freq: 0.035, speed: 0.03, amp: 12 }, // Verde neón
+        { color: '#9933ff', freq: 0.012, speed: 0.06, amp: 28 }  // Púrpura profundo
+    ];
 
-    let history = [];
-
-    function resetPendulum() {
-        a1 = Math.random() * Math.PI;
-        a2 = Math.random() * Math.PI;
-        a1_v = (Math.random() - 0.5) * 8;
-        a2_v = (Math.random() - 0.5) * 8;
-        history = [];
-    }
-
-    canvas.addEventListener('click', () => {
-        a1_v += (Math.random() - 0.5) * 20;
-        a2_v += (Math.random() - 0.5) * 20;
-    });
-
-    document.getElementById('resetBtn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        resetPendulum();
-    });
-
-    function update() {
-        // Ecuaciones diferenciales del movimiento caótico
-        let num1 = -g * (2 * m1 + m2) * Math.sin(a1) - m2 * g * Math.sin(a1 - 2 * a2) - 2 * Math.sin(a1 - a2) * m2 * (a2_v * a2_v * r2 + a1_v * a1_v * r1 * Math.cos(a1 - a2));
-        let den1 = r1 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
-        let a1_acc = num1 / den1;
-
-        let num2 = 2 * Math.sin(a1 - a2) * (a1_v * a1_v * r1 * (m1 + m2) + g * (m1 + m2) * Math.cos(a1) + a2_v * a2_v * r2 * m2 * Math.cos(a1 - a2));
-        let den2 = r2 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
-        let a2_acc = num2 / den2;
-
-        a1_v += a1_acc;
-        a2_v += a2_acc;
-        a1 += a1_v;
-        a2 += a2_v;
-
-        // Mínima fricción para evitar saturación infinita
-        a1_v *= 0.9995;
-        a2_v *= 0.9995;
-
-        let cx = canvas.width / 2;
-        let cy = canvas.height / 2 - 15;
-
-        let x1 = cx + r1 * Math.sin(a1);
-        let y1 = cy + r1 * Math.cos(a1);
-
-        let x2 = x1 + r2 * Math.sin(a2);
-        let y2 = y1 + r2 * Math.cos(a2);
-
-        history.push({ x: x2, y: y2 });
-        if (history.length > 350) history.shift();
-
-        // Renderizado
-        ctx.fillStyle = '#080808';
+    function renderWave() {
+        ctx.fillStyle = 'rgba(8, 8, 8, 0.2)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Estela caótica
-        if (history.length > 1) {
+        ctx.lineWidth = 1.8;
+        ctx.globalCompositeOperation = 'screen';
+
+        waves.forEach((w, index) => {
+            ctx.strokeStyle = w.color;
             ctx.beginPath();
-            ctx.moveTo(history[0].x, history[0].y);
-            for (let i = 1; i < history.length; i++) {
-                ctx.lineTo(history[i].x, history[i].y);
+
+            for (let x = 0; x < canvas.width; x += 2) {
+                let y = canvas.height / 2 + 
+                        Math.sin(x * w.freq + step * w.speed * 8) * w.amp * Math.cos(step * 0.3 + index);
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
             }
-            ctx.strokeStyle = '#0066cc';
-            ctx.lineWidth = 1.5;
             ctx.stroke();
-        }
+        });
 
-        // Estructura de los brazos
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.strokeStyle = '#e0e0dc';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Nodos interactivos
-        ctx.fillStyle = '#ff3366';
-        ctx.fillRect(x1 - 3, y1 - 3, 6, 6);
-        ctx.fillRect(x2 - 3, y2 - 3, 6, 6);
-
-        requestAnimationFrame(update);
+        ctx.globalCompositeOperation = 'source-over';
+        step += 0.05;
+        requestAnimationFrame(renderWave);
     }
-
-    update();
+    renderWave();
 </script>
 
 <footer>

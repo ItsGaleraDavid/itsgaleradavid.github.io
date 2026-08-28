@@ -81,6 +81,16 @@
         font-weight: bold;
     }
 
+    .oracle-box {
+        margin-top: 35px;
+        font-family: monospace;
+        font-size: 0.85em;
+        color: #555;
+        background: #efefe9;
+        padding: 10px 12px;
+        border-left: 3px solid #ccc;
+    }
+
     footer {
         margin-top: 50px;
         font-size: 0.85em;
@@ -109,7 +119,23 @@
         <div class="dir-item"><a href="labs/">labs/</a> — Metaverses. (No content)</div>
         <div class="dir-item"><a href="logs/">logs/</a> — Thoughts. (No content)</div>
     </div>
+
+    <div class="oracle-box" id="oracle">
+        // divine_seed: loading entropy...
+    </div>
 </div>
+
+<script>
+    const seeds = [
+        "God says: keep writing plain code.",
+        "Entropy check: all systems nominal.",
+        "TempleOS vibes: simplicity is the ultimate sophistication.",
+        "Random seed executed. Proceed with building.",
+        "No frameworks, no bloated layers. Just metal and logic."
+    ];
+    const randomSeed = seeds[Math.floor(Math.random() * seeds.length)];
+    document.getElementById('oracle').innerText = `// divine_seed: "${randomSeed}"`;
+</script>
 
 <footer>
     © 2026 ItsGaleraDavid. All rights reserved.

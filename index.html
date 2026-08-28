@@ -160,12 +160,23 @@
         mouse.active = true;
     });
 
+    // Al salir el cursor, las partículas se separan/dispersan con un impulso hacia afuera
     canvas.addEventListener('mouseleave', () => {
+        if (mouse.active) {
+            particles.forEach(p => {
+                let dx = p.x - mouse.x;
+                let dy = p.y - mouse.y;
+                let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                p.vx += (dx / dist) * 6;
+                p.vy += (dy / dist) * 6;
+            });
+        }
         mouse.active = false;
     });
 
     const particles = [];
     const count = 120;
+    const colorPalette = ['#0066cc', '#00ffcc', '#ffffff', '#3399ff', '#ff3366', '#aaccff'];
 
     for (let i = 0; i < count; i++) {
         particles.push({
@@ -173,7 +184,8 @@
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 1.5,
             vy: (Math.random() - 0.5) * 1.5,
-            size: Math.random() * 1.5 + 0.5
+            size: Math.random() * 1.8 + 0.6,
+            color: colorPalette[Math.floor(Math.random() * colorPalette.length)]
         });
     }
 
@@ -185,37 +197,32 @@
         t += 0.015;
 
         particles.forEach(p => {
-            // Campo de fuerzas orgánico basado en senos y cosenos
             const angle = Math.sin(p.x * 0.01 + t) * Math.cos(p.y * 0.01 + t) * Math.PI * 2;
             p.vx += Math.cos(angle) * 0.05;
             p.vy += Math.sin(angle) * 0.05;
 
-            // Interacción magnética con el ratón
             if (mouse.active) {
                 let dx = mouse.x - p.x;
                 let dy = mouse.y - p.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 100 && dist > 5) {
-                    p.vx += (dx / dist) * 0.2;
-                    p.vy += (dy / dist) * 0.2;
+                if (dist < 120 && dist > 5) {
+                    p.vx += (dx / dist) * 0.25;
+                    p.vy += (dy / dist) * 0.25;
                 }
             }
 
-            // Fricción para estabilizar el movimiento
             p.vx *= 0.94;
             p.vy *= 0.94;
 
             p.x += p.vx;
             p.y += p.vy;
 
-            // Rebotar en los bordes
             if (p.x < 0) { p.x = 0; p.vx *= -1; }
             if (p.x > canvas.width) { p.x = canvas.width; p.vx *= -1; }
             if (p.y < 0) { p.y = 0; p.vy *= -1; }
             if (p.y > canvas.height) { p.y = canvas.height; p.vy *= -1; }
 
-            // Dibujar partícula
-            ctx.fillStyle = '#0088ff';
+            ctx.fillStyle = p.color;
             ctx.fillRect(p.x, p.y, p.size, p.size);
         });
 
@@ -229,5 +236,4 @@
 </footer>
 
 </body>
-</footer>
 </html>

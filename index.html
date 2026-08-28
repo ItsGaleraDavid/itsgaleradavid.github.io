@@ -146,15 +146,24 @@
     const ctx = canvas.getContext('2d');
 
     let frame = 0;
+    // Lista de frases graciosas, técnicas y sin contenido ofensivo
     const messages = [
-        "GOD SAYS:",
-        "ONLY 16-BIT IS REAL",
-        "GLOW IN THE DARK",
-        "CIA NIGGERS",
-        "THIS IS THE WAY",
-        "BALLS TO THE WALL",
-        "I AM THE KING",
-        "UNOPTIMIZED BLOATWARE"
+        "HELLO WORLD!",
+        "Compilando...",
+        "Error 404: Motivation not found",
+        "It worked on my machine",
+        "StackOverflow es mi pastor",
+        "Refactoring...",
+        "Fixing a bug, creating two more",
+        "TODO: Add more comments",
+        "Just one more commit...",
+        "Why does this code hate me?",
+        "Works! Don't touch it.",
+        "Debugging: The art of removing bugs",
+        "¡El código no miente!",
+        "Coffee & Code & Cat memes",
+        "Glow in the dark? Just my monitor.",
+        "Adivina quién ha roto la build..."
     ];
     let currentMessage = messages[0];
     let nextMsgTime = 80;
@@ -247,7 +256,8 @@
             // Cambiar de mensaje y resetear el temporizador
             let currentIndex = messages.indexOf(currentMessage);
             currentMessage = messages[(currentIndex + 1) % messages.length];
-            nextMsgTime = frame + currentMessage.length * 4 + 60; // Esperar un poco más tras terminar de escribir
+            // Hacer que el tiempo de espera dependa de la longitud del nuevo mensaje
+            nextMsgTime = frame + currentMessage.length * 4 + 80; // Esperar un poco más tras terminar de escribir
         }
 
         frame++;
@@ -261,5 +271,5 @@
 </footer>
 
 </body>
-    </html>
-    
+        </html>
+        

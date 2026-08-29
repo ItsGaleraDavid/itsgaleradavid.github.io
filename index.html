@@ -147,7 +147,7 @@
 
     let posX = -20;
     
-    // Posiciones estáticas de los arbolitos/arbustos estilo pixel art
+    // Posiciones estáticas de los árboles
     const trees = [
         { x: 25, y: 35 },
         { x: 65, y: 37 },
@@ -156,7 +156,7 @@
     ];
 
     function render() {
-        // Cielo azul oscuro retro
+        // Cielo azul oscuro
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -170,19 +170,19 @@
         ctx.fillStyle = '#ffff55';
         ctx.fillRect(0, 40, canvas.width, 2);
 
-        // Dibujar los arbolitos
+        // Dibujar los árboles
         trees.forEach(tree => {
             // Tronco
             ctx.fillStyle = '#553311';
             ctx.fillRect(tree.x, tree.y, 2, 7);
-            // Copa del árbol (bloques de verde clásico VGA)
+            // Copa del árbol (bloques de verde)
             ctx.fillStyle = '#00aa00';
             ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
             ctx.fillStyle = '#55ff55';
             ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
         });
 
-        // Criatura caminando
+        // Alpaca caminando
         ctx.fillStyle = '#ffffff';
         let legOffset = Math.floor(posX / 4) % 2;
         

@@ -7,8 +7,7 @@
 <link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
-        /* Fondo y color base */
-        background: transparent; /* Hacemos el body transparente para ver el fondo de la cara */
+        background: #f7f7f5;
         color: #222220;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         max-width: 650px;
@@ -18,23 +17,11 @@
         display: flex;
         flex-direction: column;
         min-height: 85vh;
-        position: relative;
-        z-index: 2; /* Asegura que el contenido esté por encima de la cara */
-    }
-
-    /* Fondo semitransparente para los elementos del DOM para que el texto sea legible sobre la cara */
-    .content-wrapper {
-        background: rgba(247, 247, 245, 0.85);
-        padding: 30px;
-        border-radius: 4px;
     }
 
     @media (max-width: 600px) {
         body {
             padding: 20px 15px;
-        }
-        .content-wrapper {
-            padding: 15px;
         }
     }
 
@@ -72,6 +59,10 @@
         word-break: break-all;
     }
 
+    .content {
+        flex: 1;
+    }
+
     .presentation {
         margin-top: 30px;
         color: #444;
@@ -105,11 +96,11 @@
         margin-bottom: 8px;
     }
 
-    canvas#retroCanvas {
+    canvas {
         display: block;
         width: 100%;
         height: 120px;
-        background: #111; /* Fondo original dentro de la caja */
+        background: #111;
         border-radius: 2px;
         image-rendering: pixelated;
         image-rendering: crisp-edges;
@@ -122,28 +113,11 @@
         border-top: 1px solid #e0e0dc;
         padding-top: 20px;
     }
-
-    /* --- Nuevo Canvas para la cara gigante --- */
-    canvas#faceCanvas {
-        position: fixed; /* Fijo en la ventana */
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1; /* Detrás de todo el contenido */
-        background: #0000aa; /* Color de fondo retro */
-        image-rendering: pixelated; /* Importante para el estilo */
-        pointer-events: none; /* Para que no interfiera con clics en la web */
-    }
 </style>
 </head>
 <body>
 
-<!-- Capa de fondo: Cara de oveja gigante -->
-<canvas id="faceCanvas"></canvas>
-
-<!-- Contenido principal envuelto para legibilidad -->
-<div class="content-wrapper">
+<div class="content">
     <div class="header-container">
         <img src="profile.png" alt="logo" class="blink-logo">
         <span class="site-title">My personal space.</span>
@@ -163,27 +137,17 @@
 
     <div class="sandbox-container">
         <div class="sandbox-label">Oh, wow.</div>
-        <!-- Canvas original (dentro de la caja) -->
         <canvas id="retroCanvas" width="160" height="60"></canvas>
     </div>
-
-    <footer>
-        © 2026 ItsGaleraDavid. All rights reserved.
-    </footer>
 </div>
 
 <script>
-    // ==========================================
-    // LÓGICA DEL CANVAS ORIGINAL (Oveja caminando)
-    // ==========================================
-    const retroCanvas = document.getElementById('retroCanvas');
-    const ctxRetro = retroCanvas.getContext('2d');
-    // Forzar suavizado desactivado explícitamente
-    ctxRetro.imageSmoothingEnabled = false;
+    const canvas = document.getElementById('retroCanvas');
+    const ctx = canvas.getContext('2d');
 
     let posX = -20;
     
-    // Posiciones de los arbolitos
+    // Posiciones estáticas de los arbolitos/arbustos estilo pixel art
     const trees = [
         { x: 25, y: 35 },
         { x: 65, y: 37 },
@@ -191,95 +155,64 @@
         { x: 135, y: 36 }
     ];
 
-    function renderRetro() {
+    function render() {
         // Cielo azul oscuro retro
-        ctxRetro.fillStyle = '#0000aa';
-        ctxRetro.fillRect(0, 0, retroCanvas.width, retroCanvas.height);
+        ctx.fillStyle = '#0000aa';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Sol amarillo
-        ctxRetro.fillStyle = '#ffff55';
-        ctxRetro.fillRect(120, 10, 12, 12);
+        ctx.fillStyle = '#ffff55';
+        ctx.fillRect(120, 10, 12, 12);
 
-        // Suelo desértico
-        ctxRetro.fillStyle = '#aa5500';
-        ctxRetro.fillRect(0, 42, retroCanvas.width, 18);
-        ctxRetro.fillStyle = '#ffff55';
-        ctxRetro.fillRect(0, 40, retroCanvas.width, 2);
+        // Suelo desértico amarillo/marrón
+        ctx.fillStyle = '#aa5500';
+        ctx.fillRect(0, 42, canvas.width, 18);
+        ctx.fillStyle = '#ffff55';
+        ctx.fillRect(0, 40, canvas.width, 2);
 
         // Dibujar los arbolitos
         trees.forEach(tree => {
-            ctxRetro.fillStyle = '#553311'; // Tronco
-            ctxRetro.fillRect(tree.x, tree.y, 2, 7);
-            ctxRetro.fillStyle = '#00aa00'; // Copa
-            ctxRetro.fillRect(tree.x - 3, tree.y - 5, 8, 6);
-            ctxRetro.fillStyle = '#55ff55';
-            ctxRetro.fillRect(tree.x - 2, tree.y - 4, 3, 3);
+            // Tronco
+            ctx.fillStyle = '#553311';
+            ctx.fillRect(tree.x, tree.y, 2, 7);
+            // Copa del árbol (bloques de verde clásico VGA)
+            ctx.fillStyle = '#00aa00';
+            ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
+            ctx.fillStyle = '#55ff55';
+            ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
         });
 
         // Criatura caminando
-        ctxRetro.fillStyle = '#ffffff';
+        ctx.fillStyle = '#ffffff';
         let legOffset = Math.floor(posX / 4) % 2;
         
-        ctxRetro.fillRect(posX, 32, 12, 8); // Cuerpo
-        ctxRetro.fillRect(posX + 10, 28, 4, 6); // Cabeza
+        // Cuerpo
+        ctx.fillRect(posX, 32, 12, 8);
+        // Cabeza
+        ctx.fillRect(posX + 10, 28, 4, 6);
         // Patas
         if (legOffset === 0) {
-            ctxRetro.fillRect(posX + 2, 40, 2, 4);
-            ctxRetro.fillRect(posX + 8, 40, 2, 4);
+            ctx.fillRect(posX + 2, 40, 2, 4);
+            ctx.fillRect(posX + 8, 40, 2, 4);
         } else {
-            ctxRetro.fillRect(posX + 3, 40, 2, 4);
-            ctxRetro.fillRect(posX + 7, 40, 2, 4);
+            ctx.fillRect(posX + 3, 40, 2, 4);
+            ctx.fillRect(posX + 7, 40, 2, 4);
         }
 
         posX += 0.5;
-        if (posX > retroCanvas.width + 20) posX = -20;
+        if (posX > canvas.width + 20) {
+            posX = -20;
+        }
 
-        requestAnimationFrame(renderRetro);
+        requestAnimationFrame(render);
     }
-    renderRetro();
+    render();
+</script>
 
+<footer>
+    © 2026 ItsGaleraDavid. All rights reserved.
+</footer>
 
-    // ==========================================
-    // LÓGICA DEL NUEVO CANVAS (Cara gigante)
-    // ==========================================
-    const faceCanvas = document.getElementById('faceCanvas');
-    const ctxFace = faceCanvas.getContext('2d');
-    // Desactivar suavizado para el estilo pixel art
-    ctxFace.imageSmoothingEnabled = false;
-
-    function resizeFaceCanvas() {
-        faceCanvas.width = window.innerWidth;
-        faceCanvas.height = window.innerHeight;
-        // Re-desactivar tras resize
-        ctxFace.imageSmoothingEnabled = false;
-    }
-    window.addEventListener('resize', resizeFaceCanvas);
-    resizeFaceCanvas();
-
-    let blinkTimer = 0;
-    let isBlinking = false;
-
-    function drawSheepFace() {
-        // Limpiar fondo
-        ctxFace.fillStyle = '#0000aa';
-        ctxFace.fillRect(0, 0, faceCanvas.width, faceCanvas.height);
-
-        // Coordenadas base para centrar la cara
-        let cw = faceCanvas.width;
-        let ch = faceCanvas.height;
-        let cx = cw / 2;
-        let cy = ch / 2 + 100; // Un poco por debajo del centro para que ocupe más abajo
-
-        // Escala para que sea gigante (factor entero para píxeles nítidos)
-        let s = Math.min(cw, ch) / 150; 
-
-        // --- Dibujo de la cara estilo pixel art ---
-        
-        // 1. Lana (Fondo de la cabeza) - Múltiples bloques irregulares
-        ctxFace.fillStyle = '#ffffff'; // Blanco
-        function woolBlob(x, y, w, h) {
-             // Dibujamos un bloque grande y varios pequeños al azar para simular lana
-             ctxFace.fillRect(cx + x*s, cy + y*s, w*s, h*s);
-             ctxFace.fillRect(cx + (x-1)*s, cy + (y+1)*s, (w+2)*s, (h-1)*s);
-             ctxFace.fillRect(cx +
-    
+</body>
+            </html>
+            

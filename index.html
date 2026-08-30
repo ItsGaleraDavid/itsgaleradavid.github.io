@@ -130,9 +130,9 @@
     </div>
 
     <div class="directory-list">
-        <div class="dir-item"><a href="code/">code/</a> — Playing around with programming things. (No content)</div>
-        <div class="dir-item"><a href="labs/">labs/</a> — Metaverses and virtual space experiments. (No content)</div>
-        <div class="dir-item"><a href="logs/">vault/</a> — Writings, downloads, and web recommendations. (No content)</div>
+        <div class="dir-item"><a href="code/">code/</a> — Playing around with programming things.</div>
+        <div class="dir-item"><a href="worlds/">worlds/</a> — Metaverses and virtual space experiments.</div>
+        <div class="dir-item"><a href="vault/">vault/</a> — Writings, downloads, and web recommendations.</div>
     </div>
 
     <div class="sandbox-container">
@@ -144,10 +144,10 @@
 <script>
     const canvas = document.getElementById('retroCanvas');
     const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
 
     let posX = -20;
     
-    // Posiciones estáticas de los árboles
     const trees = [
         { x: 25, y: 35 },
         { x: 65, y: 37 },
@@ -156,41 +156,32 @@
     ];
 
     function render() {
-        // Cielo azul oscuro
         ctx.fillStyle = '#0000aa';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Sol amarillo
         ctx.fillStyle = '#ffff55';
         ctx.fillRect(120, 10, 12, 12);
 
-        // Suelo desértico amarillo/marrón
         ctx.fillStyle = '#aa5500';
         ctx.fillRect(0, 42, canvas.width, 18);
         ctx.fillStyle = '#ffff55';
         ctx.fillRect(0, 40, canvas.width, 2);
 
-        // Dibujar los árboles
         trees.forEach(tree => {
-            // Tronco
             ctx.fillStyle = '#553311';
             ctx.fillRect(tree.x, tree.y, 2, 7);
-            // Copa del árbol (bloques de verde)
             ctx.fillStyle = '#00aa00';
             ctx.fillRect(tree.x - 3, tree.y - 5, 8, 6);
             ctx.fillStyle = '#55ff55';
             ctx.fillRect(tree.x - 2, tree.y - 4, 3, 3);
         });
 
-        // Alpaca caminando
         ctx.fillStyle = '#ffffff';
         let legOffset = Math.floor(posX / 4) % 2;
         
-        // Cuerpo
         ctx.fillRect(posX, 32, 12, 8);
-        // Cabeza
         ctx.fillRect(posX + 10, 28, 4, 6);
-        // Patas
+        
         if (legOffset === 0) {
             ctx.fillRect(posX + 2, 40, 2, 4);
             ctx.fillRect(posX + 8, 40, 2, 4);
@@ -214,5 +205,4 @@
 </footer>
 
 </body>
-            </html>
-            
+</html>

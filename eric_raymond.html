@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ItsGaleraDavid | The Vault</title>
-<link rel="icon" href="../profile.ico" type="image/x-icon">
+<title>ItsGaleraDavid | Vault | Eric S. Raymond</title>
+<link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
         background: #f7f7f5;
@@ -75,23 +75,8 @@
         padding-bottom: 10px;
     }
 
-    .vault-list {
-        margin-top: 35px;
-        font-family: monospace;
-    }
-
-    .vault-item {
-        margin-bottom: 15px;
-    }
-
-    .vault-item a {
-        font-weight: bold;
-    }
-    
-    .vault-item span {
-        color: #777;
-        margin-left: 5px;
-        font-size: 0.9em;
+    .entry-container {
+        margin-top: 40px;
     }
 
     footer {
@@ -107,24 +92,28 @@
 
 <div class="content">
     <div class="header-container">
-        <img src="../profile.png" alt="logo" class="blink-logo">
-        <span class="site-title">My personal space.</span>
+        <img src="profile.png" alt="logo" class="blink-logo">
+        <span class="site-title">My personal space</span>
     </div>
+    
+    <!-- BREADCRUMB CORREGIDO A LA RAÍZ -->
     <div class="breadcrumb">
-        <a href="../index.html">home</a> / vault
+        <a href="index.html">home</a> / <a href="vault.html">vault</a> / eric-raymond
     </div>
 
     <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
 
-    <div class="presentation">
-        <p>Un archivo personal de cosas que me interesan, escritos, notas sobre historia digital, descargas útiles y referencias.</p>
-    </div>
-
-    <!-- LISTA DE ENTRADAS -->
-    <div class="vault-list">
-        <div class="vault-item"><a href="eric_raymond.html">eric-raymond/</a> — <span>La filosofía del código abierto y la cultura hacker.</span></div>
-        <!-- AÑADE MÁS ENTRADAS AQUÍ -->
-        <!-- <div class="vault-item"><a href="otra_entrada.html">otra-entrada/</a> — <span>Descripción breve de la siguiente entrada.</span></div> -->
+    <div class="entry-container">
+        <h2>Eric S. Raymond (ESR)</h2>
+        <p>Una figura central en la historia y la filosofía del movimiento de software de código abierto. Su influencia definió gran parte del lenguaje y la ética de la comunidad moderna de desarrollo distribuido.</p>
+        
+        <h3>Notas Clave:</h3>
+        <ul>
+            <li><strong>La Catedral y el Bazar (1997):</strong> Este ensayo fundamental contrastó dos modelos de desarrollo de software. "La Catedral" (código propietario o cerrado) frente a "El Bazar" (desarrollo rápido, iterativo y descentralizado).</li>
+            <li><strong>El término "Open Source":</strong> Jugó un papel crucial en la acuñación y popularización del término en 1998, promoviendo el modelo de colaboración pragmática.</li>
+            <li><strong>"Release Early, Release Often":</strong> Un mantra que encapsula la idea de poner el software en manos de los usuarios lo antes posible para obtener feedback frecuente.</li>
+            <li><strong>La Ley de Linus:</strong> "Dado suficientes ojos, todos los errores son superficiales."</li>
+        </ul>
     </div>
 </div>
 

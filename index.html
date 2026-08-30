@@ -113,12 +113,6 @@
         border-top: 1px solid #e0e0dc;
         padding-top: 20px;
     }
-
-    /* alinear el badge de carbono */
-    .carbonbadge {
-        display: inline-block;
-        vertical-align: middle;
-    }
 </style>
 </head>
 <body>
@@ -207,9 +201,9 @@
 </script>
 
 <footer>
-    <div>
+    <div style="margin-top: 40px; font-size: 0.85em; color: #777; border-top: 1px solid #e0e0dc; padding-top: 20px;">
         <p>© 2026 ItsGaleraDavid. Some rights reserved.</p>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; flex-wrap: wrap; gap: 15px;">
             <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
                     <img alt="Creative Commons License" style="border-width:0; display: block;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
@@ -218,14 +212,12 @@
                     This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" style="color: #0066cc; text-decoration: none;">CC BY-NC-SA 4.0 International License</a>.
                 </span>
             </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div id="wcb" class="carbonbadge"></div>
+            <div>
                 <img src="Produced-By-a-Human-Not-By-AI-Badge-white.png" alt="Produced by a human, not by AI" style="height: 31px; display: block;" />
             </div>
         </div>
     </div>
 </footer>
 
-<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
 </body>
 </html>

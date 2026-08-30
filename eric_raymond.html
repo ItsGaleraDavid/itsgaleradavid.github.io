@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ItsGaleraDavid | The Vault</title>
+<link rel="icon" href="../profile.ico" type="image/x-icon">
+<style>
+    body {
+        background: #f7f7f5;
+        color: #222220;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 85vh;
+    }
+
+    @media (max-width: 600px) {
+        body {
+            padding: 20px 15px;
+        }
+    }
+
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    .header-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    @keyframes blink {
+        0%, 90%, 100% {
+            transform: scaleY(1);
+        }
+        95% {
+            transform: scaleY(0.05);
+        }
+    }
+
+    .blink-logo {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        animation: blink 4s infinite;
+        transform-origin: center;
+    }
+
+    .site-title {
+        font-weight: 600;
+        letter-spacing: -0.5px;
+        word-break: break-all;
+    }
+
+    .breadcrumb {
+        font-family: monospace;
+        margin-top: 10px;
+        color: #777;
+    }
+
+    .content {
+        flex: 1;
+        margin-top: 30px;
+    }
+
+    h2 {
+        border-bottom: 2px solid #e0e0dc;
+        padding-bottom: 10px;
+    }
+
+    .vault-list {
+        margin-top: 35px;
+        font-family: monospace;
+    }
+
+    .vault-item {
+        margin-bottom: 15px;
+    }
+
+    .vault-item a {
+        font-weight: bold;
+    }
+    
+    .vault-item span {
+        color: #777;
+        margin-left: 5px;
+        font-size: 0.9em;
+    }
+
+    footer {
+        margin-top: 50px;
+        font-size: 0.85em;
+        color: #777;
+        border-top: 1px solid #e0e0dc;
+        padding-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="content">
+    <div class="header-container">
+        <img src="../profile.png" alt="logo" class="blink-logo">
+        <span class="site-title">My personal space.</span>
+    </div>
+    <div class="breadcrumb">
+        <a href="../index.html">home</a> / vault
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
+
+    <div class="presentation">
+        <p>Un archivo personal de cosas que me interesan, escritos, notas sobre historia digital, descargas útiles y referencias.</p>
+    </div>
+
+    <!-- LISTA DE ENTRADAS -->
+    <div class="vault-list">
+        <div class="vault-item"><a href="eric_raymond.html">eric-raymond/</a> — <span>La filosofía del código abierto y la cultura hacker.</span></div>
+        <!-- AÑADE MÁS ENTRADAS AQUÍ -->
+        <!-- <div class="vault-item"><a href="otra_entrada.html">otra-entrada/</a> — <span>Descripción breve de la siguiente entrada.</span></div> -->
+    </div>
+</div>
+
+<footer>
+    © 2026 ItsGaleraDavid. All rights reserved.
+</footer>
+
+</body>
+</html>

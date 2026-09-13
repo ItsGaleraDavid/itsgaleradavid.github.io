@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reclaiming the Sandbox — ItsGaleraDavid</title>
+<title>Setting up a local OpenSimulator sandbox — ItsGaleraDavid</title>
 <link rel="icon" href="profile.ico" type="image/x-icon">
 <style>
     body {
@@ -66,14 +66,14 @@
     }
 
     .article-body p {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
 
     .article-image {
         width: 100%;
         border: 1px solid #e0e0dc;
         border-radius: 4px;
-        margin: 25px 0;
+        margin: 20px 0;
         display: block;
     }
 
@@ -82,16 +82,16 @@
         font-size: 0.8em;
         color: #777;
         text-align: center;
-        margin-top: -15px;
-        margin-bottom: 25px;
+        margin-top: -12px;
+        margin-bottom: 20px;
     }
 
     footer {
-        margin-top: 50px;
+        margin-top: 30px;
         font-size: 0.85em;
         color: #777;
         border-top: 1px solid #e0e0dc;
-        padding-top: 20px;
+        padding-top: 15px;
     }
 </style>
 </head>
@@ -106,28 +106,21 @@
     <hr style="border: 0; border-top: 1px solid #e0e0dc; margin: 25px 0;">
 
     <div class="article-header">
-        <h1 class="article-title">Reclaiming the Sandbox: Notes on Self-Hosting Aethelgard</h1>
+        <h1 class="article-title">Setting up a local OpenSimulator sandbox</h1>
         <div class="article-date">September 13, 2026</div>
     </div>
 
     <div class="article-body">
-        <p>There is a specific kind of exhaustion that comes from modern digital spaces. Everything is pre-packaged, monitored, monetized, and fenced in by corporate templates designed to extract attention rather than foster curiosity. Somewhere along the way, the internet traded its raw, unpolished experimental edge for sterile walled gardens.</p>
+        <p>Got tired of cloud-hosted virtual worlds and overly polished corporate spaces, so I set up a local OpenSimulator instance running on port 9000. It's a completely self-hosted sandbox backed by a local SQLite database—just a standalone process running in a terminal window.</p>
         
-        <p>I wanted out of that loop. The objective was simple: build a private, persistent virtual world from the ground up, completely untethered from public grids or commercial interests. A return to the hacker ethos of the 2000s—where you owned your stack, understood how the bits moved, and didn't care if things broke because fixing them was the whole point.</p>
-        
-        <h3 style="font-size: 1.1em; font-weight: 600; color: #222220; margin-top: 30px; margin-bottom: 10px;">The Architecture</h3>
-        <p>The foundation sits on a local instance of OpenSimulator running on port 9000. No cloud dependencies, no external telemetry, just a standalone server process humming away in a local terminal window. The world itself was initialized as <em>Aethelgard</em>—a quiet, isolated region backed by a local SQLite database tracking the terrain heightmaps and object states.</p>
-        
-        <p>Getting there wasn't entirely frictionless. Modern viewers like Firestorm are heavily optimized for online commercial grids, complete with web-based grid lists designed to herd users toward public spaces. Trying to force it to talk to a local loopback address (<code>http://127.0.0.1:9000/</code>) required bypassing the automated directory tools and feeding the URI directly into the client. Authentication meant dropping into the server console to provision the local root user—<em>Kryvex Root</em>—establishing direct administrative sovereignty over the simulation.</p>
+        <p>Getting a modern viewer like Firestorm to talk to a local loopback address takes a bit of friction-fighting. The client is heavily geared toward public online grids, meaning you have to bypass its web directory, type the URI manually, and provision accounts directly through the server console.</p>
 
-        <img src="aethelgard.jpg" alt="Aethelgard local simulation running in Firestorm" class="article-image">
-        <div class="image-caption">First boot: Kryvex Root standing in the local simulation of Aethelgard.</div>
+        <img src="aethelgard.jpg" alt="Local OpenSimulator instance running in Firestorm" class="article-image">
+        <div class="image-caption">First boot on the local loopback interface.</div>
 
-        <h3 style="font-size: 1.1em; font-weight: 600; color: #222220; margin-top: 30px; margin-bottom: 10px;">The Reality of the Terminal</h3>
-        <p>There is an old-school charm in realizing that your entire virtual universe is tethered to a blinking terminal prompt. Close the console window with a careless click, and the simulation evaporates instantly; the physics engine halts, the terrain unloads, and the avatar ceases to exist. That constant reminder of underlying mechanics is precisely the point.</p>
+        <p>There's something satisfying about a virtual world that vanishes the second you close a terminal window. No cloud infrastructure, no external telemetry—just local state and physics.</p>
         
-        <h3 style="font-size: 1.1em; font-weight: 600; color: #222220; margin-top: 30px; margin-bottom: 10px;">What’s Next</h3>
-        <p>Aethelgard isn't meant to be a polished showcase or a social hub. It’s a laboratory. Now that the pipeline from binary to client is stable, the real work begins: manipulating the physics engine, injecting custom scripts, and treating virtual space not as a finished product, but as raw code waiting to be shaped.</p>
+        <p>Next up is messing around with physics overrides and testing custom scripts. Just a private lab to see how things break and rebuild them from scratch.</p>
     </div>
 </div>
 

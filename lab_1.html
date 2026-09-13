@@ -73,7 +73,7 @@
         width: 100%;
         border: 1px solid #e0e0dc;
         border-radius: 4px;
-        margin: 20px 0;
+        margin: 16px 0;
         display: block;
     }
 
@@ -82,12 +82,12 @@
         font-size: 0.8em;
         color: #777;
         text-align: center;
-        margin-top: -12px;
-        margin-bottom: 20px;
+        margin-top: -8px;
+        margin-bottom: 16px;
     }
 
     footer {
-        margin-top: 30px;
+        margin-top: 40px;
         font-size: 0.85em;
         color: #777;
         border-top: 1px solid #e0e0dc;
@@ -111,16 +111,16 @@
     </div>
 
     <div class="article-body">
-        <p>Got tired of cloud-hosted virtual worlds and overly polished corporate spaces, so I set up a local OpenSimulator instance running on port 9000. It's a completely self-hosted sandbox backed by a local SQLite database—just a standalone process running in a terminal window.</p>
+        <p>I wanted a local virtual space running entirely on my own machine without dealing with external servers or cloud dependencies. Set up a standalone OpenSimulator instance on port 9000 using a simple SQLite backend for the region data.</p>
         
-        <p>Getting a modern viewer like Firestorm to talk to a local loopback address takes a bit of friction-fighting. The client is heavily geared toward public online grids, meaning you have to bypass its web directory, type the URI manually, and provision accounts directly through the server console.</p>
+        <p>Getting Firestorm to connect locally takes a couple of workaround steps because the viewer is heavily tied to public directory grids. You have to skip their automatic grid lists, type the loopback address manually (<code>http://127.0.0.1:9000/</code>), and provision the user account directly through the server terminal console.</p>
 
         <img src="aethelgard.jpg" alt="Local OpenSimulator instance running in Firestorm" class="article-image">
-        <div class="image-caption">First boot on the local loopback interface.</div>
+        <div class="image-caption">First successful login to the local instance.</div>
 
-        <p>There's something satisfying about a virtual world that vanishes the second you close a terminal window. No cloud infrastructure, no external telemetry—just local state and physics.</p>
+        <p>The whole setup is straightforward: the simulation runs as long as the terminal process is open. Close the console, the server stops. No hidden background services.</p>
         
-        <p>Next up is messing around with physics overrides and testing custom scripts. Just a private lab to see how things break and rebuild them from scratch.</p>
+        <p>Next steps are mostly testing physics configurations and writing some basic scripts to see how things behave under the hood.</p>
     </div>
 </div>
 

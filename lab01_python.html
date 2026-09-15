@@ -111,7 +111,7 @@
     </div>
 
     <div class="article-body">
-        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks. The solution was simple: write a backend loop in Python using <code>asyncio</code> and <code>psutil</code> to capture hardware stats, serializing the data packets into JSON streams.</p>
+        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks. The solution was simple: write a backend loop in Python using <code>asyncio </code> and <code>psutil </code> to capture hardware stats, serializing the data packets into JSON streams.</p>
         
         <p>Since GitHub Pages serves static files and doesn't run background processes on the cloud, this is built as a local diagnostic tool. The frontend client establishes a WebSocket connection directly to the local host machine, keeping dependencies to an absolute minimum.</p>
 

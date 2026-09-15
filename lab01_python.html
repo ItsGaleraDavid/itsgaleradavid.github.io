@@ -75,6 +75,15 @@
         border-radius: 4px;
         margin: 16px 0;
         display: block;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: zoom-in;
+    }
+
+    .article-image:hover {
+        transform: scale(1.12);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 10;
     }
 
     .image-caption {
@@ -111,12 +120,12 @@
     </div>
 
     <div class="article-body">
-        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks. The solution was simple: write a backend loop in Python using <code>asyncio </code> and <code>psutil </code> to capture hardware stats, serializing the data packets into JSON streams.</p>
+        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks. The solution was simple: write a backend loop in Python using <code>asyncio</code> and <code>psutil</code> to capture hardware stats, serializing the data packets into JSON streams.</p>
         
         <p>Since GitHub Pages serves static files and doesn't run background processes on the cloud, this is built as a local diagnostic tool. The frontend client establishes a WebSocket connection directly to the local host machine, keeping dependencies to an absolute minimum.</p>
 
         <img src="lab01_python.png" alt="Sentinel system telemetry client interface" class="article-image">
-        <div class="image-caption">Telemetry client capturing live metrics locally.</div>
+        <div class="image-caption">Telemetry client capturing live metrics locally. (Hover to zoom)</div>
 
         <p>The implementation strips away unnecessary abstractions, focusing purely on clean event loops and readable socket handling. No frameworks, zero bloat.</p>
     </div>

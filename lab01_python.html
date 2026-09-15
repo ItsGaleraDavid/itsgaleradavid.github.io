@@ -10,7 +10,7 @@
         background: #f7f7f5;
         color: #222220;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        max-width: 700px;
+        max-width: 650px;
         margin: 0 auto;
         padding: 40px 20px;
         line-height: 1.6;
@@ -69,61 +69,21 @@
         margin-bottom: 16px;
     }
 
-    /* Estilos integrados para el widget de telemetría */
-    .dashboard-container {
-        background-color: #0f131c;
-        color: #ffffff;
-        border-radius: 6px;
-        padding: 20px;
-        margin: 25px 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .dash-card {
-        background-color: #161b26;
-        border: 1px solid #2a344a;
-        border-radius: 6px;
-        padding: 15px;
-        margin-bottom: 12px;
-    }
-    .dash-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-    .status-online { color: #57ab5a; font-weight: bold; }
-    .status-offline { color: #e5534b; font-weight: bold; }
-    .metric-row {
-        display: flex;
-        justify-content: space-between;
-        margin: 6px 0;
-        font-size: 0.9em;
-    }
-    .progress-bar {
-        background-color: #21262d;
-        border-radius: 4px;
-        overflow: hidden;
-        height: 8px;
+    .article-image {
         width: 100%;
-        margin-top: 4px;
-    }
-    .progress-fill {
-        background-color: #57ab5a;
-        height: 100%;
-        width: 0%;
-        transition: width 0.3s ease;
-    }
-    #log {
-        background-color: #0d1117;
-        border: 1px solid #21262d;
+        border: 1px solid #e0e0dc;
         border-radius: 4px;
-        padding: 10px;
-        height: 90px;
-        overflow-y: auto;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 0.8rem;
-        color: #8b949e;
+        margin: 16px 0;
+        display: block;
+    }
+
+    .image-caption {
+        font-family: monospace;
+        font-size: 0.8em;
+        color: #777;
+        text-align: center;
+        margin-top: -8px;
+        margin-bottom: 16px;
     }
 
     footer {
@@ -151,68 +111,14 @@
     </div>
 
     <div class="article-body">
-        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks or background system daemons. The goal was simple: write a backend loop in Python to capture system stats and stream them directly over a WebSocket connection.</p>
+        <p>I wanted a straightforward way to inspect raw OS metrics without deploying heavy monitoring frameworks. The solution was simple: write a backend loop in Python using <code>asyncio</code> and <code>psutil</code> to capture hardware stats, serializing the data packets into JSON streams.</p>
         
-        <p>The core runs on a minimal asynchronous server using Python's native <code>asyncio</code> and the <code>websockets</code> library, pulling hardware details via <code>psutil</code>. Every second, it serializes data structures into JSON packets containing CPU load, memory utilization, disk space, active PIDs, and network throughput counters.</p>
+        <p>Since GitHub Pages serves static files and doesn't run background processes on the cloud, this is built as a local diagnostic tool. The frontend client establishes a WebSocket connection directly to the local host machine, keeping dependencies to an absolute minimum.</p>
 
-        <p>Below is the live dashboard client running in the browser. If you have the companion Python script active locally on port <code>8768</code>, it binds instantly and streams live metrics from the host machine:</p>
+        <img src="lab01_python.png" alt="Sentinel system telemetry client interface" class="article-image">
+        <div class="image-caption">Sentinel telemetry client capturing live metrics locally.</div>
 
-        <!-- WIDGET INTERACTIVO EMBEBIDO -->
-        <div class="dashboard-container">
-            <div style="font-size: 0.95em; font-weight: bold; color: #79b8ff; margin-bottom: 12px; border-bottom: 1px solid #2a344a; padding-bottom: 6px;">
-                SENTINEL // LIVE TELEMETRY CLIENT
-            </div>
-
-            <div class="dash-card">
-                <div class="metric-row" style="margin:0;">
-                    <span>Connection Status:</span>
-                    <span id="connection-status" class="status-offline">Connecting...</span>
-                </div>
-                <div class="metric-row" style="margin-top:4px;">
-                    <span>Platform:</span>
-                    <strong id="os-val">---</strong>
-                </div>
-            </div>
-
-            <div class="dash-card">
-                <div class="metric-row">
-                    <span>CPU Usage</span>
-                    <span><strong id="cpu-val">0.0</strong>%</span>
-                </div>
-                <div class="progress-bar"><div id="cpu-bar" class="progress-fill"></div></div>
-
-                <div class="metric-row" style="margin-top: 12px;">
-                    <span>Memory RAM Usage</span>
-                    <span><strong id="ram-val">0.0</strong>%</span>
-                </div>
-                <div class="progress-bar"><div id="ram-bar" class="progress-fill" style="background-color: #38bdf8;"></div></div>
-
-                <div class="metric-row" style="margin-top: 12px;">
-                    <span>Primary Disk (C:\)</span>
-                    <span><strong id="disk-val">0.0</strong>%</span>
-                </div>
-                <div class="progress-bar"><div id="disk-bar" class="progress-fill" style="background-color: #d2a8ff;"></div></div>
-            </div>
-
-            <div class="dash-grid">
-                <div class="dash-card" style="margin-bottom:0;">
-                    <span style="color: #8b949e; font-size: 0.8em;">Active Processes</span>
-                    <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px;" id="proc-val">--</div>
-                </div>
-                <div class="dash-card" style="margin-bottom:0;">
-                    <span style="color: #8b949e; font-size: 0.8em;">Network (Sent / Recv)</span>
-                    <div style="font-size: 0.8em; font-weight: bold; margin-top: 6px;" id="net-val">-- / --</div>
-                </div>
-            </div>
-
-            <div class="dash-card" style="margin-top: 12px; margin-bottom:0;">
-                <span style="color: #8b949e; font-size: 0.8em; display: block; margin-bottom: 4px;">Event Log:</span>
-                <div id="log"></div>
-            </div>
-        </div>
-        <!-- FIN DEL WIDGET -->
-
-        <p>Building this reinforces how clean network abstractions can be when you strip away unnecessary abstractions and deal directly with sockets and event loops. No frameworks, zero bloat.</p>
+        <p>The implementation strips away unnecessary abstractions, focusing purely on clean event loops and readable socket handling. No frameworks, zero bloat.</p>
     </div>
 </div>
 
@@ -227,70 +133,6 @@
         </span>
     </div>
 </footer>
-
-<script>
-    const wsUri = "ws://localhost:8768";
-    const statusBox = document.getElementById("connection-status");
-    const cpuVal = document.getElementById("cpu-val");
-    const cpuBar = document.getElementById("cpu-bar");
-    const ramVal = document.getElementById("ram-val");
-    const ramBar = document.getElementById("ram-bar");
-    const diskVal = document.getElementById("disk-val");
-    const diskBar = document.getElementById("disk-bar");
-    const procVal = document.getElementById("proc-val");
-    const netVal = document.getElementById("net-val");
-    const osVal = document.getElementById("os-val");
-    const logDiv = document.getElementById("log");
-
-    function formatBytes(bytes) {
-        if (bytes === 0) return '0 B';
-        const k = 1024;
-        const sizes = ['B', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-    }
-
-    function addLog(msg) {
-        const timestamp = new Date().toLocaleTimeString();
-        logDiv.innerHTML += `[${timestamp}] ${msg}<br>`;
-        logDiv.scrollTop = logDiv.scrollHeight;
-    }
-
-    function connect() {
-        const websocket = new WebSocket(wsUri);
-
-        websocket.onopen = () => {
-            statusBox.className = "status-online";
-            statusBox.innerText = "Connected (Port 8768)";
-            addLog("WebSocket tunnel established.");
-        };
-
-        websocket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-
-            osVal.innerText = data.system;
-            cpuVal.innerText = data.cpu_percent.toFixed(1);
-            ramVal.innerText = data.memory_percent.toFixed(1);
-            diskVal.innerText = data.disk_percent.toFixed(1);
-
-            cpuBar.style.width = data.cpu_percent + "%";
-            ramBar.style.width = data.memory_percent + "%";
-            diskBar.style.width = data.disk_percent + "%";
-
-            procVal.innerText = data.processes_count;
-            netVal.innerText = `${formatBytes(data.bytes_sent)} / ${formatBytes(data.bytes_recv)}`;
-        };
-
-        websocket.onclose = () => {
-            statusBox.className = "status-offline";
-            statusBox.innerText = "Disconnected (Retrying...)";
-            addLog("Connection lost. Reconnecting...");
-            setTimeout(connect, 2000);
-        };
-    }
-
-    connect();
-</script>
 
 </body>
 </html>
